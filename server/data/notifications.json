@@ -1,0 +1,32 @@
+[
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "title": "Welcome to ProjectForge AI! 🚀",
+    "message": "Your profile has been set up with your skills in Python, React, and FastAPI. Explore recommended projects or generate a custom one.",
+    "type": "system",
+    "read": false,
+    "link": "/dashboard",
+    "createdAt": "2026-09-29T14:59:12.396Z",
+    "_id": "8098e1e9-a60f-4cc5-a563-9be374085353"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "title": "Welcome to ProjectForge AI! 🚀",
+    "message": "Your account is ready. Complete onboarding to discover tailored project recommendations.",
+    "type": "system",
+    "read": false,
+    "link": "/onboarding",
+    "createdAt": "2026-09-29T15:18:25.151Z",
+    "_id": "3102349f-c9d7-4648-b9b9-d62ab7ed5ae8"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "title": "Project \"SolarGridForge\" Workspace Initialized! 🎉",
+    "message": "Full architecture, database, APIs, tasks, and test cases have been generated for you.",
+    "type": "milestone",
+    "read": false,
+    "link": "/workspace/0d4e0261-e287-476e-97e2-aed315354236",
+    "createdAt": "2026-09-29T15:18:25.256Z",
+    "_id": "dbf2cea6-24af-4f00-8711-40ca3467f06b"
+  }
+]

@@ -1,0 +1,265 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "endpoints": [
+      {
+        "id": "ep-01",
+        "name": "Upload & Analyze Receipt Photo",
+        "method": "POST",
+        "path": "/api/receipts/analyze",
+        "authRequired": true,
+        "description": "Uploads receipt or food image, triggers Gemini multimodal analysis, returns parsed items and CO2 estimate.",
+        "parameters": [],
+        "requestBody": {
+          "imageBase64": "data:image/jpeg;base64,...",
+          "category": "food"
+        },
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "totalCo2eKg": 3.42,
+              "items": [
+                {
+                  "name": "Oat Milk Latte",
+                  "co2eKg": 0.35
+                }
+              ],
+              "recommendations": [
+                "Great choice! Oat milk saved ~0.4kg compared to dairy."
+              ]
+            }
+          }
+        },
+        "responseError": {
+          "status": 400,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "INVALID_IMAGE",
+              "message": "Unable to parse food items from the provided image."
+            }
+          }
+        },
+        "curlSnippet": "curl -X POST https://api.ecotrack.ai/api/receipts/analyze \\\n  -H \"Authorization: Bearer YOUR_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"category\": \"food\", \"imageBase64\": \"...\"}'"
+      },
+      {
+        "id": "ep-02",
+        "name": "Get Weekly Carbon Summary",
+        "method": "GET",
+        "path": "/api/analytics/weekly",
+        "authRequired": true,
+        "description": "Retrieves aggregated emissions for the last 7 days grouped by category.",
+        "parameters": [
+          {
+            "name": "startDate",
+            "type": "string",
+            "in": "query",
+            "required": false,
+            "description": "ISO date string"
+          }
+        ],
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "weekTotalKg": 14.8,
+              "dailyAverage": 2.11,
+              "targetKg": 15,
+              "breakdown": {
+                "food": 8.2,
+                "transport": 4.1,
+                "energy": 2.5
+              }
+            }
+          }
+        },
+        "responseError": {
+          "status": 401,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "UNAUTHORIZED",
+              "message": "Missing or expired token"
+            }
+          }
+        },
+        "curlSnippet": "curl -X GET \"https://api.ecotrack.ai/api/analytics/weekly\" -H \"Authorization: Bearer YOUR_TOKEN\""
+      }
+    ],
+    "updatedAt": "2026-09-29T14:59:12.382Z",
+    "_id": "05cd9e1a-3643-43e8-af97-f5b85e2e0331"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "endpoints": [
+      {
+        "id": "ep-01",
+        "name": "List SolarGridForge Resources",
+        "method": "GET",
+        "path": "/api/solargridforge-5223/items",
+        "authRequired": true,
+        "description": "Retrieves a paginated list of items belonging to the authenticated user.",
+        "parameters": [
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "required": false,
+            "description": "Page number (default 1)"
+          },
+          {
+            "name": "limit",
+            "type": "integer",
+            "in": "query",
+            "required": false,
+            "description": "Page size (default 20)"
+          }
+        ],
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "items": [
+                {
+                  "id": "1",
+                  "title": "Example Resource",
+                  "status": "active"
+                }
+              ],
+              "total": 1,
+              "page": 1
+            }
+          }
+        },
+        "responseError": {
+          "status": 401,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "UNAUTHORIZED",
+              "message": "Bearer token missing or expired"
+            }
+          }
+        },
+        "curlSnippet": "curl -X GET \"http://localhost:5000/api/solargridforge-5223/items?page=1&limit=20\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\""
+      },
+      {
+        "id": "ep-02",
+        "name": "Create New SolarGridForge Item",
+        "method": "POST",
+        "path": "/api/solargridforge-5223/items",
+        "authRequired": true,
+        "description": "Validates payload and inserts a new resource record.",
+        "requestBody": {
+          "title": "New Item Title",
+          "category": "general",
+          "metadata": {
+            "priority": "high"
+          }
+        },
+        "responseSuccess": {
+          "status": 201,
+          "body": {
+            "success": true,
+            "data": {
+              "id": "item_101",
+              "title": "New Item Title",
+              "status": "active",
+              "createdAt": "2026-09-29T20:00:00Z"
+            }
+          }
+        },
+        "responseError": {
+          "status": 400,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Title is required and must exceed 3 characters"
+            }
+          }
+        },
+        "curlSnippet": "curl -X POST \"http://localhost:5000/api/solargridforge-5223/items\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"title\": \"Sample Item\", \"category\": \"general\"}'"
+      },
+      {
+        "id": "ep-03",
+        "name": "Run AI Analysis & Inference",
+        "method": "POST",
+        "path": "/api/solargridforge-5223/analyze",
+        "authRequired": true,
+        "description": "Sends context to AI engine and returns structured insights.",
+        "requestBody": {
+          "inputData": "Raw input content to analyze",
+          "mode": "summary"
+        },
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "insights": [
+                "Key takeaway 1",
+                "Optimization opportunity"
+              ],
+              "confidence": 0.94
+            }
+          }
+        },
+        "responseError": {
+          "status": 429,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "RATE_LIMIT_EXCEEDED",
+              "message": "AI request limit reached. Please wait 60 seconds."
+            }
+          }
+        },
+        "curlSnippet": "curl -X POST \"http://localhost:5000/api/solargridforge-5223/analyze\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"inputData\": \"Student project data\", \"mode\": \"summary\"}'"
+      },
+      {
+        "id": "ep-04",
+        "name": "Delete Item",
+        "method": "DELETE",
+        "path": "/api/solargridforge-5223/items/:id",
+        "authRequired": true,
+        "description": "Permanently deletes resource if owned by caller.",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Item unique identifier"
+          }
+        ],
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "message": "Item deleted successfully"
+            }
+          }
+        },
+        "responseError": {
+          "status": 404,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "NOT_FOUND",
+              "message": "Item does not exist or access forbidden"
+            }
+          }
+        },
+        "curlSnippet": "curl -X DELETE \"http://localhost:5000/api/solargridforge-5223/items/item_101\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\""
+      }
+    ],
+    "updatedAt": "2026-09-29T15:18:25.228Z",
+    "_id": "3fa16b48-04bd-450e-9f8f-445b29c82565"
+  }
+]

@@ -1,0 +1,301 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Project Setup & Design Tokens",
+        "objective": "Initialize Vite React project, configure Tailwind CSS, and set up Express backend server.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Git",
+          "TypeScript",
+          "Node.js",
+          "Vite"
+        ],
+        "tasks": [
+          "Initialize repo with workspaces",
+          "Setup ESLint & Prettier",
+          "Configure MongoDB connection"
+        ],
+        "deliverables": [
+          "Working mono-repo",
+          "Health check API responding 200 OK"
+        ]
+      },
+      {
+        "phaseNumber": 2,
+        "title": "Authentication & Profile Management",
+        "objective": "Implement JWT authentication with secure password hashing and profile onboarding.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "JWT",
+          "bcrypt",
+          "React Context"
+        ],
+        "tasks": [
+          "User registration API",
+          "Login API with JWT",
+          "Student profile form UI"
+        ],
+        "deliverables": [
+          "Working login/signup flow",
+          "Protected route guards"
+        ]
+      },
+      {
+        "phaseNumber": 3,
+        "title": "Emissions Logging & Database Storage",
+        "objective": "Create carbon log endpoints and database persistence with category tagging.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "MongoDB",
+          "Express Controllers"
+        ],
+        "tasks": [
+          "POST /api/logs endpoint",
+          "GET /api/logs with pagination",
+          "Daily dashboard calculation logic"
+        ],
+        "deliverables": [
+          "Working CRUD for emissions logs"
+        ]
+      },
+      {
+        "phaseNumber": 4,
+        "title": "AI Multimodal Vision Integration",
+        "objective": "Connect Gemini 1.5 Flash API for receipt OCR and CO2 calculation.",
+        "estimatedDays": 6,
+        "skillsRequired": [
+          "Gemini API",
+          "Prompt Engineering",
+          "Multipart Uploads"
+        ],
+        "tasks": [
+          "Image upload handler",
+          "Gemini prompt with Zod schema validation",
+          "Fallback error handling"
+        ],
+        "deliverables": [
+          "Working receipt scan returning parsed food items in <3.5s"
+        ]
+      },
+      {
+        "phaseNumber": 5,
+        "title": "Dashboard & Data Visualization",
+        "objective": "Build interactive mobile-first charts and circular progress meter.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "React",
+          "SVG / Canvas",
+          "Tailwind CSS"
+        ],
+        "tasks": [
+          "Build Circular Progress Gauge",
+          "Weekly bar chart for categories",
+          "Streak tracking logic"
+        ],
+        "deliverables": [
+          "Responsive, animated student dashboard"
+        ]
+      },
+      {
+        "phaseNumber": 6,
+        "title": "End-to-End Testing & Polish",
+        "objective": "Write unit tests, responsive testing on mobile viewports, and audit edge cases.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "Vitest",
+          "Supertest",
+          "Manual QA"
+        ],
+        "tasks": [
+          "Test AI response failure handling",
+          "Verify 320px mobile viewport rendering",
+          "Sanitize image inputs"
+        ],
+        "deliverables": [
+          "All test suites passing",
+          "Zero console warnings"
+        ]
+      },
+      {
+        "phaseNumber": 7,
+        "title": "Deployment & Portfolio Presentation",
+        "objective": "Deploy frontend to Vercel and backend to Render, write README, and publish portfolio page.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Vercel",
+          "Render",
+          "CI/CD"
+        ],
+        "tasks": [
+          "Deploy API to Render",
+          "Deploy SPA to Vercel",
+          "Generate public portfolio showcase link"
+        ],
+        "deliverables": [
+          "Live URL accessible to recruiters",
+          "Comprehensive GitHub README"
+        ]
+      }
+    ],
+    "updatedAt": "2026-09-29T14:59:12.384Z",
+    "_id": "eb0cab85-6d8b-4b2c-8790-686b9376fd54"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Project Initialization & Environment Setup",
+        "objective": "Configure monorepo, tooling, TypeScript compiler, and database connectivity.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Git",
+          "TypeScript",
+          "Node.js"
+        ],
+        "tasks": [
+          "Initialize repo workspaces",
+          "Configure ESLint and Tailwind CSS",
+          "Verify database connection"
+        ],
+        "deliverables": [
+          "Working build pipeline",
+          "Health check API endpoint"
+        ]
+      },
+      {
+        "phaseNumber": 2,
+        "title": "Authentication & Access Control",
+        "objective": "Build secure authentication, password hashing, and role-based route guards.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "JWT",
+          "bcrypt",
+          "Express Middleware"
+        ],
+        "tasks": [
+          "Register & login routes",
+          "Token verification middleware",
+          "Auth state management on client"
+        ],
+        "deliverables": [
+          "User registration and login flows"
+        ]
+      },
+      {
+        "phaseNumber": 3,
+        "title": "Database Modeling & CRUD Endpoints",
+        "objective": "Define schemas, indexes, and write core REST controllers.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "Database Schema Design",
+          "REST API"
+        ],
+        "tasks": [
+          "Create models with validation",
+          "Implement GET/POST/PUT/DELETE handlers",
+          "Write unit tests for queries"
+        ],
+        "deliverables": [
+          "Full CRUD API suite"
+        ]
+      },
+      {
+        "phaseNumber": 4,
+        "title": "AI Integration & Prompt Engineering",
+        "objective": "Connect AI provider, configure system prompts, and implement schema validation with fallback.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "AI APIs",
+          "Zod Validation"
+        ],
+        "tasks": [
+          "Build provider adapter",
+          "Create prompt templates",
+          "Implement rate limiting and error recovery"
+        ],
+        "deliverables": [
+          "Working AI inference endpoints"
+        ]
+      },
+      {
+        "phaseNumber": 5,
+        "title": "Frontend UI & Mobile-First Views",
+        "objective": "Implement responsive screens, bottom tabs, forms, and interactive charts.",
+        "estimatedDays": 6,
+        "skillsRequired": [
+          "React",
+          "Tailwind CSS",
+          "State Management"
+        ],
+        "tasks": [
+          "Build reusable UI components",
+          "Implement mobile bottom navigation",
+          "Wire API queries to UI views"
+        ],
+        "deliverables": [
+          "Mobile and desktop responsive interface"
+        ]
+      },
+      {
+        "phaseNumber": 6,
+        "title": "Testing & Error Handling",
+        "objective": "Execute unit, integration, UI, and security test suites.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "Automated Testing",
+          "QA"
+        ],
+        "tasks": [
+          "Write API integration tests",
+          "Audit responsive breakpoints (320px to 1440px)",
+          "Verify input sanitization"
+        ],
+        "deliverables": [
+          "Passing automated test suite"
+        ]
+      },
+      {
+        "phaseNumber": 7,
+        "title": "Documentation & Portfolio Generation",
+        "objective": "Produce comprehensive documentation, README, and public showcase page.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Technical Writing",
+          "Markdown"
+        ],
+        "tasks": [
+          "Generate architectural README",
+          "Create API documentation table",
+          "Publish public portfolio page"
+        ],
+        "deliverables": [
+          "Live portfolio page and GitHub-ready README"
+        ]
+      },
+      {
+        "phaseNumber": 8,
+        "title": "Deployment & Production Release",
+        "objective": "Deploy application to cloud platforms and verify production checklist.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "DevOps",
+          "Vercel / Render"
+        ],
+        "tasks": [
+          "Configure production environment variables",
+          "Build production bundles",
+          "Execute live user smoke test"
+        ],
+        "deliverables": [
+          "Publicly accessible live URL"
+        ]
+      }
+    ],
+    "updatedAt": "2026-09-29T15:18:25.230Z",
+    "_id": "ef58124f-2ded-466b-9a2e-ef8ef04544c6"
+  }
+]

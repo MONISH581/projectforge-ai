@@ -1,0 +1,16 @@
+[
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "name": "Sustainability & Green",
+    "category": "domain",
+    "createdAt": "2026-09-29T15:18:25.177Z",
+    "_id": "79461c67-96ab-498f-9104-b7f706d417cd"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "name": "AI & Machine Learning",
+    "category": "domain",
+    "createdAt": "2026-09-29T15:18:25.177Z",
+    "_id": "ad9b1f43-29ad-4fc0-9ca8-eae8bd5f81fa"
+  }
+]

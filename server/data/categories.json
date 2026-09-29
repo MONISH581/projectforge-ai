@@ -1,0 +1,98 @@
+[
+  {
+    "name": "AI & Machine Learning",
+    "slug": "ai-ml",
+    "description": "Intelligent systems, LLM agents, vision, and predictive modeling.",
+    "iconName": "Sparkles",
+    "projectCount": 14,
+    "_id": "fc3679c6-5c18-4d31-ae6c-6cdb86120ad0"
+  },
+  {
+    "name": "Web Development",
+    "slug": "web-development",
+    "description": "Full-stack web apps, portals, SaaS platforms, and APIs.",
+    "iconName": "Globe",
+    "projectCount": 22,
+    "_id": "7620b4de-a9fe-4b1f-9513-9318d16a9d5f"
+  },
+  {
+    "name": "Mobile Development",
+    "slug": "mobile-development",
+    "description": "Cross-platform iOS and Android apps built with modern toolkits.",
+    "iconName": "Smartphone",
+    "projectCount": 18,
+    "_id": "5ed21b4e-fb37-4d8d-8b33-5d1fd62eadb5"
+  },
+  {
+    "name": "Cybersecurity",
+    "slug": "cybersecurity",
+    "description": "Vulnerability scanners, auth auditing, and encryption utilities.",
+    "iconName": "Shield",
+    "projectCount": 8,
+    "_id": "b16f3cc5-c979-4d6e-ba3e-4971e86ca233"
+  },
+  {
+    "name": "IoT & Embedded",
+    "slug": "iot",
+    "description": "Hardware sensor monitoring, telemetry dashboards, and microcontrollers.",
+    "iconName": "Cpu",
+    "projectCount": 6,
+    "_id": "2117b495-ed82-4350-849f-18061e685a08"
+  },
+  {
+    "name": "Cloud & DevOps",
+    "slug": "cloud-devops",
+    "description": "Serverless architectures, container orchestration, and CI/CD tools.",
+    "iconName": "Cloud",
+    "projectCount": 9,
+    "_id": "4607aae6-26f3-4a8e-aaa1-d384c25d1654"
+  },
+  {
+    "name": "Data Science",
+    "slug": "data-science",
+    "description": "Exploratory data analysis, interactive visualization, and pipelines.",
+    "iconName": "BarChart2",
+    "projectCount": 11,
+    "_id": "991c85e9-e6b7-41de-86d0-c30aae51ee98"
+  },
+  {
+    "name": "Education Tech",
+    "slug": "edtech",
+    "description": "AI tutoring, interactive code playgrounds, and campus learning tools.",
+    "iconName": "GraduationCap",
+    "projectCount": 15,
+    "_id": "724256f2-a963-4023-a496-e46266ebc2bf"
+  },
+  {
+    "name": "Healthcare Tech",
+    "slug": "healthtech",
+    "description": "Patient monitoring, clinical decision support, and wellness trackers.",
+    "iconName": "HeartPulse",
+    "projectCount": 7,
+    "_id": "7849b435-2151-4f98-aff0-57b4e0727d9e"
+  },
+  {
+    "name": "FinTech",
+    "slug": "fintech",
+    "description": "Expense tracking, micro-investing, algorithmic crypto, and accounting.",
+    "iconName": "DollarSign",
+    "projectCount": 10,
+    "_id": "3ad84b84-3ae5-4167-9f0f-dc90b3999e48"
+  },
+  {
+    "name": "Sustainability & Green",
+    "slug": "sustainability",
+    "description": "Eco-footprint calculators, renewable energy analytics, and recycling.",
+    "iconName": "Leaf",
+    "projectCount": 8,
+    "_id": "ac65ea94-7ba5-4d07-b7ff-61362bc751ad"
+  },
+  {
+    "name": "Social Impact",
+    "slug": "social-impact",
+    "description": "Community aid platforms, disaster response coordination, and NGOs.",
+    "iconName": "Users",
+    "projectCount": 12,
+    "_id": "83e1ae93-a0d8-4f42-9b71-5b763125002b"
+  }
+]

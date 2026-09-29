@@ -1,0 +1,130 @@
+[
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "Python",
+    "category": "programming",
+    "level": "advanced",
+    "yearsExperience": 3,
+    "confidenceScore": 88,
+    "projectsCount": 2,
+    "createdAt": "2026-09-29T14:59:12.375Z",
+    "updatedAt": "2026-09-29T14:59:12.375Z",
+    "_id": "a4bc424c-5ddf-4f9e-9f5a-aa4d42ca622a"
+  },
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "React",
+    "category": "frontend",
+    "level": "intermediate",
+    "yearsExperience": 2,
+    "confidenceScore": 78,
+    "projectsCount": 2,
+    "createdAt": "2026-09-29T14:59:12.375Z",
+    "updatedAt": "2026-09-29T14:59:12.375Z",
+    "_id": "ac02c940-bc96-4892-86e2-f960780a64e7"
+  },
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "TypeScript",
+    "category": "programming",
+    "level": "intermediate",
+    "yearsExperience": 1.5,
+    "confidenceScore": 72,
+    "projectsCount": 2,
+    "createdAt": "2026-09-29T14:59:12.376Z",
+    "updatedAt": "2026-09-29T14:59:12.376Z",
+    "_id": "24080056-5949-42ed-a9c1-5412dcf95775"
+  },
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "FastAPI",
+    "category": "backend",
+    "level": "intermediate",
+    "yearsExperience": 1.5,
+    "confidenceScore": 75,
+    "projectsCount": 2,
+    "createdAt": "2026-09-29T14:59:12.377Z",
+    "updatedAt": "2026-09-29T14:59:12.377Z",
+    "_id": "645114ea-1805-4846-977e-8bc90ab859cc"
+  },
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "MongoDB",
+    "category": "database",
+    "level": "intermediate",
+    "yearsExperience": 2,
+    "confidenceScore": 70,
+    "projectsCount": 2,
+    "createdAt": "2026-09-29T14:59:12.377Z",
+    "updatedAt": "2026-09-29T14:59:12.377Z",
+    "_id": "82af4f6c-af7f-4a4a-a06f-518a6d4509f1"
+  },
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "Docker",
+    "category": "cloud_devops",
+    "level": "beginner",
+    "yearsExperience": 1,
+    "confidenceScore": 55,
+    "projectsCount": 2,
+    "createdAt": "2026-09-29T14:59:12.378Z",
+    "updatedAt": "2026-09-29T14:59:12.378Z",
+    "_id": "284ec08b-7203-4773-9a09-b90e81a2d796"
+  },
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "Tailwind CSS",
+    "category": "frontend",
+    "level": "advanced",
+    "yearsExperience": 2,
+    "confidenceScore": 85,
+    "projectsCount": 2,
+    "createdAt": "2026-09-29T14:59:12.379Z",
+    "updatedAt": "2026-09-29T14:59:12.379Z",
+    "_id": "6a510331-75f0-45c1-9c95-641bd47edffa"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "name": "Python",
+    "category": "programming",
+    "level": "advanced",
+    "yearsExperience": 2,
+    "confidenceScore": 85,
+    "createdAt": "2026-09-29T15:18:25.173Z",
+    "updatedAt": "2026-09-29T15:18:25.173Z",
+    "_id": "e083110c-9292-4eb9-9f57-6bc0a9b45a9b"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "name": "React",
+    "category": "frontend",
+    "level": "intermediate",
+    "yearsExperience": 1.5,
+    "confidenceScore": 75,
+    "createdAt": "2026-09-29T15:18:25.174Z",
+    "updatedAt": "2026-09-29T15:18:25.174Z",
+    "_id": "9cf0539e-e80d-4cac-bf0f-b0af5b19df41"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "name": "MongoDB",
+    "category": "database",
+    "level": "intermediate",
+    "yearsExperience": 1,
+    "confidenceScore": 70,
+    "createdAt": "2026-09-29T15:18:25.175Z",
+    "updatedAt": "2026-09-29T15:18:25.175Z",
+    "_id": "2c4a93b4-5416-48c6-96b8-7076420e2b35"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "name": "FastAPI",
+    "category": "backend",
+    "level": "intermediate",
+    "yearsExperience": 1,
+    "confidenceScore": 70,
+    "createdAt": "2026-09-29T15:18:25.176Z",
+    "updatedAt": "2026-09-29T15:18:25.176Z",
+    "_id": "cf12037d-b7bd-4e34-983d-e0b6e4ea8845"
+  }
+]

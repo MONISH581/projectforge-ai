@@ -1,0 +1,22 @@
+[
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "type": "project_discovery",
+    "provider": "Deterministic Heuristic Architect",
+    "promptSnippet": "SolarGrid AI: Microgrid solar energy distribution and battery monitor for student co-ops",
+    "latencyMs": 2,
+    "success": true,
+    "createdAt": "2026-09-29T15:18:25.206Z",
+    "_id": "57a8d2e8-3730-44f4-a8bc-1e7545841e53"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "type": "validation",
+    "provider": "Deterministic Heuristic Architect",
+    "promptSnippet": "Validate SolarGridForge",
+    "latencyMs": 1,
+    "success": true,
+    "createdAt": "2026-09-29T15:18:25.214Z",
+    "_id": "2f673e36-b878-4b3e-a6c0-338b9d47eb57"
+  }
+]

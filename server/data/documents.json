@@ -1,0 +1,51 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "readme": "# EcoTrack AI — Sustainable Habits Powered by Vision AI\n\nTurn daily student habits into measurable carbon reductions with automated receipt recognition.\n\n## Features\n- **Instant Photo Receipt OCR**: Calculates CO2 equivalents without manual data entry.\n- **Smart Swaps**: Budget-friendly alternatives to high-carbon foods.\n- **Campus Challenges**: Real-time dorm leaderboards.\n\n## Tech Stack\n- Frontend: React 18, Tailwind CSS, Lucide Icons, Vite\n- Backend: Express.js, Node.js, TypeScript\n- Database: MongoDB Atlas\n- AI: Google Gemini 1.5 Flash API\n",
+    "abstract": "EcoTrack AI addresses the climate information gap among university students by combining computer vision and carbon estimation models. Students scan daily receipts and food purchases, receiving instant carbon footprint calculations and actionable low-cost green swaps.",
+    "problemStatement": "Most college students desire to live sustainably but lack actionable insight into the precise carbon impact of their daily cafeteria and grocery purchases.",
+    "objectives": [
+      "Automate receipt logging using multimodal LLMs in under 3.5 seconds",
+      "Provide contextual, budget-sensitive food swaps",
+      "Demonstrate measurable carbon reduction through gamified dorm challenges"
+    ],
+    "scope": "Initial release focuses on university food and transit logging with expansion to retail barcodes in phase 2.",
+    "systemRequirements": "Node.js 18+, Modern browser (Chrome/Safari/Edge), Camera-enabled mobile device.",
+    "architectureGuide": "The system uses a decoupled client-server architecture with an Express API Gateway managing JWT authentication, input validation, and asynchronous calls to the Gemini multimodal model.",
+    "databaseGuide": "Data is organized into three core collections: users (credentials and preferences), carbon_logs (time-series emissions records), and green_swaps (recommendation catalog).",
+    "apiGuide": "RESTful API with JSON payloads protected by Bearer JWT tokens. Endpoints follow standard HTTP status codes.",
+    "testingReport": "5/5 automated test cases passing. Zero critical security vulnerabilities. Response latency averages 2.1s.",
+    "futureEnhancements": [
+      "Integration with campus meal plan smart cards",
+      "Direct barcode scanner for retail snacks",
+      "Solar energy offset tracking for student apartments"
+    ],
+    "updatedAt": "2026-09-29T14:59:12.394Z",
+    "_id": "a68a5e67-24f1-4851-af24-9cca19a2d135"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "readme": "# SolarGridForge\n\n> Intelligent Sustainability & Green platform solving solargrid ai: microgrid solar energy distribution and battery monitor for student co-ops.\n\nThis application combines real-time data ingestion, automated intelligence, and responsive design to deliver SolarGrid AI: Microgrid solar energy distribution and battery monitor for student co-ops. Built specifically for Portfolio goals, it gives students deep practical exposure to end-to-end full-stack systems engineering.\n\n## Tech Stack\n- Frontend: React 18, Tailwind CSS, Vite, Lucide Icons\n- Backend: FastAPI, Python 3.11, Pydantic\n- Database: MongoDB Atlas, Mongoose\n- AI: Google Gemini API (Structured Outputs)\n",
+    "abstract": "A intermediate-level Web & AI application addressing SolarGrid AI: Microgrid solar energy distribution and battery monitor for student co-ops with modern cloud architecture.",
+    "problemStatement": "Target users in Sustainability & Green currently rely on fragmented, manual workflows lacking intelligent automation and seamless data persistence.",
+    "objectives": [
+      "Full-stack TypeScript and RESTful API architecture",
+      "Database indexing, relational modeling, and query optimization",
+      "Secure token-based authentication and authorization guards",
+      "AI prompt engineering and deterministic JSON schema validation"
+    ],
+    "scope": "MVP release with 4 core features.",
+    "systemRequirements": "Modern Web Browser, Node.js 18+ or Python 3.10+ depending on service.",
+    "architectureGuide": "A streamlined 3-tier architecture designed for rapid development, maintainability, and clean separation of concerns.",
+    "databaseGuide": "Managed via mongodb with 3 schemas.",
+    "apiGuide": "REST endpoints documented in the ProjectForge API Designer.",
+    "testingReport": "Baseline test suite initialized with automated unit, integration, and security scenarios.",
+    "futureEnhancements": [
+      "Peer Sharing & Community Collaboration",
+      "Batch Processing & Export (PDF / CSV / JSON)",
+      "Push & Email Notification Alerts"
+    ],
+    "updatedAt": "2026-09-29T15:18:25.255Z",
+    "_id": "e1bfde44-40f6-4e8b-9d3d-25c3b57768e0"
+  }
+]

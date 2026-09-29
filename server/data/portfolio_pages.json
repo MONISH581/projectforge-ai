@@ -1,0 +1,43 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "slug": "ecotrack-ai",
+    "isPublic": true,
+    "customHeadline": "EcoTrack AI: Helping 1,200+ students reduce carbon emissions with Computer Vision",
+    "featuredScreenshots": [
+      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800"
+    ],
+    "highlights": [
+      "Engineered multimodal AI receipt parser achieving 92% extraction accuracy",
+      "Designed responsive mobile-first UI with 100% WCAG accessibility compliance",
+      "Optimized MongoDB aggregation pipelines for instant leaderboard updates"
+    ],
+    "metrics": {
+      "views": 245,
+      "likes": 38
+    },
+    "createdAt": "2026-09-29T14:59:12.395Z",
+    "updatedAt": "2026-09-29T14:59:12.395Z",
+    "_id": "1dad2499-c012-4076-a040-e5738892d17f"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "slug": "solargridforge-5223",
+    "isPublic": true,
+    "featuredScreenshots": [],
+    "highlights": [
+      "Engineered with React 18 and FastAPI",
+      "Designed modular database schema with complete validation",
+      "Comprehensive test suite passing"
+    ],
+    "metrics": {
+      "views": 1,
+      "likes": 0
+    },
+    "createdAt": "2026-09-29T15:18:25.345Z",
+    "updatedAt": "2026-09-29T15:18:25.345Z",
+    "_id": "77e45f45-42b2-4e00-982f-8deb3fc0dbea"
+  }
+]

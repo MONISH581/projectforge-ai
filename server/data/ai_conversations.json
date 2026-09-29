@@ -1,0 +1,21 @@
+[
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "messages": [
+      {
+        "id": "11df1e14-a889-488a-b626-eb565944011f",
+        "sender": "user",
+        "content": "How should I structure the authentication and database models for this project?",
+        "timestamp": "2026-09-29T15:18:25.321Z"
+      },
+      {
+        "id": "be0f6cdf-31a9-4536-bbe3-a989a3a2fb0c",
+        "sender": "assistant",
+        "content": "For **SolarGridForge**, I recommend standardizing on **JWT (JSON Web Tokens)** with bcrypt password hashing.\n\nHere is the recommended workflow:\n1. **Password Hashing**: Always hash user passwords before saving them:\n```typescript\nconst salt = await bcrypt.genSalt(10);\nconst passwordHash = await bcrypt.hash(password, salt);\n```\n2. **Token Sign**: On successful login, return a signed token:\n```typescript\nconst token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });\n```\n3. **Client Storage**: Store the token in `localStorage` or React Context state, and attach it to outgoing API requests via `Authorization: Bearer <token>`.",
+        "timestamp": "2026-09-29T15:18:25.321Z"
+      }
+    ],
+    "updatedAt": "2026-09-29T15:18:25.321Z",
+    "_id": "9aa70f8d-91bf-4317-b638-12eaa7528910"
+  }
+]

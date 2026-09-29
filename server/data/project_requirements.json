@@ -1,0 +1,195 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "functional": [
+      {
+        "id": "FR-01",
+        "code": "FR-01",
+        "title": "User Registration & Onboarding",
+        "description": "Allow students to sign up with campus email and specify dietary/transit defaults.",
+        "priority": "must_have",
+        "module": "Auth"
+      },
+      {
+        "id": "FR-02",
+        "code": "FR-02",
+        "title": "Receipt & Meal Image Upload",
+        "description": "Enable photo capture and upload for automated CO2e parsing via AI.",
+        "priority": "must_have",
+        "module": "AI Engine"
+      },
+      {
+        "id": "FR-03",
+        "code": "FR-03",
+        "title": "Carbon Emissions Analytics",
+        "description": "Display daily breakdown by category (Food, Commute, Energy, Goods).",
+        "priority": "must_have",
+        "module": "Dashboard"
+      },
+      {
+        "id": "FR-04",
+        "code": "FR-04",
+        "title": "Sustainable Swaps Engine",
+        "description": "Suggest lower-impact alternatives with cost parity comparison.",
+        "priority": "should_have",
+        "module": "Recommendations"
+      },
+      {
+        "id": "FR-05",
+        "code": "FR-05",
+        "title": "Campus Dorm Leaderboard",
+        "description": "Aggregate anonymous floor and dorm rankings for weekly eco-challenges.",
+        "priority": "could_have",
+        "module": "Gamification"
+      }
+    ],
+    "nonFunctional": [
+      {
+        "id": "NFR-01",
+        "category": "performance",
+        "description": "AI receipt analysis response time under 3.5 seconds.",
+        "metric": "< 3.5s p95"
+      },
+      {
+        "id": "NFR-02",
+        "category": "security",
+        "description": "Receipt images must be sanitized and stripped of EXIF coordinates.",
+        "metric": "Zero EXIF leakage"
+      },
+      {
+        "id": "NFR-03",
+        "category": "accessibility",
+        "description": "WCAG 2.1 AA compliant color contrast on all charts.",
+        "metric": "Contrast >= 4.5:1"
+      },
+      {
+        "id": "NFR-04",
+        "category": "scalability",
+        "description": "Backend can ingest up to 200 concurrent receipt scans without queue stall.",
+        "metric": "200 req/sec"
+      }
+    ],
+    "userStories": [
+      {
+        "id": "US-01",
+        "asA": "university student on a tight budget",
+        "iWant": "to snap a photo of my cafeteria receipt",
+        "soThat": "I can see the environmental impact of my lunch without typing 15 ingredients.",
+        "acceptanceCriteria": [
+          "System identifies major food items with >85% accuracy",
+          "Calculates estimated kg CO2e within 4 seconds",
+          "Displays one immediate swap for next time"
+        ]
+      },
+      {
+        "id": "US-02",
+        "asA": "campus environmental club leader",
+        "iWant": "to view our hall leaderboards",
+        "soThat": "our members stay motivated to reduce single-use plastic and food waste.",
+        "acceptanceCriteria": [
+          "Weekly rankings refresh every Sunday at midnight",
+          "Opt-in privacy toggle to stay anonymous"
+        ]
+      }
+    ],
+    "updatedAt": "2026-09-29T14:59:12.380Z",
+    "_id": "5b5a12d4-6241-4abf-a5ad-2e7aff24798e"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "functional": [
+      {
+        "id": "FR-01",
+        "code": "FR-01",
+        "title": "User Authentication & Session Management",
+        "description": "Enable secure sign-up, login, and session persistence using JWT tokens with password hashing.",
+        "priority": "must_have",
+        "module": "Authentication"
+      },
+      {
+        "id": "FR-02",
+        "code": "FR-02",
+        "title": "Entity Ingestion & Management",
+        "description": "Allow authorized users to create, view, update, and manage core Sustainability & Green resources.",
+        "priority": "must_have",
+        "module": "Core Services"
+      },
+      {
+        "id": "FR-03",
+        "code": "FR-03",
+        "title": "AI Intelligence & Analysis Engine",
+        "description": "Process user inputs and generate structured contextual insights using Google Gemini API (Structured Outputs).",
+        "priority": "must_have",
+        "module": "AI Engine"
+      },
+      {
+        "id": "FR-04",
+        "code": "FR-04",
+        "title": "Interactive Analytics & Dashboard",
+        "description": "Display aggregated metrics, progress indicators, and visual trends with responsive charts.",
+        "priority": "should_have",
+        "module": "Analytics"
+      },
+      {
+        "id": "FR-05",
+        "code": "FR-05",
+        "title": "Data Export & Sharing",
+        "description": "Enable export of project data and generate shareable read-only summary links.",
+        "priority": "could_have",
+        "module": "Portfolio"
+      }
+    ],
+    "nonFunctional": [
+      {
+        "id": "NFR-01",
+        "category": "performance",
+        "description": "API endpoints must respond within 300ms for p95 requests under standard load.",
+        "metric": "< 300ms p95"
+      },
+      {
+        "id": "NFR-02",
+        "category": "security",
+        "description": "All passwords hashed with bcrypt, secrets loaded strictly via environment variables.",
+        "metric": "Bcrypt salt rounds >= 10"
+      },
+      {
+        "id": "NFR-03",
+        "category": "accessibility",
+        "description": "Mobile UI complies with WCAG 2.1 AA standards with minimum 44px touch targets.",
+        "metric": "WCAG 2.1 AA"
+      },
+      {
+        "id": "NFR-04",
+        "category": "availability",
+        "description": "Application gracefully handles offline conditions and displays friendly fallback notices.",
+        "metric": "100% Graceful degradation"
+      }
+    ],
+    "userStories": [
+      {
+        "id": "US-01",
+        "asA": "student developer",
+        "iWant": "to easily create and monitor SolarGridForge workflows from my mobile phone",
+        "soThat": "I can track project execution on the go without horizontal scrolling.",
+        "acceptanceCriteria": [
+          "Layout dynamically adapts to mobile screens (320px to 414px)",
+          "Forms validate inputs with clear inline error messages",
+          "Changes reflect immediately in the dashboard"
+        ]
+      },
+      {
+        "id": "US-02",
+        "asA": "team lead or evaluator",
+        "iWant": "to inspect generated architecture, schemas, and test reports",
+        "soThat": "I can verify technical depth and production readiness.",
+        "acceptanceCriteria": [
+          "Architecture diagrams render clearly in Mermaid format",
+          "APIs include copyable cURL commands and response contracts",
+          "Test coverage shows pass/fail counts"
+        ]
+      }
+    ],
+    "updatedAt": "2026-09-29T15:18:25.226Z",
+    "_id": "6c797d53-8afd-4d2c-9bbb-7dc3e7e5f2c8"
+  }
+]

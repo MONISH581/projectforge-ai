@@ -1,0 +1,49 @@
+[
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "college": "Massachusetts Institute of Technology",
+    "degree": "B.S. Computer Science",
+    "department": "EECS",
+    "currentYear": "3rd Year",
+    "graduationYear": 2027,
+    "experienceLevel": "intermediate",
+    "careerGoal": "Full Stack AI Engineer",
+    "bio": "Junior CS student passionate about building real-world AI applications and developer tools.",
+    "githubUrl": "https://github.com/alexchen-forge",
+    "linkedinUrl": "https://linkedin.com/in/alexchen",
+    "preferences": {
+      "preferredTeamSize": "solo",
+      "targetDuration": "1_month",
+      "preferredPlatforms": [
+        "web",
+        "ai"
+      ],
+      "projectObjective": "portfolio"
+    },
+    "createdAt": "2026-09-29T14:59:12.374Z",
+    "updatedAt": "2026-09-29T14:59:12.374Z",
+    "_id": "03715571-f606-4940-b4c1-c9057f7b14e1"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "college": "UC Berkeley",
+    "degree": "B.S. EECS",
+    "department": "Computer Science",
+    "currentYear": "3rd Year",
+    "graduationYear": 2027,
+    "experienceLevel": "intermediate",
+    "careerGoal": "Full Stack AI Engineer",
+    "preferences": {
+      "preferredTeamSize": "solo",
+      "targetDuration": "1_month",
+      "preferredPlatforms": [
+        "Web",
+        "AI"
+      ],
+      "projectObjective": "portfolio"
+    },
+    "createdAt": "2026-09-29T15:18:25.150Z",
+    "updatedAt": "2026-09-29T15:18:25.172Z",
+    "_id": "c7944d2e-78d1-44c7-94e3-0a1936b4c941"
+  }
+]

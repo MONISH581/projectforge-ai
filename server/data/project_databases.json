@@ -1,0 +1,368 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "databaseType": "mongodb",
+    "tables": [
+      {
+        "name": "users",
+        "description": "User authentication credentials and campus affiliation.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "ObjectId",
+            "isPrimary": true,
+            "required": true
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "required": true
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "required": true,
+            "description": "Unique campus email"
+          },
+          {
+            "name": "passwordHash",
+            "type": "String",
+            "required": true
+          },
+          {
+            "name": "campusDorm",
+            "type": "String",
+            "required": false
+          },
+          {
+            "name": "createdAt",
+            "type": "Date",
+            "required": true
+          }
+        ],
+        "indexes": [
+          "email_unique",
+          "campusDorm_1"
+        ],
+        "sampleRecords": [
+          {
+            "_id": "usr_001",
+            "name": "Alex Chen",
+            "email": "student@projectforge.ai",
+            "campusDorm": "Baker House",
+            "createdAt": "2026-09-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "carbon_logs",
+        "description": "Daily emissions entries logged by user with itemized breakdown.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "ObjectId",
+            "isPrimary": true,
+            "required": true
+          },
+          {
+            "name": "userId",
+            "type": "ObjectId",
+            "isForeign": true,
+            "references": "users._id",
+            "required": true
+          },
+          {
+            "name": "category",
+            "type": "String",
+            "required": true,
+            "description": "food | transport | shopping | energy"
+          },
+          {
+            "name": "title",
+            "type": "String",
+            "required": true
+          },
+          {
+            "name": "co2eKg",
+            "type": "Number",
+            "required": true
+          },
+          {
+            "name": "imageUrl",
+            "type": "String",
+            "required": false
+          },
+          {
+            "name": "items",
+            "type": "Array<Object>",
+            "required": true
+          },
+          {
+            "name": "loggedAt",
+            "type": "Date",
+            "required": true
+          }
+        ],
+        "indexes": [
+          "userId_1_loggedAt_-1",
+          "category_1"
+        ],
+        "sampleRecords": [
+          {
+            "_id": "log_001",
+            "userId": "usr_001",
+            "category": "food",
+            "title": "Dining Hall Beef Burger",
+            "co2eKg": 3.42,
+            "loggedAt": "2026-09-28T12:30:00Z",
+            "items": [
+              {
+                "name": "Burger",
+                "co2": 3.2
+              },
+              {
+                "name": "Fries",
+                "co2": 0.22
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "green_swaps",
+        "description": "Catalog of lower-carbon alternative items with savings metrics.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "ObjectId",
+            "isPrimary": true,
+            "required": true
+          },
+          {
+            "name": "originalItem",
+            "type": "String",
+            "required": true
+          },
+          {
+            "name": "suggestedSwap",
+            "type": "String",
+            "required": true
+          },
+          {
+            "name": "co2SavingsKg",
+            "type": "Number",
+            "required": true
+          },
+          {
+            "name": "costDifference",
+            "type": "String",
+            "required": true
+          }
+        ],
+        "indexes": [
+          "originalItem_text"
+        ],
+        "sampleRecords": [
+          {
+            "_id": "swp_001",
+            "originalItem": "Beef Burger",
+            "suggestedSwap": "Black Bean Quinoa Patty",
+            "co2SavingsKg": 2.85,
+            "costDifference": "-$1.50"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "from": "carbon_logs.userId",
+        "to": "users._id",
+        "type": "many_to_one",
+        "description": "Each carbon log entry belongs to a registered user."
+      }
+    ],
+    "diagramMermaid": "erDiagram\n  users ||--o{ carbon_logs : logs\n  users {\n    ObjectId _id PK\n    String name\n    String email UK\n    String campusDorm\n  }\n  carbon_logs {\n    ObjectId _id PK\n    ObjectId userId FK\n    String category\n    Number co2eKg\n    Date loggedAt\n  }\n  green_swaps {\n    ObjectId _id PK\n    String originalItem\n    String suggestedSwap\n    Number co2SavingsKg\n  }",
+    "updatedAt": "2026-09-29T14:59:12.381Z",
+    "_id": "62159061-2ed3-464d-b2a3-6dde865a56f0"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "databaseType": "mongodb",
+    "tables": [
+      {
+        "name": "users",
+        "description": "Stores student and user authentication credentials, profiles, and roles.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "ObjectId",
+            "isPrimary": true,
+            "required": true,
+            "description": "Unique user identifier"
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "required": true,
+            "description": "Full name"
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "required": true,
+            "description": "Unique email address"
+          },
+          {
+            "name": "passwordHash",
+            "type": "String",
+            "required": true,
+            "description": "Bcrypt hashed password"
+          },
+          {
+            "name": "role",
+            "type": "String",
+            "required": true,
+            "description": "student | admin"
+          },
+          {
+            "name": "createdAt",
+            "type": "Date",
+            "required": true,
+            "description": "Record creation timestamp"
+          }
+        ],
+        "indexes": [
+          "email_unique",
+          "role_1"
+        ],
+        "sampleRecords": [
+          {
+            "_id": "usr_101",
+            "name": "Alex Student",
+            "email": "alex@projectforge.ai",
+            "role": "student",
+            "createdAt": "2026-09-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "solargridforge_5223_records",
+        "description": "Primary entity collection storing core data records for SolarGridForge.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "ObjectId",
+            "isPrimary": true,
+            "required": true,
+            "description": "Primary record ID"
+          },
+          {
+            "name": "userId",
+            "type": "ObjectId",
+            "isForeign": true,
+            "references": "users._id",
+            "required": true,
+            "description": "Foreign key to users"
+          },
+          {
+            "name": "title",
+            "type": "String",
+            "required": true,
+            "description": "Record title"
+          },
+          {
+            "name": "status",
+            "type": "String",
+            "required": true,
+            "description": "active | completed | archived"
+          },
+          {
+            "name": "metadata",
+            "type": "Object",
+            "required": false,
+            "description": "Flexible attributes"
+          },
+          {
+            "name": "createdAt",
+            "type": "Date",
+            "required": true,
+            "description": "Creation date"
+          }
+        ],
+        "indexes": [
+          "userId_1_status_1",
+          "createdAt_-1"
+        ],
+        "sampleRecords": [
+          {
+            "_id": "rec_501",
+            "userId": "usr_101",
+            "title": "Sample Milestone Record",
+            "status": "active",
+            "createdAt": "2026-09-28T10:00:00Z"
+          }
+        ]
+      },
+      {
+        "name": "audit_events",
+        "description": "Chronological timeline of system changes and AI actions.",
+        "fields": [
+          {
+            "name": "_id",
+            "type": "ObjectId",
+            "isPrimary": true,
+            "required": true,
+            "description": "Event identifier"
+          },
+          {
+            "name": "recordId",
+            "type": "ObjectId",
+            "isForeign": true,
+            "references": "solargridforge_5223_records._id",
+            "required": true
+          },
+          {
+            "name": "action",
+            "type": "String",
+            "required": true,
+            "description": "Event action type"
+          },
+          {
+            "name": "timestamp",
+            "type": "Date",
+            "required": true,
+            "description": "Event occurrence time"
+          }
+        ],
+        "indexes": [
+          "recordId_1_timestamp_-1"
+        ],
+        "sampleRecords": [
+          {
+            "_id": "aud_901",
+            "recordId": "rec_501",
+            "action": "STATUS_UPDATED",
+            "timestamp": "2026-09-28T10:30:00Z"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "from": "solargridforge_5223_records.userId",
+        "to": "users._id",
+        "type": "many_to_one",
+        "description": "Multiple records are owned by one user."
+      },
+      {
+        "from": "audit_events.recordId",
+        "to": "solargridforge_5223_records._id",
+        "type": "many_to_one",
+        "description": "Audit events track changes on a record."
+      }
+    ],
+    "diagramMermaid": "erDiagram\n  users ||--o{ solargridforge_5223_records : owns\n  solargridforge_5223_records ||--o{ audit_events : logs\n  users {\n    ObjectId _id PK\n    String name\n    String email UK\n    String role\n  }\n  solargridforge_5223_records {\n    ObjectId _id PK\n    ObjectId userId FK\n    String title\n    String status\n    Date createdAt\n  }\n  audit_events {\n    ObjectId _id PK\n    ObjectId recordId FK\n    String action\n    Date timestamp\n  }",
+    "updatedAt": "2026-09-29T15:18:25.228Z",
+    "_id": "20b7860e-1fd3-4177-ab56-4d2f4f93f136"
+  }
+]

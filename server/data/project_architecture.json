@@ -1,0 +1,260 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "currentView": "beginner",
+    "beginnerArchitecture": {
+      "overview": "Clean 3-tier architecture with React SPA frontend, Node/Express REST backend, and MongoDB database with direct Gemini AI integration.",
+      "diagramMermaid": "graph TD\n  Client[React Mobile/Web App] -->|HTTPS REST| API[Express API Gateway]\n  API -->|Auth JWT| AuthMiddleware[Auth Handler]\n  API -->|Query/Mutate| DB[(MongoDB Atlas)]\n  API -->|Multimodal Image Prompt| AI[Gemini 1.5 Flash API]\n  API -->|File Stream| CloudStorage[Cloudinary Image Storage]",
+      "components": [
+        {
+          "name": "Web/Mobile Client",
+          "type": "client",
+          "tech": "React + Tailwind + Vite",
+          "description": "Responsive SPA with touch support and camera upload.",
+          "responsibilities": [
+            "UI rendering",
+            "State management",
+            "File capture"
+          ]
+        },
+        {
+          "name": "Core API Server",
+          "type": "gateway",
+          "tech": "Node.js + Express + TS",
+          "description": "Central REST controller for data and AI coordination.",
+          "responsibilities": [
+            "JWT verification",
+            "Validation",
+            "Rate limiting"
+          ]
+        },
+        {
+          "name": "Database",
+          "type": "database",
+          "tech": "MongoDB",
+          "description": "Primary document persistence.",
+          "responsibilities": [
+            "User profiles",
+            "Emissions logs",
+            "Swaps catalog"
+          ]
+        },
+        {
+          "name": "AI Vision Service",
+          "type": "service",
+          "tech": "Gemini API",
+          "description": "Multimodal receipt recognition and emissions estimation.",
+          "responsibilities": [
+            "OCR parsing",
+            "CO2 factor estimation"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "1. User captures receipt photo in Mobile Client",
+        "2. Client uploads multipart file to Express /api/receipts/analyze",
+        "3. Express verifies JWT token and calls Gemini API with strict structured prompt",
+        "4. Gemini returns parsed items + emissions breakdown in JSON",
+        "5. Express writes record to MongoDB and returns 201 Created to Client",
+        "6. Client updates daily progress meter and invalidates cache"
+      ]
+    },
+    "productionArchitecture": {
+      "overview": "High-availability microservice design with API Gateway, Redis caching, RabbitMQ asynchronous background queue for heavy OCR, and CDN edge distribution.",
+      "diagramMermaid": "flowchart TD\n  User((Student User)) --> Cloudflare[Cloudflare CDN / WAF]\n  Cloudflare --> Client[React SPA / PWA]\n  Client --> Kong[Kong API Gateway]\n  Kong --> AuthService[Auth Microservice]\n  Kong --> CarbonService[Carbon Emissions API]\n  CarbonService --> Redis[(Redis Cache)]\n  CarbonService --> RabbitMQ[RabbitMQ Message Broker]\n  RabbitMQ --> VisionWorker[AI Vision OCR Worker Pool]\n  VisionWorker --> GeminiAPI[Gemini 1.5 Flash]\n  CarbonService --> MongoDB[(MongoDB Primary + Replicas)]\n  VisionWorker --> S3[(AWS S3 Encrypted)]",
+      "components": [
+        {
+          "name": "Cloudflare Edge CDN",
+          "type": "gateway",
+          "tech": "Cloudflare",
+          "description": "DDoS mitigation and static asset caching.",
+          "responsibilities": [
+            "SSL termination",
+            "Bot detection",
+            "Edge caching"
+          ]
+        },
+        {
+          "name": "Async OCR Worker",
+          "type": "service",
+          "tech": "Python FastAPI Worker",
+          "description": "Consumes image processing queue jobs asynchronously.",
+          "responsibilities": [
+            "Tesseract preprocessing",
+            "Gemini fallback",
+            "Emissions calculation"
+          ]
+        },
+        {
+          "name": "Redis Cache",
+          "type": "database",
+          "tech": "Redis 7",
+          "description": "Leaderboard ranking and session cache.",
+          "responsibilities": [
+            "Sorted set leaderboards",
+            "Hot product query caching"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "Client requests presigned S3 URL",
+        "Client uploads directly to S3",
+        "Event triggers message onto RabbitMQ",
+        "Worker processes image and notifies Client via WebSocket"
+      ],
+      "authFlow": [
+        "OAuth2 PKCE flow with JWT access token (15m expiry) and refresh token in HttpOnly cookie",
+        "Gateway validates token signature locally via JWKS"
+      ],
+      "aiPipelineFlow": [
+        "Image preprocessing -> OCR confidence check -> LLM structured extraction -> Database lookup in OpenFoodFacts CO2 database"
+      ],
+      "deploymentTopology": [
+        "Frontend on Vercel Edge Network",
+        "Backend APIs deployed on AWS ECS Fargate containers",
+        "MongoDB Atlas M10 cluster with automated daily snapshots"
+      ]
+    },
+    "updatedAt": "2026-09-29T14:59:12.381Z",
+    "_id": "ecb6b683-9cef-46c7-ad0d-a3f9c428dec7"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "beginnerArchitecture": {
+      "overview": "A streamlined 3-tier architecture designed for rapid development, maintainability, and clean separation of concerns.",
+      "diagramMermaid": "graph TD\n  Client[Web/Mobile Client (React 18 + Tailwind CSS + Vite + Lucide Icons)] -->|HTTPS REST / JSON| API[Backend API Server (FastAPI + Python 3.11 + Pydantic)]\n  API -->|JWT Authentication| AuthModule[Auth Guard]\n  API -->|Read / Write| Database[(Primary Database: MongoDB Atlas + Mongoose)]\n  API -->|Async Inference Prompt| AIService[AI Provider (Google Gemini API (Structured Outputs))]\n  API -->|Static Assets| Storage[Local Disk / Cloud Storage]",
+      "components": [
+        {
+          "name": "Web & Mobile Client",
+          "type": "client",
+          "tech": "React 18 + Tailwind CSS + Vite + Lucide Icons",
+          "description": "Responsive single-page application providing touch navigation and dynamic state.",
+          "responsibilities": [
+            "UI rendering",
+            "Client-side input validation",
+            "Token storage in secure memory"
+          ]
+        },
+        {
+          "name": "Backend API Service",
+          "type": "gateway",
+          "tech": "FastAPI + Python 3.11 + Pydantic",
+          "description": "RESTful API controller layer routing requests to services.",
+          "responsibilities": [
+            "Route dispatching",
+            "JWT validation",
+            "Rate limiting",
+            "Error handling"
+          ]
+        },
+        {
+          "name": "Primary Database",
+          "type": "database",
+          "tech": "MongoDB Atlas + Mongoose",
+          "description": "Persistent structured document or relational store.",
+          "responsibilities": [
+            "ACID / Document storage",
+            "Indexing",
+            "Data consistency"
+          ]
+        },
+        {
+          "name": "AI Service Gateway",
+          "type": "service",
+          "tech": "Google Gemini API (Structured Outputs)",
+          "description": "Inference bridge with schema repair and deterministic fallback.",
+          "responsibilities": [
+            "Prompt formatting",
+            "Token management",
+            "JSON output validation"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "1. Client authenticates via POST /api/auth/login and receives signed JWT token",
+        "2. Client issues authenticated REST requests with Bearer header",
+        "3. Backend validates token and checks role permissions",
+        "4. Business logic executes queries against primary database",
+        "5. When AI is requested, backend constructs context-isolated prompt and validates returned JSON schema",
+        "6. Standardized JSON response returned to client"
+      ]
+    },
+    "productionArchitecture": {
+      "overview": "Enterprise-grade cloud topology featuring edge CDN caching, resilient API Gateway, asynchronous task queues, and zero-trust auth.",
+      "diagramMermaid": "flowchart TD\n  User((End User)) --> CDN[Cloudflare Edge CDN / WAF]\n  CDN --> SPA[Static Frontend (React 18 + Tailwind CSS + Vite + Lucide Icons)]\n  SPA --> Gateway[Kong / Envoy API Gateway]\n  Gateway --> AuthService[Auth Microservice]\n  Gateway --> CoreService[Core Domain Service (FastAPI + Python 3.11 + Pydantic)]\n  Gateway --> AIService[AI Orchestration Service]\n  CoreService --> Redis[(Redis 7 Distributed Cache)]\n  CoreService --> MainDB[(Primary DB Cluster: MongoDB Atlas + Mongoose)]\n  AIService --> ModelPool[Model Provider Pool (Gemini / OpenAI / Groq)]\n  CoreService --> EventQueue[RabbitMQ / Kafka Event Bus]\n  EventQueue --> Worker[Async Background Workers]",
+      "components": [
+        {
+          "name": "Edge CDN & WAF",
+          "type": "gateway",
+          "tech": "Cloudflare",
+          "description": "Global CDN edge with DDoS protection and SSL termination.",
+          "responsibilities": [
+            "Edge caching",
+            "Rate limiting",
+            "SSL termination"
+          ]
+        },
+        {
+          "name": "API Gateway",
+          "type": "gateway",
+          "tech": "Kong / Envoy",
+          "description": "Central reverse proxy managing routing, auth headers, and metrics.",
+          "responsibilities": [
+            "Request routing",
+            "Cross-cutting telemetry",
+            "Circuit breaker"
+          ]
+        },
+        {
+          "name": "Distributed Cache",
+          "type": "database",
+          "tech": "Redis 7 Cluster",
+          "description": "Sub-millisecond in-memory cache for sessions and rate limits.",
+          "responsibilities": [
+            "Hot query caching",
+            "Session invalidation",
+            "Rate limit counters"
+          ]
+        },
+        {
+          "name": "AI Model Pool",
+          "type": "service",
+          "tech": "Multi-Provider Bridge",
+          "description": "Multi-model inference with automatic health-checked failover.",
+          "responsibilities": [
+            "Load balancing",
+            "Structured schema enforcement",
+            "Cost tracking"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "Client sends request through Cloudflare WAF to API Gateway",
+        "Gateway verifies JWT signature locally using cached public key",
+        "Request routed to microservice with trace ID header injected",
+        "Service checks Redis cache; on miss, queries primary replica",
+        "Heavy compute or AI tasks dispatched to async event queue",
+        "Response streamed or returned with telemetry headers"
+      ],
+      "authFlow": [
+        "OAuth2 / OIDC authentication with short-lived JWT access tokens (15m)",
+        "Encrypted refresh tokens stored in HttpOnly, SameSite=Strict cookies",
+        "Role-Based Access Control (RBAC) enforced at both Gateway and Service levels"
+      ],
+      "aiPipelineFlow": [
+        "Input sanitization & prompt injection scrubbing",
+        "Dynamic context injection with strictly tenant-isolated project data",
+        "Model invocation with timeout and retry budget",
+        "Schema enforcement via Zod with automatic repair pass"
+      ],
+      "deploymentTopology": [
+        "Frontend deployed on globally distributed edge networks (Vercel / Cloudflare Pages)",
+        "Backend containerized with Docker on Kubernetes / AWS ECS Fargate",
+        "Multi-AZ managed database cluster with automated replication and continuous backup"
+      ]
+    },
+    "currentView": "beginner",
+    "updatedAt": "2026-09-29T15:18:25.227Z",
+    "_id": "74d3108a-6ded-444d-b9b7-aa5271f5cc7f"
+  }
+]

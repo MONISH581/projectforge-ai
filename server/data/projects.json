@@ -1,0 +1,202 @@
+[
+  {
+    "userId": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a",
+    "name": "EcoTrack AI",
+    "slug": "ecotrack-ai",
+    "tagline": "Turn daily habits into measurable carbon reductions with AI vision.",
+    "oneLineDescription": "An AI-powered environmental assistant that estimates product carbon footprint via photo receipts & suggests smart sustainable alternatives.",
+    "detailedDescription": "EcoTrack AI allows college students and urban households to scan grocery receipts, meals, and transit tickets using computer vision to estimate their daily carbon footprint. The system features a gamified campus leaderboard, automated habit nudges, and intelligent green swap recommendations.",
+    "problemStatement": "Students want to live sustainably but lack actionable, real-time insight into the carbon cost of their specific consumption choices.",
+    "targetUsers": [
+      "University students",
+      "Eco-conscious consumers",
+      "Campus sustainability clubs"
+    ],
+    "existingPainPoints": [
+      "Carbon calculators require manual data entry of 50+ tedious questions",
+      "Generic advice like \"drive less\" lacks relevance for university campus life",
+      "No social accountability or rewarding progress mechanics"
+    ],
+    "proposedSolution": "Receipt OCR and multimodal AI classification that instantly calculates carbon equivalents (kg CO2e) with zero manual data entry and recommends local, affordable alternatives.",
+    "keyDifferentiator": "Instant snapshot analysis with student budget-friendly sustainable alternatives.",
+    "expectedImpact": "Average 18% reduction in personal carbon footprint over a 30-day tracking period.",
+    "features": {
+      "mvp": [
+        "User authentication and personalized eco-profile",
+        "Receipt & food photo upload with AI carbon footprint estimation",
+        "Interactive daily and weekly emissions dashboard",
+        "Green alternative recommendation engine"
+      ],
+      "phase2": [
+        "Campus dorm leaderboard and peer challenges",
+        "Barcode scanner for retail items",
+        "Exportable impact reports for academic sustainability credits"
+      ],
+      "advanced": [
+        "IoT smart meter integration",
+        "Carbon offset marketplace with certified reforestation partners"
+      ]
+    },
+    "techStack": {
+      "frontend": [
+        "React 18",
+        "Tailwind CSS",
+        "Lucide Icons",
+        "Vite"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "TypeScript"
+      ],
+      "database": [
+        "MongoDB Atlas"
+      ],
+      "ai": [
+        "Google Gemini Multimodal API",
+        "Tesseract OCR"
+      ],
+      "authentication": [
+        "JWT with bcrypt"
+      ],
+      "storage": [
+        "Cloudinary / S3 Object Storage"
+      ],
+      "hosting": [
+        "Vercel (Frontend)",
+        "Render (Backend)"
+      ],
+      "monitoring": [
+        "Sentry",
+        "LogRocket"
+      ]
+    },
+    "complexity": {
+      "difficulty": "intermediate",
+      "estimatedDuration": "4 weeks",
+      "teamSize": "Solo or 2 developers",
+      "requiredSkills": [
+        "React",
+        "Python or Node.js",
+        "REST APIs",
+        "MongoDB"
+      ]
+    },
+    "learningOpportunities": [
+      "Handling image uploads and multimodal LLM prompt engineering",
+      "Designing relational document schemas in MongoDB",
+      "Building performant, mobile-first responsive dashboards",
+      "Implementing secure JWT session storage"
+    ],
+    "category": "Sustainability & Green",
+    "domain": "Climate Tech / AI",
+    "visibility": "public",
+    "status": "in_development",
+    "isFeatured": true,
+    "version": 1,
+    "completionScore": 65,
+    "githubUrl": "https://github.com/alexchen-forge/ecotrack-ai",
+    "liveDemoUrl": "https://ecotrack-ai.demo.projectforge.ai",
+    "createdAt": "2026-09-29T14:59:12.379Z",
+    "updatedAt": "2026-09-29T14:59:12.379Z",
+    "_id": "331403e9-3ac0-4046-9cf9-6e58582fe184"
+  },
+  {
+    "userId": "cc20b3c5-eecf-49ac-89d1-51252df269e2",
+    "name": "SolarGridForge",
+    "slug": "solargridforge-5223",
+    "tagline": "Intelligent Sustainability & Green platform solving solargrid ai: microgrid solar energy distribution and battery monitor for student co-ops.",
+    "oneLineDescription": "A intermediate-level Web & AI application addressing SolarGrid AI: Microgrid solar energy distribution and battery monitor for student co-ops with modern cloud architecture.",
+    "detailedDescription": "This application combines real-time data ingestion, automated intelligence, and responsive design to deliver SolarGrid AI: Microgrid solar energy distribution and battery monitor for student co-ops. Built specifically for Portfolio goals, it gives students deep practical exposure to end-to-end full-stack systems engineering.",
+    "problemStatement": "Target users in Sustainability & Green currently rely on fragmented, manual workflows lacking intelligent automation and seamless data persistence.",
+    "targetUsers": [
+      "Students & Campus Communities",
+      "Junior Developers",
+      "Domain Enthusiasts"
+    ],
+    "existingPainPoints": [
+      "Manual, repetitive data collation with high friction",
+      "Lack of contextual recommendations tailored to individual preferences",
+      "No automated telemetry or progress tracking"
+    ],
+    "proposedSolution": "An integrated Web & AI solution providing automated workflow processing, secure authentication, and interactive visual reporting.",
+    "keyDifferentiator": "Context-aware AI synthesis combined with a lightweight mobile-first interface optimized for rapid daily usage.",
+    "expectedImpact": "Reduces workflow turnaround time by 40% while providing an impressive portfolio showcase project.",
+    "features": {
+      "mvp": [
+        "Secure User Authentication & Profile Customization",
+        "Core Data Ingestion & Validation Pipeline",
+        "Interactive Real-time Visual Dashboard",
+        "Automated AI Insights & Structured Recommendations"
+      ],
+      "phase2": [
+        "Peer Sharing & Community Collaboration",
+        "Batch Processing & Export (PDF / CSV / JSON)",
+        "Push & Email Notification Alerts"
+      ],
+      "advanced": [
+        "Multimodal File/Image Processing",
+        "Predictive Trend Analytics & Anomaly Detection"
+      ]
+    },
+    "techStack": {
+      "frontend": [
+        "React 18",
+        "Tailwind CSS",
+        "Vite",
+        "Lucide Icons"
+      ],
+      "backend": [
+        "FastAPI",
+        "Python 3.11",
+        "Pydantic"
+      ],
+      "database": [
+        "MongoDB Atlas",
+        "Mongoose"
+      ],
+      "ai": [
+        "Google Gemini API (Structured Outputs)"
+      ],
+      "authentication": [
+        "JWT with bcrypt hashing"
+      ],
+      "storage": [
+        "Cloudinary Object Storage / Local Disk"
+      ],
+      "hosting": [
+        "Vercel (Client)",
+        "Render (API Server)"
+      ],
+      "monitoring": [
+        "Sentry Error Tracking"
+      ]
+    },
+    "complexity": {
+      "difficulty": "intermediate",
+      "estimatedDuration": "1 month",
+      "teamSize": "Solo",
+      "requiredSkills": [
+        "Python",
+        "React",
+        "MongoDB",
+        "FastAPI"
+      ]
+    },
+    "learningOpportunities": [
+      "Full-stack TypeScript and RESTful API architecture",
+      "Database indexing, relational modeling, and query optimization",
+      "Secure token-based authentication and authorization guards",
+      "AI prompt engineering and deterministic JSON schema validation"
+    ],
+    "category": "Sustainability & Green",
+    "domain": "Sustainability & Green",
+    "visibility": "public",
+    "status": "planning",
+    "version": 1,
+    "completionScore": 25,
+    "createdAt": "2026-09-29T15:18:25.223Z",
+    "updatedAt": "2026-09-29T15:18:25.223Z",
+    "_id": "0d4e0261-e287-476e-97e2-aed315354236"
+  }
+]

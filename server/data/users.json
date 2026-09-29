@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Alex Chen",
+    "email": "student@projectforge.ai",
+    "passwordHash": "$2a$10$UeFwHSZnFnwAQJI0r9zbbuLXdGOH7QV3MDRK66PRIAiHQJPlVvZKS",
+    "role": "student",
+    "isOnboarded": true,
+    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    "status": "active",
+    "createdAt": "2026-09-29T14:59:12.370Z",
+    "updatedAt": "2026-09-29T14:59:12.371Z",
+    "_id": "62fbd3f9-b201-48c0-bcf5-926627cbbd5a"
+  },
+  {
+    "name": "Sarah Connor (Admin)",
+    "email": "admin@projectforge.ai",
+    "passwordHash": "$2a$10$UeFwHSZnFnwAQJI0r9zbbu6MIuuZsAVdQN5Zz5iS2dPo8z.z0O9Nq",
+    "role": "admin",
+    "isOnboarded": true,
+    "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150",
+    "status": "active",
+    "createdAt": "2026-09-29T14:59:12.372Z",
+    "updatedAt": "2026-09-29T14:59:12.373Z",
+    "_id": "de703248-58db-44a9-9c96-b5161c75a9d6"
+  },
+  {
+    "name": "Maria Rodriguez",
+    "email": "student_1790695105014@college.edu",
+    "passwordHash": "$2a$10$uz3.wd2cwaYSFixsSjT8B.JCCGXqPZAy/PTYhtb9DE0jg8I6g.g9i",
+    "role": "student",
+    "isOnboarded": true,
+    "status": "active",
+    "createdAt": "2026-09-29T15:18:25.149Z",
+    "updatedAt": "2026-09-29T15:18:25.178Z",
+    "_id": "cc20b3c5-eecf-49ac-89d1-51252df269e2"
+  }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "name": "Python",
+    "slug": "python",
+    "category": "programming",
+    "description": "Interpreted high-level language for AI, data science, and web services.",
+    "iconName": "Terminal",
+    "popular": true,
+    "_id": "5c1cd785-2b75-47a0-8002-dbf433003faf"
+  },
+  {
+    "name": "TypeScript",
+    "slug": "typescript",
+    "category": "programming",
+    "description": "Typed superset of JavaScript providing robust type safety.",
+    "iconName": "FileCode2",
+    "popular": true,
+    "_id": "24a5014f-d8f1-412b-8d2e-a419aec704a0"
+  },
+  {
+    "name": "JavaScript",
+    "slug": "javascript",
+    "category": "programming",
+    "description": "Versatile language powering the web frontend and modern backends.",
+    "iconName": "Code",
+    "popular": true,
+    "_id": "c60e1822-37eb-4a4f-9350-87c628fef30d"
+  },
+  {
+    "name": "Java",
+    "slug": "java",
+    "category": "programming",
+    "description": "Enterprise-grade object-oriented language for high scalability.",
+    "iconName": "Coffee",
+    "popular": true,
+    "_id": "04c67a1f-2066-485d-a701-f607388be23e"
+  },
+  {
+    "name": "C++",
+    "slug": "cpp",
+    "category": "programming",
+    "description": "High-performance systems programming language.",
+    "iconName": "Cpu",
+    "popular": false,
+    "_id": "038b89f5-77bf-4812-8b68-6937b0e5e397"
+  },
+  {
+    "name": "Go",
+    "slug": "go",
+    "category": "programming",
+    "description": "Lightweight concurrent systems language developed by Google.",
+    "iconName": "Zap",
+    "popular": true,
+    "_id": "54f30172-83dd-4b91-b50e-42dd0a6f0bbb"
+  },
+  {
+    "name": "Rust",
+    "slug": "rust",
+    "category": "programming",
+    "description": "Memory-safe systems programming language with zero-cost abstractions.",
+    "iconName": "Shield",
+    "popular": true,
+    "_id": "961a0832-c8c4-4712-97dc-90e934b8cc51"
+  },
+  {
+    "name": "React",
+    "slug": "react",
+    "category": "frontend",
+    "description": "Declarative component-based UI library for web and mobile.",
+    "iconName": "Layout",
+    "popular": true,
+    "_id": "78ee3ea0-ea13-461d-8a1d-aaccf1f4157d"
+  },
+  {
+    "name": "Next.js",
+    "slug": "nextjs",
+    "category": "frontend",
+    "description": "Production React framework with SSR, SSG, and edge routing.",
+    "iconName": "Globe",
+    "popular": true,
+    "_id": "ccd8641e-cffc-4800-bdb6-22fb5e2ae466"
+  },
+  {
+    "name": "Vue.js",
+    "slug": "vue",
+    "category": "frontend",
+    "description": "Progressive JavaScript framework for building user interfaces.",
+    "iconName": "Box",
+    "popular": false,
+    "_id": "9f8e6dda-12ab-4f30-9d6f-4a83aab8830a"
+  },
+  {
+    "name": "Tailwind CSS",
+    "slug": "tailwindcss",
+    "category": "frontend",
+    "description": "Utility-first CSS framework for rapid responsive design.",
+    "iconName": "Palette",
+    "popular": true,
+    "_id": "21fa3bb2-b717-4067-908c-ba32a081c334"
+  },
+  {
+    "name": "Node.js",
+    "slug": "nodejs",
+    "category": "backend",
+    "description": "Event-driven asynchronous JavaScript runtime.",
+    "iconName": "Server",
+    "popular": true,
+    "_id": "bd9dd896-5e69-4c93-a880-d84a40cf33be"
+  },
+  {
+    "name": "Express.js",
+    "slug": "express",
+    "category": "backend",
+    "description": "Fast, minimalist web framework for Node.js.",
+    "iconName": "Layers",
+    "popular": true,
+    "_id": "af465062-4000-4390-b820-8bda62994af1"
+  },
+  {
+    "name": "FastAPI",
+    "slug": "fastapi",
+    "category": "backend",
+    "description": "Modern, high-performance Python web framework for building APIs.",
+    "iconName": "Flame",
+    "popular": true,
+    "_id": "525a2888-da06-4106-a532-d03bd375828e"
+  },
+  {
+    "name": "Django",
+    "slug": "django",
+    "category": "backend",
+    "description": "High-level Python web framework encouraging clean design.",
+    "iconName": "Grid",
+    "popular": true,
+    "_id": "44bf055a-d1f8-43d9-b277-5fa88f87eef1"
+  },
+  {
+    "name": "Spring Boot",
+    "slug": "springboot",
+    "category": "backend",
+    "description": "Production-ready framework for Java microservices.",
+    "iconName": "Cpu",
+    "popular": false,
+    "_id": "94a15ecf-7a45-4138-bc63-7b52964ed60d"
+  },
+  {
+    "name": "MongoDB",
+    "slug": "mongodb",
+    "category": "database",
+    "description": "Document-oriented NoSQL database with flexible JSON schema.",
+    "iconName": "Database",
+    "popular": true,
+    "_id": "d6086603-ed04-4525-8c70-da46c08a70b3"
+  },
+  {
+    "name": "PostgreSQL",
+    "slug": "postgresql",
+    "category": "database",
+    "description": "Powerful, open-source object-relational database system.",
+    "iconName": "Table",
+    "popular": true,
+    "_id": "c7634e42-e33e-4298-a2c0-49f0c793c97f"
+  },
+  {
+    "name": "MySQL",
+    "slug": "mysql",
+    "category": "database",
+    "description": "Widely used open-source relational database management system.",
+    "iconName": "Database",
+    "popular": true,
+    "_id": "ba67220a-3991-4da7-8312-3f540abcb630"
+  },
+  {
+    "name": "Redis",
+    "slug": "redis",
+    "category": "database",
+    "description": "In-memory data structure store used as a cache and message broker.",
+    "iconName": "Zap",
+    "popular": true,
+    "_id": "de5f4e47-c71a-47b1-a667-0ede16e1a249"
+  },
+  {
+    "name": "Firebase",
+    "slug": "firebase",
+    "category": "database",
+    "description": "Google platform offering Firestore, auth, and hosting.",
+    "iconName": "Flame",
+    "popular": true,
+    "_id": "04161c41-d373-4dbd-b7f9-758ab1fc5222"
+  },
+  {
+    "name": "Gemini API",
+    "slug": "gemini",
+    "category": "ai",
+    "description": "Google Deepmind multimodal LLM powering reasoning and generation.",
+    "iconName": "Sparkles",
+    "popular": true,
+    "_id": "7e8e8715-1e72-4314-9ac7-16a5dbbb26a5"
+  },
+  {
+    "name": "OpenAI GPT-4o",
+    "slug": "openai",
+    "category": "ai",
+    "description": "Frontier reasoning and language model for development.",
+    "iconName": "Cpu",
+    "popular": true,
+    "_id": "19f4b73f-8523-432a-99dd-4d05d7ced12e"
+  },
+  {
+    "name": "PyTorch",
+    "slug": "pytorch",
+    "category": "ai",
+    "description": "Deep learning framework for tensor computation and neural networks.",
+    "iconName": "Network",
+    "popular": true,
+    "_id": "34e79c47-60b3-4ade-b154-3033719aa62e"
+  },
+  {
+    "name": "LangChain",
+    "slug": "langchain",
+    "category": "ai",
+    "description": "Framework for developing applications powered by language models.",
+    "iconName": "Link",
+    "popular": true,
+    "_id": "3c6b1ba3-d68f-4432-9574-2078e2748c46"
+  },
+  {
+    "name": "Hugging Face",
+    "slug": "huggingface",
+    "category": "ai",
+    "description": "Platform and library for open-source AI models and transformers.",
+    "iconName": "Smile",
+    "popular": true,
+    "_id": "1e6ae22d-c35a-4a64-b624-78a558f296a6"
+  },
+  {
+    "name": "React Native",
+    "slug": "react-native",
+    "category": "mobile",
+    "description": "Build native iOS and Android apps using React.",
+    "iconName": "Smartphone",
+    "popular": true,
+    "_id": "29a38719-b5de-45d3-9b89-446d2942b291"
+  },
+  {
+    "name": "Flutter",
+    "slug": "flutter",
+    "category": "mobile",
+    "description": "Google UI toolkit for compiling multi-platform apps from Dart.",
+    "iconName": "Smartphone",
+    "popular": true,
+    "_id": "c33ab1a7-fff9-4fa2-b6b3-61d3cf9375b3"
+  },
+  {
+    "name": "Docker",
+    "slug": "docker",
+    "category": "cloud_devops",
+    "description": "Containerization platform for portable application packaging.",
+    "iconName": "Container",
+    "popular": true,
+    "_id": "4452c0cf-710c-4fe9-83b3-f95e8516cd6b"
+  },
+  {
+    "name": "AWS",
+    "slug": "aws",
+    "category": "cloud_devops",
+    "description": "Amazon Web Services cloud computing ecosystem.",
+    "iconName": "Cloud",
+    "popular": true,
+    "_id": "e88aaa9b-7382-4b41-b5e4-b72adb66aac2"
+  },
+  {
+    "name": "GitHub Actions",
+    "slug": "github-actions",
+    "category": "cloud_devops",
+    "description": "Automate CI/CD workflows directly inside GitHub repositories.",
+    "iconName": "GitBranch",
+    "popular": true,
+    "_id": "d8cc7497-fd09-403c-a36c-bcf5fc0f943f"
+  },
+  {
+    "name": "Web Security (OWASP)",
+    "slug": "owasp",
+    "category": "cybersecurity",
+    "description": "Standards and defenses against top web vulnerabilities.",
+    "iconName": "ShieldAlert",
+    "popular": true,
+    "_id": "b956523f-aa40-4ef7-88ce-3fb898d679d9"
+  }
+]

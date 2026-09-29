@@ -1,0 +1,228 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "screens": [
+      {
+        "id": "scr-01",
+        "name": "Home Eco Dashboard",
+        "purpose": "Displays daily CO2 gauge, quick scan CTA, and recent emissions activity.",
+        "layoutType": "mobile",
+        "components": [
+          "Daily Progress Ring",
+          "Camera Quick Button",
+          "Category Breakdown Cards",
+          "Recommended Swap of the Day"
+        ],
+        "userActions": [
+          "Tap scan button to launch camera",
+          "Click category to filter",
+          "View weekly trend"
+        ],
+        "apiDependencies": [
+          "GET /api/analytics/weekly",
+          "GET /api/logs/recent"
+        ],
+        "wireframeLayout": {
+          "header": "Top Bar: Greeting, Streak Counter (🔥 7 days), Profile Avatar",
+          "sections": [
+            {
+              "title": "Hero Carbon Meter",
+              "element": "Circular Gauge Widget",
+              "details": "Displays 2.4 / 4.0 kg daily budget with green/amber indicator."
+            },
+            {
+              "title": "Quick Action",
+              "element": "Floating Action Button",
+              "details": "Prominent Scan Receipt button with Camera icon."
+            },
+            {
+              "title": "Recent Logs",
+              "element": "Scrollable List",
+              "details": "Card list showing cafeteria lunch, subway trip, dorm electricity."
+            }
+          ],
+          "bottomNav": [
+            "Home",
+            "Scan",
+            "Leaderboard",
+            "Profile"
+          ]
+        }
+      },
+      {
+        "id": "scr-02",
+        "name": "AI Scanner & Confirmation",
+        "purpose": "Camera viewfinder for scanning receipts with instant AI preview and edit capabilities.",
+        "layoutType": "mobile",
+        "components": [
+          "Camera Preview",
+          "Bounding Box Overlay",
+          "Parsed Item Table",
+          "Confirm & Save Button"
+        ],
+        "userActions": [
+          "Take photo",
+          "Pick from gallery",
+          "Adjust detected item weights",
+          "Confirm log"
+        ],
+        "apiDependencies": [
+          "POST /api/receipts/analyze",
+          "POST /api/logs"
+        ],
+        "wireframeLayout": {
+          "header": "Back button, Title: \"Scan Receipt\", Flash toggle",
+          "sections": [
+            {
+              "title": "Viewfinder",
+              "element": "Live Camera Box",
+              "details": "Guides student to align receipt within frame."
+            },
+            {
+              "title": "Detected Items Drawer",
+              "element": "Bottom Sheet Modal",
+              "details": "Shows parsed list with edit buttons and CO2 tag."
+            }
+          ]
+        }
+      }
+    ],
+    "designSystem": {
+      "primaryColor": "#16a34a",
+      "secondaryColor": "#059669",
+      "fontFamily": "Inter",
+      "borderRadius": "16px"
+    },
+    "navigationFlow": "Home -> Scanner Modal -> Confirmation Sheet -> Updated Home -> Leaderboard",
+    "updatedAt": "2026-09-29T14:59:12.383Z",
+    "_id": "630215d2-2e28-45ff-9822-e3cf900eeaa0"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "screens": [
+      {
+        "id": "scr-01",
+        "name": "Dashboard Overview",
+        "purpose": "Central hub showing activity metrics, quick actions, and status summaries.",
+        "layoutType": "mobile",
+        "components": [
+          "Top Header Bar",
+          "Metric Cards Carousel",
+          "Recent Activity Feed",
+          "Floating Action Button"
+        ],
+        "userActions": [
+          "Tap quick action to create",
+          "Swipe cards to view weekly analytics",
+          "Tap notification bell"
+        ],
+        "apiDependencies": [
+          "GET /api/dashboard/stats",
+          "GET /api/items/recent"
+        ],
+        "wireframeLayout": {
+          "header": "Logo, greeting, profile avatar, and unread notifications icon",
+          "sections": [
+            {
+              "title": "Metrics Row",
+              "element": "Horizontal Card Scroll",
+              "details": "Shows total tasks, active sessions, and completion rate"
+            },
+            {
+              "title": "Main Feed",
+              "element": "Card List",
+              "details": "Displays prioritized item list with status tags"
+            }
+          ],
+          "bottomNav": [
+            "Home",
+            "Explore",
+            "Tasks",
+            "Settings"
+          ]
+        }
+      },
+      {
+        "id": "scr-02",
+        "name": "Creation & AI Assistant Modal",
+        "purpose": "Step-by-step form to create new resources with real-time AI validation guidance.",
+        "layoutType": "mobile",
+        "components": [
+          "Progress Stepper",
+          "Input Fields with Validation",
+          "AI Suggestion Chip Box",
+          "Submit CTA"
+        ],
+        "userActions": [
+          "Enter data",
+          "Click AI Suggest button",
+          "Confirm and submit"
+        ],
+        "apiDependencies": [
+          "POST /api/analyze",
+          "POST /api/items"
+        ],
+        "wireframeLayout": {
+          "header": "Cancel button, modal title, save draft button",
+          "sections": [
+            {
+              "title": "Form Body",
+              "element": "Vertical Input Stack",
+              "details": "Title, category select, multi-line description"
+            },
+            {
+              "title": "AI Assist Box",
+              "element": "Tonal Blue Card",
+              "details": "Displays live tips and syntax completions"
+            }
+          ]
+        }
+      },
+      {
+        "id": "scr-03",
+        "name": "Item Detail & History",
+        "purpose": "Deep view of resource attributes, timeline events, and export options.",
+        "layoutType": "responsive",
+        "components": [
+          "Breadcrumb Navigation",
+          "Status Badge",
+          "Details Tab Bar",
+          "Action Buttons"
+        ],
+        "userActions": [
+          "Edit details",
+          "Export to PDF",
+          "Delete item"
+        ],
+        "apiDependencies": [
+          "GET /api/items/:id",
+          "DELETE /api/items/:id"
+        ],
+        "wireframeLayout": {
+          "header": "Back arrow, resource title, dropdown action menu",
+          "sections": [
+            {
+              "title": "Metadata Overview",
+              "element": "Grid 2-column",
+              "details": "Owner, created date, difficulty score"
+            },
+            {
+              "title": "Audit Trail",
+              "element": "Vertical Timeline",
+              "details": "Chronological events with user badges"
+            }
+          ]
+        }
+      }
+    ],
+    "designSystem": {
+      "primaryColor": "#4f46e5",
+      "secondaryColor": "#06b6d4",
+      "fontFamily": "Inter, system-ui, sans-serif",
+      "borderRadius": "12px"
+    },
+    "navigationFlow": "Home -> Create Modal -> Detail View -> Home Feed",
+    "updatedAt": "2026-09-29T15:18:25.229Z",
+    "_id": "055b2710-724a-4b2f-a212-a9941910557e"
+  }
+]

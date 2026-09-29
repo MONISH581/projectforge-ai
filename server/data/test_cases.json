@@ -1,0 +1,122 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "testId": "TC-01",
+    "type": "api",
+    "feature": "Auth",
+    "scenario": "User registers with valid email and password",
+    "input": "email: test@college.edu, password: ValidPassword123!",
+    "expectedResult": "201 Created with JWT token and user profile object",
+    "status": "pass",
+    "updatedAt": "2026-09-29T14:59:12.390Z",
+    "_id": "0111a85b-8dd6-436b-b762-10103a2c64f7"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "testId": "TC-02",
+    "type": "api",
+    "feature": "Auth",
+    "scenario": "User attempts registration with already registered email",
+    "input": "email: student@projectforge.ai",
+    "expectedResult": "409 Conflict with message \"Email already registered\"",
+    "status": "pass",
+    "updatedAt": "2026-09-29T14:59:12.391Z",
+    "_id": "facd59d9-a4c9-4ae1-bbf0-a0f54e2b2a56"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "testId": "TC-03",
+    "type": "unit",
+    "feature": "AI Calculation",
+    "scenario": "Receipt contains non-food item (e.g. stationery)",
+    "input": "Notebook: $5.00",
+    "expectedResult": "Categorized under \"shopping/goods\" with baseline CO2 factor",
+    "status": "pass",
+    "updatedAt": "2026-09-29T14:59:12.392Z",
+    "_id": "7e1c93a0-67fa-489b-a059-dabd94ea2972"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "testId": "TC-04",
+    "type": "security",
+    "feature": "Image Upload",
+    "scenario": "Malicious user uploads non-image executable",
+    "input": "shell.php named receipt.jpg",
+    "expectedResult": "400 Bad Request with strict MIME type verification failure",
+    "status": "pass",
+    "updatedAt": "2026-09-29T14:59:12.393Z",
+    "_id": "99a22aed-bc5b-42c9-a957-0ee6d710a6bb"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "testId": "TC-05",
+    "type": "ui",
+    "feature": "Responsive UI",
+    "scenario": "Render dashboard on 320px screen width",
+    "input": "Viewport 320x640",
+    "expectedResult": "No horizontal overflow, text wraps cleanly, cards stack vertically",
+    "status": "pass",
+    "updatedAt": "2026-09-29T14:59:12.393Z",
+    "_id": "e173dc3a-a2af-467c-ab7a-1eb1c32e5ad0"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "testId": "TC-01",
+    "type": "api",
+    "feature": "Authentication",
+    "scenario": "User registers with valid credentials",
+    "input": "email: valid@domain.com, password: StrongPassword123!",
+    "expectedResult": "201 Created with JWT auth token and user record",
+    "status": "pass",
+    "updatedAt": "2026-09-29T15:18:25.334Z",
+    "_id": "83363a1b-f8bf-4c72-acc1-9a047cb37f4d"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "testId": "TC-02",
+    "type": "security",
+    "feature": "Auth Guard",
+    "scenario": "Unauthenticated request to protected endpoint",
+    "input": "GET /api/items without Bearer token",
+    "expectedResult": "401 Unauthorized with code UNAUTHORIZED",
+    "status": "pass",
+    "updatedAt": "2026-09-29T15:18:25.252Z",
+    "_id": "781c641b-63b7-4f62-8ee6-6362ca85583e"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "testId": "TC-03",
+    "type": "unit",
+    "feature": "Validation",
+    "scenario": "Form submission with missing required fields",
+    "input": "Empty payload {}",
+    "expectedResult": "400 Bad Request with field-level Zod validation errors",
+    "status": "pass",
+    "updatedAt": "2026-09-29T15:18:25.253Z",
+    "_id": "c30a3958-3a59-4529-a9a5-0e45a708ea59"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "testId": "TC-04",
+    "type": "security",
+    "feature": "Rate Limiting",
+    "scenario": "Rapid repeated calls exceeding 20 req/min on AI endpoint",
+    "input": "25 consecutive POST calls",
+    "expectedResult": "429 Rate Limit Exceeded with friendly message",
+    "status": "pass",
+    "updatedAt": "2026-09-29T15:18:25.254Z",
+    "_id": "b5d64640-5249-4137-91a5-f5515dc4f191"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "testId": "TC-05",
+    "type": "ui",
+    "feature": "Mobile Viewport",
+    "scenario": "Verify layout on 320px mobile viewport",
+    "input": "Screen width: 320px",
+    "expectedResult": "Zero horizontal scroll, cards stack cleanly, touch buttons >= 44px",
+    "status": "pass",
+    "updatedAt": "2026-09-29T15:18:25.254Z",
+    "_id": "cc273416-2300-47e6-a28e-2cafd13eb3a3"
+  }
+]

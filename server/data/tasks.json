@@ -1,0 +1,559 @@
+[
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "description": "Task execution for Setup TypeScript Monorepo & Express Server. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Backend",
+      "Setup"
+    ],
+    "order": 1,
+    "createdAt": "2026-09-29T14:59:12.384Z",
+    "updatedAt": "2026-09-29T14:59:12.384Z",
+    "_id": "eb006576-e095-4ddd-9f77-54d201434aa9"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "description": "Task execution for Create MongoDB schemas for Users and CarbonLogs. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 3,
+    "dependencies": [],
+    "tags": [
+      "Database"
+    ],
+    "order": 2,
+    "createdAt": "2026-09-29T14:59:12.385Z",
+    "updatedAt": "2026-09-29T14:59:12.385Z",
+    "_id": "0547f6bb-3755-49e9-97ac-9df0ee65bf13"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "description": "Task execution for Implement JWT Auth & Password Hashing. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 2,
+    "estimatedHours": 6,
+    "dependencies": [],
+    "tags": [
+      "Security",
+      "Auth"
+    ],
+    "order": 3,
+    "createdAt": "2026-09-29T14:59:12.386Z",
+    "updatedAt": "2026-09-29T14:59:12.386Z",
+    "_id": "82af5ae0-20c1-46d4-8bd3-1f594d09f50d"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "description": "Task execution for Build Mobile Dashboard Hero Progress Ring. Ensure adherence to project requirements.",
+    "status": "in_progress",
+    "priority": "medium",
+    "phaseNumber": 5,
+    "estimatedHours": 5,
+    "dependencies": [],
+    "tags": [
+      "Frontend",
+      "UI"
+    ],
+    "order": 4,
+    "createdAt": "2026-09-29T14:59:12.387Z",
+    "updatedAt": "2026-09-29T14:59:12.387Z",
+    "_id": "229b2ada-8a78-487a-816d-14fc21887ac5"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "description": "Task execution for Integrate Gemini API with Structured Receipt Prompt. Ensure adherence to project requirements.",
+    "status": "todo",
+    "priority": "urgent",
+    "phaseNumber": 4,
+    "estimatedHours": 8,
+    "dependencies": [],
+    "tags": [
+      "AI",
+      "Backend"
+    ],
+    "order": 5,
+    "createdAt": "2026-09-29T14:59:12.387Z",
+    "updatedAt": "2026-09-29T14:59:12.387Z",
+    "_id": "fae37db4-b2f6-4bbc-9a1a-84e459e6655a"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "description": "Task execution for Implement Dorm Leaderboard Aggregation Query. Ensure adherence to project requirements.",
+    "status": "backlog",
+    "priority": "low",
+    "phaseNumber": 5,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Backend"
+    ],
+    "order": 6,
+    "createdAt": "2026-09-29T14:59:12.388Z",
+    "updatedAt": "2026-09-29T14:59:12.388Z",
+    "_id": "cade8fe9-5d86-4939-8f72-cdfcb9588081"
+  },
+  {
+    "projectId": "331403e9-3ac0-4046-9cf9-6e58582fe184",
+    "description": "Task execution for Write Unit Tests for Carbon Factor Math. Ensure adherence to project requirements.",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 6,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Testing"
+    ],
+    "order": 7,
+    "createdAt": "2026-09-29T14:59:12.389Z",
+    "updatedAt": "2026-09-29T14:59:12.389Z",
+    "_id": "7bcbb9cd-9560-43d3-a79c-48a3a27eb2e6"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Initialize repo workspaces",
+    "description": "Deliverable for Phase 1: Project Initialization & Environment Setup",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Git",
+      "TypeScript",
+      "Node.js"
+    ],
+    "order": 1,
+    "createdAt": "2026-09-29T15:18:25.231Z",
+    "updatedAt": "2026-09-29T15:18:25.316Z",
+    "_id": "ed43461a-be58-4108-9050-02c67bf038a6"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Configure ESLint and Tailwind CSS",
+    "description": "Deliverable for Phase 1: Project Initialization & Environment Setup",
+    "status": "todo",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Git",
+      "TypeScript",
+      "Node.js"
+    ],
+    "order": 2,
+    "createdAt": "2026-09-29T15:18:25.232Z",
+    "updatedAt": "2026-09-29T15:18:25.232Z",
+    "_id": "b20b32c5-9736-4df3-9686-9afdd6c109af"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Verify database connection",
+    "description": "Deliverable for Phase 1: Project Initialization & Environment Setup",
+    "status": "todo",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Git",
+      "TypeScript",
+      "Node.js"
+    ],
+    "order": 3,
+    "createdAt": "2026-09-29T15:18:25.232Z",
+    "updatedAt": "2026-09-29T15:18:25.232Z",
+    "_id": "f388131b-b266-4d69-96f8-f74119407bf8"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Register & login routes",
+    "description": "Deliverable for Phase 2: Authentication & Access Control",
+    "status": "todo",
+    "priority": "high",
+    "phaseNumber": 2,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "JWT",
+      "bcrypt",
+      "Express Middleware"
+    ],
+    "order": 4,
+    "createdAt": "2026-09-29T15:18:25.233Z",
+    "updatedAt": "2026-09-29T15:18:25.233Z",
+    "_id": "1a9f5f87-0748-4eb6-9f2b-45c59f5fc312"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Token verification middleware",
+    "description": "Deliverable for Phase 2: Authentication & Access Control",
+    "status": "todo",
+    "priority": "high",
+    "phaseNumber": 2,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "JWT",
+      "bcrypt",
+      "Express Middleware"
+    ],
+    "order": 5,
+    "createdAt": "2026-09-29T15:18:25.234Z",
+    "updatedAt": "2026-09-29T15:18:25.234Z",
+    "_id": "59065fe3-f6d3-4cd8-8c36-85299dfe34f9"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Auth state management on client",
+    "description": "Deliverable for Phase 2: Authentication & Access Control",
+    "status": "todo",
+    "priority": "high",
+    "phaseNumber": 2,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "JWT",
+      "bcrypt",
+      "Express Middleware"
+    ],
+    "order": 6,
+    "createdAt": "2026-09-29T15:18:25.235Z",
+    "updatedAt": "2026-09-29T15:18:25.235Z",
+    "_id": "d57784a9-dd34-4f37-bacf-7f69ecaf965d"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Create models with validation",
+    "description": "Deliverable for Phase 3: Database Modeling & CRUD Endpoints",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 3,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Database Schema Design",
+      "REST API"
+    ],
+    "order": 7,
+    "createdAt": "2026-09-29T15:18:25.237Z",
+    "updatedAt": "2026-09-29T15:18:25.237Z",
+    "_id": "ba67dfff-0e0d-4e6b-a37b-133a450bc940"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Implement GET/POST/PUT/DELETE handlers",
+    "description": "Deliverable for Phase 3: Database Modeling & CRUD Endpoints",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 3,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Database Schema Design",
+      "REST API"
+    ],
+    "order": 8,
+    "createdAt": "2026-09-29T15:18:25.238Z",
+    "updatedAt": "2026-09-29T15:18:25.238Z",
+    "_id": "5d175a2c-ec16-420f-afde-43cb2153a0ca"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Write unit tests for queries",
+    "description": "Deliverable for Phase 3: Database Modeling & CRUD Endpoints",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 3,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Database Schema Design",
+      "REST API"
+    ],
+    "order": 9,
+    "createdAt": "2026-09-29T15:18:25.239Z",
+    "updatedAt": "2026-09-29T15:18:25.239Z",
+    "_id": "de486d18-2aff-404b-81bc-92441a6afb4a"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Build provider adapter",
+    "description": "Deliverable for Phase 4: AI Integration & Prompt Engineering",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 4,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "AI APIs",
+      "Zod Validation"
+    ],
+    "order": 10,
+    "createdAt": "2026-09-29T15:18:25.239Z",
+    "updatedAt": "2026-09-29T15:18:25.239Z",
+    "_id": "c5ad9008-808d-4bab-a158-1cd8b0ee4e12"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Create prompt templates",
+    "description": "Deliverable for Phase 4: AI Integration & Prompt Engineering",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 4,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "AI APIs",
+      "Zod Validation"
+    ],
+    "order": 11,
+    "createdAt": "2026-09-29T15:18:25.240Z",
+    "updatedAt": "2026-09-29T15:18:25.240Z",
+    "_id": "c4a6f6bb-fa40-4016-9a43-af7ec0462f22"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Implement rate limiting and error recovery",
+    "description": "Deliverable for Phase 4: AI Integration & Prompt Engineering",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 4,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "AI APIs",
+      "Zod Validation"
+    ],
+    "order": 12,
+    "createdAt": "2026-09-29T15:18:25.241Z",
+    "updatedAt": "2026-09-29T15:18:25.241Z",
+    "_id": "44ce3a7f-12b6-498f-8296-180c8c64397c"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Build reusable UI components",
+    "description": "Deliverable for Phase 5: Frontend UI & Mobile-First Views",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 5,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "React",
+      "Tailwind CSS",
+      "State Management"
+    ],
+    "order": 13,
+    "createdAt": "2026-09-29T15:18:25.241Z",
+    "updatedAt": "2026-09-29T15:18:25.241Z",
+    "_id": "c0a81025-859b-4404-b669-0ed5fbadf78b"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Implement mobile bottom navigation",
+    "description": "Deliverable for Phase 5: Frontend UI & Mobile-First Views",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 5,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "React",
+      "Tailwind CSS",
+      "State Management"
+    ],
+    "order": 14,
+    "createdAt": "2026-09-29T15:18:25.242Z",
+    "updatedAt": "2026-09-29T15:18:25.242Z",
+    "_id": "c10e9c01-cfcb-4161-a92e-f65cfd6d95d1"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Wire API queries to UI views",
+    "description": "Deliverable for Phase 5: Frontend UI & Mobile-First Views",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 5,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "React",
+      "Tailwind CSS",
+      "State Management"
+    ],
+    "order": 15,
+    "createdAt": "2026-09-29T15:18:25.243Z",
+    "updatedAt": "2026-09-29T15:18:25.243Z",
+    "_id": "6d2ab7f1-0321-4cb8-843f-0cf155700d60"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Write API integration tests",
+    "description": "Deliverable for Phase 6: Testing & Error Handling",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 6,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Automated Testing",
+      "QA"
+    ],
+    "order": 16,
+    "createdAt": "2026-09-29T15:18:25.244Z",
+    "updatedAt": "2026-09-29T15:18:25.244Z",
+    "_id": "1c8963c4-2584-4a87-b817-f013e652db16"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Audit responsive breakpoints (320px to 1440px)",
+    "description": "Deliverable for Phase 6: Testing & Error Handling",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 6,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Automated Testing",
+      "QA"
+    ],
+    "order": 17,
+    "createdAt": "2026-09-29T15:18:25.244Z",
+    "updatedAt": "2026-09-29T15:18:25.244Z",
+    "_id": "da849100-9bc0-41f9-aabe-d71abfde642e"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Verify input sanitization",
+    "description": "Deliverable for Phase 6: Testing & Error Handling",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 6,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Automated Testing",
+      "QA"
+    ],
+    "order": 18,
+    "createdAt": "2026-09-29T15:18:25.246Z",
+    "updatedAt": "2026-09-29T15:18:25.246Z",
+    "_id": "7639710d-3028-4a21-bec0-38e76994bd3f"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Generate architectural README",
+    "description": "Deliverable for Phase 7: Documentation & Portfolio Generation",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 7,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Technical Writing",
+      "Markdown"
+    ],
+    "order": 19,
+    "createdAt": "2026-09-29T15:18:25.246Z",
+    "updatedAt": "2026-09-29T15:18:25.246Z",
+    "_id": "cff1e44c-0cec-4133-97cd-a685a9652170"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Create API documentation table",
+    "description": "Deliverable for Phase 7: Documentation & Portfolio Generation",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 7,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Technical Writing",
+      "Markdown"
+    ],
+    "order": 20,
+    "createdAt": "2026-09-29T15:18:25.247Z",
+    "updatedAt": "2026-09-29T15:18:25.247Z",
+    "_id": "f53743c9-f4e1-4572-adc6-e045f4a0f625"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Publish public portfolio page",
+    "description": "Deliverable for Phase 7: Documentation & Portfolio Generation",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 7,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Technical Writing",
+      "Markdown"
+    ],
+    "order": 21,
+    "createdAt": "2026-09-29T15:18:25.248Z",
+    "updatedAt": "2026-09-29T15:18:25.248Z",
+    "_id": "a3fbfaf2-c52f-4b43-abce-437780cfb0b3"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Configure production environment variables",
+    "description": "Deliverable for Phase 8: Deployment & Production Release",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 8,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "DevOps",
+      "Vercel / Render"
+    ],
+    "order": 22,
+    "createdAt": "2026-09-29T15:18:25.248Z",
+    "updatedAt": "2026-09-29T15:18:25.248Z",
+    "_id": "75aa6a87-142b-4f68-af40-506ca027641e"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Build production bundles",
+    "description": "Deliverable for Phase 8: Deployment & Production Release",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 8,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "DevOps",
+      "Vercel / Render"
+    ],
+    "order": 23,
+    "createdAt": "2026-09-29T15:18:25.249Z",
+    "updatedAt": "2026-09-29T15:18:25.249Z",
+    "_id": "2448672b-47dd-4701-9782-81b2006f9a4d"
+  },
+  {
+    "projectId": "0d4e0261-e287-476e-97e2-aed315354236",
+    "title": "Execute live user smoke test",
+    "description": "Deliverable for Phase 8: Deployment & Production Release",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 8,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "DevOps",
+      "Vercel / Render"
+    ],
+    "order": 24,
+    "createdAt": "2026-09-29T15:18:25.251Z",
+    "updatedAt": "2026-09-29T15:18:25.251Z",
+    "_id": "e74c9c39-0d59-4d54-9780-3c4539de7230"
+  }
+]
