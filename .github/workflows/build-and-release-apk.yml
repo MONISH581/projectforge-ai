@@ -65,10 +65,7 @@ jobs:
   eas-expo-build:
     name: Build APK via Expo EAS Cloud
     runs-on: ubuntu-latest
-    # Runs whenever EXPO_TOKEN secret is configured in the GitHub repository
-    if: "${{ env.EXPO_TOKEN != '' }}"
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+    if: ${{ secrets.EXPO_TOKEN != '' }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
