@@ -2,6 +2,7 @@
   "expo": {
     "name": "ProjectForge AI",
     "slug": "projectforge-ai",
+    "owner": "monishhhh",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,6 +21,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7d440d7f-5331-4c93-abe7-640f0e09a0fe"
+      }
     }
   }
 }
