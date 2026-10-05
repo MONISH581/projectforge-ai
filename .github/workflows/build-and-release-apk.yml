@@ -65,7 +65,6 @@ jobs:
   eas-expo-build:
     name: Build APK via Expo EAS Cloud
     runs-on: ubuntu-latest
-    if: ${{ secrets.EXPO_TOKEN != '' }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -76,17 +75,20 @@ jobs:
           node-version: 20
 
       - name: Setup Expo EAS
+        if: "${{ secrets.EXPO_TOKEN != '' }}"
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install Expo App Dependencies
+        if: "${{ secrets.EXPO_TOKEN != '' }}"
         run: |
           cd expo-app
           npm install
 
       - name: Trigger EAS Cloud APK Build (Installable APK with QR Code)
+        if: "${{ secrets.EXPO_TOKEN != '' }}"
         run: |
           cd expo-app
           eas build --platform android --profile preview --non-interactive
