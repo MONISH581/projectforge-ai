@@ -261,5 +261,191 @@
     ],
     "updatedAt": "2026-09-29T15:18:25.228Z",
     "_id": "3fa16b48-04bd-450e-9f8f-445b29c82565"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "endpoints": [
+      {
+        "id": "ep-01",
+        "name": "Upload & Analyze Receipt Photo",
+        "method": "POST",
+        "path": "/api/receipts/analyze",
+        "authRequired": true,
+        "description": "Uploads receipt or food image, triggers Gemini multimodal analysis, returns parsed items and CO2 estimate.",
+        "parameters": [],
+        "requestBody": {
+          "imageBase64": "data:image/jpeg;base64,...",
+          "category": "food"
+        },
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "totalCo2eKg": 3.42,
+              "items": [
+                {
+                  "name": "Oat Milk Latte",
+                  "co2eKg": 0.35
+                }
+              ],
+              "recommendations": [
+                "Great choice! Oat milk saved ~0.4kg compared to dairy."
+              ]
+            }
+          }
+        },
+        "responseError": {
+          "status": 400,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "INVALID_IMAGE",
+              "message": "Unable to parse food items from the provided image."
+            }
+          }
+        },
+        "curlSnippet": "curl -X POST https://api.ecotrack.ai/api/receipts/analyze \\\n  -H \"Authorization: Bearer YOUR_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"category\": \"food\", \"imageBase64\": \"...\"}'"
+      },
+      {
+        "id": "ep-02",
+        "name": "Get Weekly Carbon Summary",
+        "method": "GET",
+        "path": "/api/analytics/weekly",
+        "authRequired": true,
+        "description": "Retrieves aggregated emissions for the last 7 days grouped by category.",
+        "parameters": [
+          {
+            "name": "startDate",
+            "type": "string",
+            "in": "query",
+            "required": false,
+            "description": "ISO date string"
+          }
+        ],
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "weekTotalKg": 14.8,
+              "dailyAverage": 2.11,
+              "targetKg": 15,
+              "breakdown": {
+                "food": 8.2,
+                "transport": 4.1,
+                "energy": 2.5
+              }
+            }
+          }
+        },
+        "responseError": {
+          "status": 401,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "UNAUTHORIZED",
+              "message": "Missing or expired token"
+            }
+          }
+        },
+        "curlSnippet": "curl -X GET \"https://api.ecotrack.ai/api/analytics/weekly\" -H \"Authorization: Bearer YOUR_TOKEN\""
+      }
+    ],
+    "updatedAt": "2026-10-05T16:36:17.996Z",
+    "_id": "1392bb58-279b-493c-8a39-68632338840c"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "endpoints": [
+      {
+        "id": "ep-01",
+        "name": "Upload & Analyze Receipt Photo",
+        "method": "POST",
+        "path": "/api/receipts/analyze",
+        "authRequired": true,
+        "description": "Uploads receipt or food image, triggers Gemini multimodal analysis, returns parsed items and CO2 estimate.",
+        "parameters": [],
+        "requestBody": {
+          "imageBase64": "data:image/jpeg;base64,...",
+          "category": "food"
+        },
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "totalCo2eKg": 3.42,
+              "items": [
+                {
+                  "name": "Oat Milk Latte",
+                  "co2eKg": 0.35
+                }
+              ],
+              "recommendations": [
+                "Great choice! Oat milk saved ~0.4kg compared to dairy."
+              ]
+            }
+          }
+        },
+        "responseError": {
+          "status": 400,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "INVALID_IMAGE",
+              "message": "Unable to parse food items from the provided image."
+            }
+          }
+        },
+        "curlSnippet": "curl -X POST https://api.ecotrack.ai/api/receipts/analyze \\\n  -H \"Authorization: Bearer YOUR_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"category\": \"food\", \"imageBase64\": \"...\"}'"
+      },
+      {
+        "id": "ep-02",
+        "name": "Get Weekly Carbon Summary",
+        "method": "GET",
+        "path": "/api/analytics/weekly",
+        "authRequired": true,
+        "description": "Retrieves aggregated emissions for the last 7 days grouped by category.",
+        "parameters": [
+          {
+            "name": "startDate",
+            "type": "string",
+            "in": "query",
+            "required": false,
+            "description": "ISO date string"
+          }
+        ],
+        "responseSuccess": {
+          "status": 200,
+          "body": {
+            "success": true,
+            "data": {
+              "weekTotalKg": 14.8,
+              "dailyAverage": 2.11,
+              "targetKg": 15,
+              "breakdown": {
+                "food": 8.2,
+                "transport": 4.1,
+                "energy": 2.5
+              }
+            }
+          }
+        },
+        "responseError": {
+          "status": 401,
+          "body": {
+            "success": false,
+            "error": {
+              "code": "UNAUTHORIZED",
+              "message": "Missing or expired token"
+            }
+          }
+        },
+        "curlSnippet": "curl -X GET \"https://api.ecotrack.ai/api/analytics/weekly\" -H \"Authorization: Bearer YOUR_TOKEN\""
+      }
+    ],
+    "updatedAt": "2026-10-05T16:36:45.300Z",
+    "_id": "cd3d7491-25a2-4fae-9c79-e01b60c30d52"
   }
 ]

@@ -5,10 +5,11 @@ import {
   Database as DatabaseIcon, Globe, Layout, Milestone,
   CheckSquare, MessageSquare, Terminal, FileText,
   UploadCloud, Share2, Copy, Check, Plus, Trash2,
-  RefreshCw, ExternalLink, Shield, Code, ArrowRight, Play
+  RefreshCw, ExternalLink, Shield, Code, ArrowRight, Play, GitFork
 } from 'lucide-react';
 import { api } from '../../api/client';
 import { useToast } from '../../context/ToastContext';
+import { useAuth } from '../../context/AuthContext';
 import { MermaidViewer } from '../../components/common/MermaidViewer';
 import { CardSkeleton } from '../../components/common/Skeleton';
 import {
@@ -21,6 +22,7 @@ export const ProjectWorkspace: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
   const { success, error, info } = useToast();
+  const { user, isAdmin } = useAuth();
 
   // Active module tab
   const [activeTab, setActiveTab] = useState<
@@ -60,6 +62,25 @@ export const ProjectWorkspace: React.FC = () => {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskPriority, setNewTaskPriority] = useState<any>('medium');
+  const [forking, setForking] = useState(false);
+
+  const handleForkProject = async () => {
+    if (!project) return;
+    setForking(true);
+    try {
+      const res = await api.forkProject(project._id);
+      if (res.success && res.data) {
+        success(`Project cloned as "${res.data.name}" in your workspace!`);
+        navigate(`/workspace/${res.data._id}`);
+      } else {
+        error(res.error?.message || 'Failed to fork project');
+      }
+    } catch (err: any) {
+      error(err?.message || 'Error forking project');
+    } finally {
+      setForking(false);
+    }
+  };
 
   // Load project & active tab data
   const fetchProjectData = async () => {
@@ -74,6 +95,7 @@ export const ProjectWorkspace: React.FC = () => {
     }
     setLoading(false);
   };
+
 
   useEffect(() => {
     fetchProjectData();
@@ -256,6 +278,24 @@ export const ProjectWorkspace: React.FC = () => {
 
           {/* Header Actions */}
           <div className="flex items-center gap-2 flex-wrap shrink-0">
+            {/* Owner vs Fork Action */}
+            {user && project.userId !== user._id && !isAdmin && (
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 rounded-xl text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  Community Preview (Read-Only)
+                </span>
+                <button
+                  type="button"
+                  onClick={handleForkProject}
+                  disabled={forking}
+                  className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-xs font-bold text-white shadow-md shadow-emerald-600/30 transition-all flex items-center gap-1.5 disabled:opacity-50"
+                >
+                  <GitFork className={`w-3.5 h-3.5 ${forking ? 'animate-spin' : ''}`} />
+                  <span>{forking ? 'Cloning Project...' : 'Fork to My Workspace'}</span>
+                </button>
+              </div>
+            )}
+
             {/* Readiness Gauge */}
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-slate-950 border border-slate-800">
               <div className="w-8 h-8 rounded-full bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-xs font-mono font-bold text-white">

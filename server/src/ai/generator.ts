@@ -31,37 +31,44 @@ export class AIEngine {
     ];
   }
 
-  private getActiveProvider(): AIProvider | null {
-    if (config.ai.provider === 'gemini') {
-      const p = this.providers.find(x => x.name === 'Gemini');
-      if (p && p.isAvailable()) return p;
-    } else if (config.ai.provider === 'openai') {
-      const p = this.providers.find(x => x.name === 'OpenAI');
-      if (p && p.isAvailable()) return p;
-    } else if (config.ai.provider === 'groq') {
-      const p = this.providers.find(x => x.name === 'Groq');
-      if (p && p.isAvailable()) return p;
+  public getProviderChain(): AIProvider[] {
+    const chain: AIProvider[] = [];
+    const primaryName = (config.ai.provider || '').toLowerCase();
+
+    // 1. Primary configured provider
+    const primary = this.providers.find(p => p.name.toLowerCase() === primaryName && p.isAvailable());
+    if (primary) chain.push(primary);
+
+    // 2. Add remaining available providers in fallback order
+    for (const p of this.providers) {
+      if (p.isAvailable() && !chain.includes(p)) {
+        chain.push(p);
+      }
     }
 
-    // Otherwise find first available
-    return this.providers.find(x => x.isAvailable()) || null;
+    return chain;
   }
 
-  // Helper to execute LLM call with fallback to heuristic engine
+  public getActiveProvider(): AIProvider | null {
+    return this.getProviderChain()[0] || null;
+  }
+
+  // Helper to execute LLM call with multi-provider fallback to heuristic engine
   private async executeWithFallback<T>(
     prompt: string,
     systemPrompt: string,
     schema: any,
     fallbackGenerator: () => T
   ): Promise<{ data: T; providerUsed: string }> {
-    const provider = this.getActiveProvider();
-    if (provider) {
+    const chain = this.getProviderChain();
+
+    for (const provider of chain) {
       try {
         const raw = await provider.generateCompletion(prompt, systemPrompt);
         const parsed = extractAndParseJson(raw, schema);
         return { data: parsed as T, providerUsed: provider.name };
-      } catch (err) {
-        console.warn(`[AIEngine] Provider ${provider.name} failed. Falling back to deterministic engine:`, err);
+      } catch (err: any) {
+        console.warn(`[AIEngine] Live provider ${provider.name} failed (${err.message}). Attempting next provider in fallback chain...`);
       }
     }
 
@@ -924,7 +931,7 @@ export class ${moduleName.replace(/[^a-zA-Z]/g, '')}Service {
 
   // 11. Contextual AI Development Assistant Chat
   async chatWithAssistant(project: Project, history: { sender: string; content: string }[], userMessage: string): Promise<string> {
-    const provider = this.getActiveProvider();
+    const chain = this.getProviderChain();
     const systemPrompt = `
 You are the ProjectForge AI Mentor & Senior Architect assigned to the project "${project.name}".
 Tagline: "${project.tagline}"
@@ -936,13 +943,13 @@ Provide crisp, technically authoritative, friendly mentorship for students.
 Always provide concrete code snippets or architectural explanations directly relevant to their specific project and stack. Keep formatting clean using markdown.
 `;
 
-    if (provider) {
+    for (const provider of chain) {
       try {
         const conversationText = history.slice(-6).map(m => `${m.sender.toUpperCase()}: ${m.content}`).join('\n');
         const prompt = `${conversationText}\nUSER: ${userMessage}\nASSISTANT:`;
         return await provider.generateCompletion(prompt, systemPrompt);
-      } catch (err) {
-        console.warn('[AIEngine] Chat provider failed, using contextual fallback:', err);
+      } catch (err: any) {
+        console.warn(`[AIEngine] Chat provider ${provider.name} failed (${err.message}), trying next provider...`);
       }
     }
 

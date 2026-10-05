@@ -1,13 +1,134 @@
 import React, { useState, useEffect } from 'react';
 import {
   Sparkles, Plus, Trash2, Edit2, Check,
-  BarChart3, Lightbulb, Target, Shield, CheckCircle2, AlertCircle
+  BarChart3, Lightbulb, Target, Shield, CheckCircle2, AlertCircle, Radar
 } from 'lucide-react';
 import { api } from '../../api/client';
 import { useToast } from '../../context/ToastContext';
 import { Skill } from '../../types';
 
+// Interactive SVG Skill Radar Polygon
+const SkillRadarChart: React.FC<{
+  data: { category: string; displayName: string; score: number }[];
+}> = ({ data }) => {
+  if (!data || data.length === 0) return null;
+
+  const size = 280;
+  const center = size / 2;
+  const radius = 95;
+  const angleStep = (2 * Math.PI) / data.length;
+  const levels = [0.25, 0.5, 0.75, 1.0];
+
+  const points = data.map((d, i) => {
+    const angle = i * angleStep - Math.PI / 2;
+    const r = (Math.max(10, d.score) / 100) * radius;
+    const x = center + r * Math.cos(angle);
+    const y = center + r * Math.sin(angle);
+    return { x, y, angle };
+  });
+
+  const polygonPath = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+  return (
+    <div className="flex flex-col items-center justify-center p-2">
+      <svg
+        viewBox={`0 0 ${size} ${size}`}
+        className="w-full max-w-[260px] h-auto overflow-visible select-none"
+      >
+        <defs>
+          <radialGradient id="radarFillGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.2" />
+          </radialGradient>
+        </defs>
+
+        {levels.map((lvl, idx) => {
+          const gridPoints = data.map((_, i) => {
+            const angle = i * angleStep - Math.PI / 2;
+            const r = lvl * radius;
+            return `${(center + r * Math.cos(angle)).toFixed(1)},${(center + r * Math.sin(angle)).toFixed(1)}`;
+          }).join(' ');
+
+          return (
+            <polygon
+              key={idx}
+              points={gridPoints}
+              fill="none"
+              stroke="#334155"
+              strokeDasharray={lvl < 1 ? '2 2' : 'none'}
+              strokeWidth={lvl === 1 ? '1.5' : '1'}
+              opacity={0.5}
+            />
+          );
+        })}
+
+        {data.map((_, i) => {
+          const angle = i * angleStep - Math.PI / 2;
+          const x2 = center + radius * Math.cos(angle);
+          const y2 = center + radius * Math.sin(angle);
+          return (
+            <line
+              key={i}
+              x1={center}
+              y1={center}
+              x2={x2}
+              y2={y2}
+              stroke="#334155"
+              strokeWidth="1"
+              opacity={0.4}
+            />
+          );
+        })}
+
+        <polygon
+          points={polygonPath}
+          fill="url(#radarFillGrad)"
+          stroke="#38bdf8"
+          strokeWidth="2"
+          className="transition-all duration-500 ease-out"
+        />
+
+        {points.map((p, i) => (
+          <circle
+            key={i}
+            cx={p.x}
+            cy={p.y}
+            r="3.5"
+            fill="#06b6d4"
+            stroke="#ffffff"
+            strokeWidth="1.5"
+            className="transition-all duration-500"
+          />
+        ))}
+
+        {data.map((d, i) => {
+          const angle = i * angleStep - Math.PI / 2;
+          const labelDist = radius + 20;
+          const lx = center + labelDist * Math.cos(angle);
+          const ly = center + labelDist * Math.sin(angle);
+          return (
+            <text
+              key={i}
+              x={lx}
+              y={ly}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontSize="9"
+              fontWeight="600"
+              fill="#94a3b8"
+              className="font-mono"
+            >
+              {d.displayName.split(' ')[0]}
+            </text>
+          );
+        })}
+      </svg>
+    </div>
+  );
+};
+
 export const SkillIntelligence: React.FC = () => {
+
   const [skillsData, setSkillsData] = useState<{
     skills: Skill[];
     radarData: { category: string; displayName: string; score: number; skillCount: number }[];
@@ -183,8 +304,18 @@ export const SkillIntelligence: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Strengths & Growth Areas */}
+        {/* Right: Radar Chart + Strengths & Growth Areas */}
         <div className="space-y-4">
+          {skillsData?.radarData && (
+            <div className="p-5 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl space-y-2">
+              <h3 className="text-base font-bold text-white flex items-center gap-2">
+                <Radar className="w-5 h-5 text-cyan-400" />
+                <span>Skill Competency Radar</span>
+              </h3>
+              <SkillRadarChart data={skillsData.radarData} />
+            </div>
+          )}
+
           <div className="p-5 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-emerald-400" />

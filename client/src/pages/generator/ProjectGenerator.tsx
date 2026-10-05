@@ -66,16 +66,23 @@ export const ProjectGenerator: React.FC = () => {
     }
 
     setStage('generating');
+    setGenerationSteps(prev => prev.map(s => ({ ...s, done: false })));
 
-    // Simulate animated step progression
-    for (let i = 0; i < generationSteps.length; i++) {
-      await new Promise(r => setTimeout(r, 600));
-      setGenerationSteps(prev => prev.map((s, idx) => idx <= i ? { ...s, done: true } : s));
-    }
+    // Animate step progression concurrently while awaiting AI generation
+    let stepIndex = 0;
+    const interval = setInterval(() => {
+      if (stepIndex < generationSteps.length) {
+        setGenerationSteps(prev => prev.map((s, idx) => idx <= stepIndex ? { ...s, done: true } : s));
+        stepIndex++;
+      }
+    }, 350);
 
     try {
-      // 1. Generate structured project proposal
+      // 1. Generate structured project proposal concurrently
       const genRes = await api.generateProjectAI(formData);
+      clearInterval(interval);
+      setGenerationSteps(prev => prev.map(s => ({ ...s, done: true })));
+
       if (!genRes.success || !genRes.data?.project) {
         throw new Error(genRes.error?.message || 'Generation failed');
       }
@@ -92,6 +99,7 @@ export const ProjectGenerator: React.FC = () => {
 
       setStage('result');
     } catch (err: any) {
+      clearInterval(interval);
       error(err.message || 'AI Generation encountered an issue. Please try again.');
       setStage('form');
     }

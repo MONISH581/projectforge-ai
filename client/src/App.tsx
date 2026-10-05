@@ -22,6 +22,7 @@ import { ProfilePage } from './pages/profile/ProfilePage';
 import { SettingsPage } from './pages/settings/SettingsPage';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { PublicPortfolio } from './pages/portfolio/PublicPortfolio';
+import { NotFound } from './pages/common/NotFound';
 
 // Protected Route Guard
 const ProtectedRoute: React.FC<{ children: React.ReactNode; requireAdmin?: boolean }> = ({
@@ -171,10 +172,9 @@ export const App: React.FC = () => {
                     </ProtectedRoute>
                   }
                 />
+                {/* Catch-all 404 Route */}
+                <Route path="*" element={<NotFound />} />
               </Route>
-
-              {/* Catch-all 404 redirect */}
-              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </DevicePreviewProvider>
         </AuthProvider>

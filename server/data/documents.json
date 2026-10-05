@@ -47,5 +47,53 @@
     ],
     "updatedAt": "2026-09-29T15:18:25.255Z",
     "_id": "e1bfde44-40f6-4e8b-9d3d-25c3b57768e0"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "readme": "# EcoTrack AI — Sustainable Habits Powered by Vision AI\n\nTurn daily student habits into measurable carbon reductions with automated receipt recognition.\n\n## Features\n- **Instant Photo Receipt OCR**: Calculates CO2 equivalents without manual data entry.\n- **Smart Swaps**: Budget-friendly alternatives to high-carbon foods.\n- **Campus Challenges**: Real-time dorm leaderboards.\n\n## Tech Stack\n- Frontend: React 18, Tailwind CSS, Lucide Icons, Vite\n- Backend: Express.js, Node.js, TypeScript\n- Database: MongoDB Atlas\n- AI: Google Gemini 1.5 Flash API\n",
+    "abstract": "EcoTrack AI addresses the climate information gap among university students by combining computer vision and carbon estimation models. Students scan daily receipts and food purchases, receiving instant carbon footprint calculations and actionable low-cost green swaps.",
+    "problemStatement": "Most college students desire to live sustainably but lack actionable insight into the precise carbon impact of their daily cafeteria and grocery purchases.",
+    "objectives": [
+      "Automate receipt logging using multimodal LLMs in under 3.5 seconds",
+      "Provide contextual, budget-sensitive food swaps",
+      "Demonstrate measurable carbon reduction through gamified dorm challenges"
+    ],
+    "scope": "Initial release focuses on university food and transit logging with expansion to retail barcodes in phase 2.",
+    "systemRequirements": "Node.js 18+, Modern browser (Chrome/Safari/Edge), Camera-enabled mobile device.",
+    "architectureGuide": "The system uses a decoupled client-server architecture with an Express API Gateway managing JWT authentication, input validation, and asynchronous calls to the Gemini multimodal model.",
+    "databaseGuide": "Data is organized into three core collections: users (credentials and preferences), carbon_logs (time-series emissions records), and green_swaps (recommendation catalog).",
+    "apiGuide": "RESTful API with JSON payloads protected by Bearer JWT tokens. Endpoints follow standard HTTP status codes.",
+    "testingReport": "5/5 automated test cases passing. Zero critical security vulnerabilities. Response latency averages 2.1s.",
+    "futureEnhancements": [
+      "Integration with campus meal plan smart cards",
+      "Direct barcode scanner for retail snacks",
+      "Solar energy offset tracking for student apartments"
+    ],
+    "updatedAt": "2026-10-05T16:36:18.011Z",
+    "_id": "eedd8bb1-a888-4859-959b-3d5baae4eae4"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "readme": "# EcoTrack AI — Sustainable Habits Powered by Vision AI\n\nTurn daily student habits into measurable carbon reductions with automated receipt recognition.\n\n## Features\n- **Instant Photo Receipt OCR**: Calculates CO2 equivalents without manual data entry.\n- **Smart Swaps**: Budget-friendly alternatives to high-carbon foods.\n- **Campus Challenges**: Real-time dorm leaderboards.\n\n## Tech Stack\n- Frontend: React 18, Tailwind CSS, Lucide Icons, Vite\n- Backend: Express.js, Node.js, TypeScript\n- Database: MongoDB Atlas\n- AI: Google Gemini 1.5 Flash API\n",
+    "abstract": "EcoTrack AI addresses the climate information gap among university students by combining computer vision and carbon estimation models. Students scan daily receipts and food purchases, receiving instant carbon footprint calculations and actionable low-cost green swaps.",
+    "problemStatement": "Most college students desire to live sustainably but lack actionable insight into the precise carbon impact of their daily cafeteria and grocery purchases.",
+    "objectives": [
+      "Automate receipt logging using multimodal LLMs in under 3.5 seconds",
+      "Provide contextual, budget-sensitive food swaps",
+      "Demonstrate measurable carbon reduction through gamified dorm challenges"
+    ],
+    "scope": "Initial release focuses on university food and transit logging with expansion to retail barcodes in phase 2.",
+    "systemRequirements": "Node.js 18+, Modern browser (Chrome/Safari/Edge), Camera-enabled mobile device.",
+    "architectureGuide": "The system uses a decoupled client-server architecture with an Express API Gateway managing JWT authentication, input validation, and asynchronous calls to the Gemini multimodal model.",
+    "databaseGuide": "Data is organized into three core collections: users (credentials and preferences), carbon_logs (time-series emissions records), and green_swaps (recommendation catalog).",
+    "apiGuide": "RESTful API with JSON payloads protected by Bearer JWT tokens. Endpoints follow standard HTTP status codes.",
+    "testingReport": "5/5 automated test cases passing. Zero critical security vulnerabilities. Response latency averages 2.1s.",
+    "futureEnhancements": [
+      "Integration with campus meal plan smart cards",
+      "Direct barcode scanner for retail snacks",
+      "Solar energy offset tracking for student apartments"
+    ],
+    "updatedAt": "2026-10-05T16:36:45.313Z",
+    "_id": "c63a9d0f-7e2a-478e-b2b3-5a948e9923fe"
   }
 ]

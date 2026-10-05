@@ -8,6 +8,8 @@ interface RateLimitEntry {
 
 const generalStore = new Map<string, RateLimitEntry>();
 const aiStore = new Map<string, RateLimitEntry>();
+const authStore = new Map<string, RateLimitEntry>();
+const adminStore = new Map<string, RateLimitEntry>();
 
 // Clean up expired entries every 5 minutes
 setInterval(() => {
@@ -17,6 +19,12 @@ setInterval(() => {
   }
   for (const [key, entry] of aiStore.entries()) {
     if (now > entry.resetTime) aiStore.delete(key);
+  }
+  for (const [key, entry] of authStore.entries()) {
+    if (now > entry.resetTime) authStore.delete(key);
+  }
+  for (const [key, entry] of adminStore.entries()) {
+    if (now > entry.resetTime) adminStore.delete(key);
   }
 }, 5 * 60 * 1000);
 
@@ -50,6 +58,36 @@ export function generalRateLimiter(req: Request, res: Response, next: NextFuncti
   next();
 }
 
+export function authRateLimiter(req: Request, res: Response, next: NextFunction) {
+  const ip = req.ip || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const windowMs = 60 * 1000; // 1 minute
+  const maxLimit = 30; // 30 auth requests per minute
+
+  let entry = authStore.get(ip);
+  if (!entry || now > entry.resetTime) {
+    entry = { count: 1, resetTime: now + windowMs };
+    authStore.set(ip, entry);
+  } else {
+    entry.count++;
+  }
+
+  res.setHeader('X-RateLimit-Auth-Limit', maxLimit);
+  res.setHeader('X-RateLimit-Auth-Remaining', Math.max(0, maxLimit - entry.count));
+
+  if (entry.count > maxLimit) {
+    return res.status(429).json({
+      success: false,
+      error: {
+        code: 'AUTH_RATE_LIMIT_EXCEEDED',
+        message: 'Too many authentication attempts. Please wait a minute before trying again.'
+      }
+    });
+  }
+
+  next();
+}
+
 export function aiRateLimiter(req: Request, res: Response, next: NextFunction) {
   const key = (req as any).user?._id || req.ip || 'anonymous';
   const now = Date.now();
@@ -73,6 +111,33 @@ export function aiRateLimiter(req: Request, res: Response, next: NextFunction) {
       error: {
         code: 'AI_RATE_LIMIT_EXCEEDED',
         message: 'AI request limit reached (20 req/min). Please slow down to preserve resources.'
+      }
+    });
+  }
+
+  next();
+}
+
+export function adminRateLimiter(req: Request, res: Response, next: NextFunction) {
+  const ip = req.ip || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const windowMs = 60 * 1000;
+  const maxLimit = 60;
+
+  let entry = adminStore.get(ip);
+  if (!entry || now > entry.resetTime) {
+    entry = { count: 1, resetTime: now + windowMs };
+    adminStore.set(ip, entry);
+  } else {
+    entry.count++;
+  }
+
+  if (entry.count > maxLimit) {
+    return res.status(429).json({
+      success: false,
+      error: {
+        code: 'ADMIN_RATE_LIMIT_EXCEEDED',
+        message: 'Too many administrative requests. Please slow down.'
       }
     });
   }

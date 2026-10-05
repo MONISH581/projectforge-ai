@@ -198,5 +198,209 @@
     "createdAt": "2026-09-29T15:18:25.223Z",
     "updatedAt": "2026-09-29T15:18:25.223Z",
     "_id": "0d4e0261-e287-476e-97e2-aed315354236"
+  },
+  {
+    "userId": "f7f37f8d-8df3-42cc-abb8-d65ddc1faf3c",
+    "name": "EcoTrack AI",
+    "slug": "ecotrack-ai",
+    "tagline": "Turn daily habits into measurable carbon reductions with AI vision.",
+    "oneLineDescription": "An AI-powered environmental assistant that estimates product carbon footprint via photo receipts & suggests smart sustainable alternatives.",
+    "detailedDescription": "EcoTrack AI allows college students and urban households to scan grocery receipts, meals, and transit tickets using computer vision to estimate their daily carbon footprint. The system features a gamified campus leaderboard, automated habit nudges, and intelligent green swap recommendations.",
+    "problemStatement": "Students want to live sustainably but lack actionable, real-time insight into the carbon cost of their specific consumption choices.",
+    "targetUsers": [
+      "University students",
+      "Eco-conscious consumers",
+      "Campus sustainability clubs"
+    ],
+    "existingPainPoints": [
+      "Carbon calculators require manual data entry of 50+ tedious questions",
+      "Generic advice like \"drive less\" lacks relevance for university campus life",
+      "No social accountability or rewarding progress mechanics"
+    ],
+    "proposedSolution": "Receipt OCR and multimodal AI classification that instantly calculates carbon equivalents (kg CO2e) with zero manual data entry and recommends local, affordable alternatives.",
+    "keyDifferentiator": "Instant snapshot analysis with student budget-friendly sustainable alternatives.",
+    "expectedImpact": "Average 18% reduction in personal carbon footprint over a 30-day tracking period.",
+    "features": {
+      "mvp": [
+        "User authentication and personalized eco-profile",
+        "Receipt & food photo upload with AI carbon footprint estimation",
+        "Interactive daily and weekly emissions dashboard",
+        "Green alternative recommendation engine"
+      ],
+      "phase2": [
+        "Campus dorm leaderboard and peer challenges",
+        "Barcode scanner for retail items",
+        "Exportable impact reports for academic sustainability credits"
+      ],
+      "advanced": [
+        "IoT smart meter integration",
+        "Carbon offset marketplace with certified reforestation partners"
+      ]
+    },
+    "techStack": {
+      "frontend": [
+        "React 18",
+        "Tailwind CSS",
+        "Lucide Icons",
+        "Vite"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "TypeScript"
+      ],
+      "database": [
+        "MongoDB Atlas"
+      ],
+      "ai": [
+        "Google Gemini Multimodal API",
+        "Tesseract OCR"
+      ],
+      "authentication": [
+        "JWT with bcrypt"
+      ],
+      "storage": [
+        "Cloudinary / S3 Object Storage"
+      ],
+      "hosting": [
+        "Vercel (Frontend)",
+        "Render (Backend)"
+      ],
+      "monitoring": [
+        "Sentry",
+        "LogRocket"
+      ]
+    },
+    "complexity": {
+      "difficulty": "intermediate",
+      "estimatedDuration": "4 weeks",
+      "teamSize": "Solo or 2 developers",
+      "requiredSkills": [
+        "React",
+        "Python or Node.js",
+        "REST APIs",
+        "MongoDB"
+      ]
+    },
+    "learningOpportunities": [
+      "Handling image uploads and multimodal LLM prompt engineering",
+      "Designing relational document schemas in MongoDB",
+      "Building performant, mobile-first responsive dashboards",
+      "Implementing secure JWT session storage"
+    ],
+    "category": "Sustainability & Green",
+    "domain": "Climate Tech / AI",
+    "visibility": "public",
+    "status": "in_development",
+    "isFeatured": true,
+    "version": 1,
+    "completionScore": 65,
+    "githubUrl": "https://github.com/alexchen-forge/ecotrack-ai",
+    "liveDemoUrl": "https://ecotrack-ai.demo.projectforge.ai",
+    "createdAt": "2026-10-05T16:36:17.992Z",
+    "updatedAt": "2026-10-05T16:36:17.992Z",
+    "_id": "cacf6050-d240-48f4-a549-115e2d1aeea3"
+  },
+  {
+    "userId": "b8e1087c-8f3e-4d85-a8f6-d3b0c49a4969",
+    "name": "EcoTrack AI",
+    "slug": "ecotrack-ai",
+    "tagline": "Turn daily habits into measurable carbon reductions with AI vision.",
+    "oneLineDescription": "An AI-powered environmental assistant that estimates product carbon footprint via photo receipts & suggests smart sustainable alternatives.",
+    "detailedDescription": "EcoTrack AI allows college students and urban households to scan grocery receipts, meals, and transit tickets using computer vision to estimate their daily carbon footprint. The system features a gamified campus leaderboard, automated habit nudges, and intelligent green swap recommendations.",
+    "problemStatement": "Students want to live sustainably but lack actionable, real-time insight into the carbon cost of their specific consumption choices.",
+    "targetUsers": [
+      "University students",
+      "Eco-conscious consumers",
+      "Campus sustainability clubs"
+    ],
+    "existingPainPoints": [
+      "Carbon calculators require manual data entry of 50+ tedious questions",
+      "Generic advice like \"drive less\" lacks relevance for university campus life",
+      "No social accountability or rewarding progress mechanics"
+    ],
+    "proposedSolution": "Receipt OCR and multimodal AI classification that instantly calculates carbon equivalents (kg CO2e) with zero manual data entry and recommends local, affordable alternatives.",
+    "keyDifferentiator": "Instant snapshot analysis with student budget-friendly sustainable alternatives.",
+    "expectedImpact": "Average 18% reduction in personal carbon footprint over a 30-day tracking period.",
+    "features": {
+      "mvp": [
+        "User authentication and personalized eco-profile",
+        "Receipt & food photo upload with AI carbon footprint estimation",
+        "Interactive daily and weekly emissions dashboard",
+        "Green alternative recommendation engine"
+      ],
+      "phase2": [
+        "Campus dorm leaderboard and peer challenges",
+        "Barcode scanner for retail items",
+        "Exportable impact reports for academic sustainability credits"
+      ],
+      "advanced": [
+        "IoT smart meter integration",
+        "Carbon offset marketplace with certified reforestation partners"
+      ]
+    },
+    "techStack": {
+      "frontend": [
+        "React 18",
+        "Tailwind CSS",
+        "Lucide Icons",
+        "Vite"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "TypeScript"
+      ],
+      "database": [
+        "MongoDB Atlas"
+      ],
+      "ai": [
+        "Google Gemini Multimodal API",
+        "Tesseract OCR"
+      ],
+      "authentication": [
+        "JWT with bcrypt"
+      ],
+      "storage": [
+        "Cloudinary / S3 Object Storage"
+      ],
+      "hosting": [
+        "Vercel (Frontend)",
+        "Render (Backend)"
+      ],
+      "monitoring": [
+        "Sentry",
+        "LogRocket"
+      ]
+    },
+    "complexity": {
+      "difficulty": "intermediate",
+      "estimatedDuration": "4 weeks",
+      "teamSize": "Solo or 2 developers",
+      "requiredSkills": [
+        "React",
+        "Python or Node.js",
+        "REST APIs",
+        "MongoDB"
+      ]
+    },
+    "learningOpportunities": [
+      "Handling image uploads and multimodal LLM prompt engineering",
+      "Designing relational document schemas in MongoDB",
+      "Building performant, mobile-first responsive dashboards",
+      "Implementing secure JWT session storage"
+    ],
+    "category": "Sustainability & Green",
+    "domain": "Climate Tech / AI",
+    "visibility": "public",
+    "status": "in_development",
+    "isFeatured": true,
+    "version": 1,
+    "completionScore": 65,
+    "githubUrl": "https://github.com/alexchen-forge/ecotrack-ai",
+    "liveDemoUrl": "https://ecotrack-ai.demo.projectforge.ai",
+    "createdAt": "2026-10-05T16:36:45.296Z",
+    "updatedAt": "2026-10-05T16:36:45.296Z",
+    "_id": "a47877eb-a27d-49af-8ff4-42e4bd76ea87"
   }
 ]

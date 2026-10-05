@@ -1,6 +1,30 @@
-// ProjectForge AI — API Client Layer
+import { standaloneStore } from '../data/standaloneStore';
 
-const API_BASE = '/api';
+export const getApiBase = (): string => {
+  if (typeof window !== 'undefined') {
+    const custom = localStorage.getItem('projectforge_api_base');
+    if (custom) return custom.replace(/\/+$/, '');
+
+    // In Capacitor native app, protocol is 'capacitor:' or port is empty on localhost
+    const isCapacitor = Boolean(
+      (window as any).Capacitor?.isNativePlatform?.() ||
+      window.location.protocol === 'capacitor:' ||
+      (window.location.hostname === 'localhost' && window.location.port === '')
+    );
+    if (isCapacitor) {
+      return 'http://192.168.1.4:5000/api';
+    }
+  }
+  return import.meta.env.VITE_API_URL || '/api';
+};
+
+export const setApiBase = (url: string) => {
+  if (url) {
+    localStorage.setItem('projectforge_api_base', url.trim().replace(/\/+$/, ''));
+  } else {
+    localStorage.removeItem('projectforge_api_base');
+  }
+};
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -18,7 +42,7 @@ class ApiClient {
   }
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
-    const url = `${API_BASE}${endpoint}`;
+    const url = `${getApiBase()}${endpoint}`;
     const token = this.getToken();
 
     const headers: Record<string, string> = {
@@ -47,7 +71,11 @@ class ApiClient {
 
       return json;
     } catch (err: any) {
-      console.error(`[API] Error on ${options.method || 'GET'} ${url}:`, err);
+      console.warn(`[API] Network unavailable at ${url}. Serving from embedded standalone real data store.`);
+      const offlineResult = standaloneStore.handleRequest(endpoint, options);
+      if (offlineResult) {
+        return offlineResult;
+      }
       return {
         success: false,
         error: {
@@ -88,6 +116,7 @@ class ApiClient {
   async createProject(body: any) { return this.request<any>('/projects', { method: 'POST', body: JSON.stringify(body) }); }
   async updateProject(id: string, body: any) { return this.request<any>(`/projects/${id}`, { method: 'PUT', body: JSON.stringify(body) }); }
   async deleteProject(id: string) { return this.request<any>(`/projects/${id}`, { method: 'DELETE' }); }
+  async forkProject(id: string) { return this.request<any>(`/projects/${id}/fork`, { method: 'POST' }); }
 
   // AI Generation & Validation
   async generateProjectAI(params: any) { return this.request<any>('/ai/generate', { method: 'POST', body: JSON.stringify(params) }); }
@@ -161,9 +190,12 @@ class ApiClient {
   async toggleAdminFeatureProject(id: string) { return this.request<any>(`/admin/projects/${id}/feature`, { method: 'PUT' }); }
   async getAdminTechnologies() { return this.request<any>('/admin/technologies'); }
   async createAdminTechnology(body: any) { return this.request<any>('/admin/technologies', { method: 'POST', body: JSON.stringify(body) }); }
+  async updateAdminTechnology(id: string, body: any) { return this.request<any>(`/admin/technologies/${id}`, { method: 'PUT', body: JSON.stringify(body) }); }
   async deleteAdminTechnology(id: string) { return this.request<any>(`/admin/technologies/${id}`, { method: 'DELETE' }); }
   async getAdminCategories() { return this.request<any>('/admin/categories'); }
   async createAdminCategory(body: any) { return this.request<any>('/admin/categories', { method: 'POST', body: JSON.stringify(body) }); }
+  async updateAdminCategory(id: string, body: any) { return this.request<any>(`/admin/categories/${id}`, { method: 'PUT', body: JSON.stringify(body) }); }
+  async deleteAdminCategory(id: string) { return this.request<any>(`/admin/categories/${id}`, { method: 'DELETE' }); }
   async getAdminAiUsage() { return this.request<any>('/admin/ai-usage'); }
 }
 

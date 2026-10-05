@@ -3,11 +3,12 @@ import { z } from 'zod';
 import { db } from '../db/storage';
 import { authenticateToken, requireAdmin, AuthRequest } from '../middleware/auth';
 import { logAdminAction } from '../middleware/auditLogger';
+import { adminRateLimiter } from '../middleware/rateLimiter';
 
 export const adminRouter = Router();
 
-// Apply auth + requireAdmin to all admin routes
-adminRouter.use(authenticateToken, requireAdmin);
+// Apply auth + requireAdmin + adminRateLimiter to all admin routes
+adminRouter.use(authenticateToken, requireAdmin, adminRateLimiter);
 
 // GET /api/admin/overview — Dashboard metrics and system status
 adminRouter.get('/overview', async (_req: AuthRequest, res: Response) => {
@@ -159,6 +160,30 @@ adminRouter.post('/technologies', async (req: AuthRequest, res: Response) => {
   return res.status(201).json({ success: true, data: created });
 });
 
+adminRouter.put('/technologies/:id', async (req: AuthRequest, res: Response) => {
+  const { name, category, description, iconName, popular } = req.body;
+  const existing = await db.technologies.findById(req.params.id);
+  if (!existing) {
+    return res.status(404).json({ success: false, error: { code: 'NOT_FOUND', message: 'Technology not found' } });
+  }
+
+  const updateData: any = {};
+  if (name !== undefined) {
+    updateData.name = name;
+    updateData.slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  }
+  if (category !== undefined) updateData.category = category;
+  if (description !== undefined) updateData.description = description;
+  if (iconName !== undefined) updateData.iconName = iconName;
+  if (popular !== undefined) updateData.popular = Boolean(popular);
+
+  await db.technologies.updateOne({ _id: req.params.id }, { $set: updateData });
+  const updated = await db.technologies.findById(req.params.id);
+
+  await logAdminAction(req.user!._id, 'UPDATE_TECHNOLOGY', { techId: req.params.id, ...updateData }, req.params.id, req.ip);
+  return res.status(200).json({ success: true, data: updated });
+});
+
 adminRouter.delete('/technologies/:id', async (req: AuthRequest, res: Response) => {
   await db.technologies.deleteOne({ _id: req.params.id });
   await logAdminAction(req.user!._id, 'DELETE_TECHNOLOGY', { techId: req.params.id }, req.params.id, req.ip);
@@ -187,6 +212,34 @@ adminRouter.post('/categories', async (req: AuthRequest, res: Response) => {
 
   await logAdminAction(req.user!._id, 'CREATE_CATEGORY', { name, slug }, created._id, req.ip);
   return res.status(201).json({ success: true, data: created });
+});
+
+adminRouter.put('/categories/:id', async (req: AuthRequest, res: Response) => {
+  const { name, description, iconName } = req.body;
+  const existing = await db.categories.findById(req.params.id);
+  if (!existing) {
+    return res.status(404).json({ success: false, error: { code: 'NOT_FOUND', message: 'Category not found' } });
+  }
+
+  const updateData: any = {};
+  if (name !== undefined) {
+    updateData.name = name;
+    updateData.slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  }
+  if (description !== undefined) updateData.description = description;
+  if (iconName !== undefined) updateData.iconName = iconName;
+
+  await db.categories.updateOne({ _id: req.params.id }, { $set: updateData });
+  const updated = await db.categories.findById(req.params.id);
+
+  await logAdminAction(req.user!._id, 'UPDATE_CATEGORY', { catId: req.params.id, ...updateData }, req.params.id, req.ip);
+  return res.status(200).json({ success: true, data: updated });
+});
+
+adminRouter.delete('/categories/:id', async (req: AuthRequest, res: Response) => {
+  await db.categories.deleteOne({ _id: req.params.id });
+  await logAdminAction(req.user!._id, 'DELETE_CATEGORY', { catId: req.params.id }, req.params.id, req.ip);
+  return res.status(200).json({ success: true, data: { message: 'Category deleted' } });
 });
 
 // -------------------------------------------------------------

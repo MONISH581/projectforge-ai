@@ -1,0 +1,95 @@
+name: Build & Release Standalone APK (Expo & GitHub)
+
+on:
+  push:
+    branches: [ master, main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    name: Build Standalone Android APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'client/package-lock.json'
+
+      - name: Setup Java 21 JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Client Dependencies
+        run: |
+          npm install --prefix client
+
+      - name: Build Web Application (With Embedded Real Data)
+        run: |
+          npm run build --prefix client
+
+      - name: Sync Web Assets to Android Project
+        run: |
+          npx --prefix client cap copy android
+
+      - name: Make Gradle Wrapper Executable
+        run: |
+          chmod +x client/android/gradlew
+
+      - name: Build Standalone Android APK via Gradle
+        run: |
+          cd client/android
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Rename APK for Distribution
+        run: |
+          cp client/android/app/build/outputs/apk/debug/app-debug.apk client/android/app/build/outputs/apk/debug/projectforge-ai-standalone.apk
+
+      - name: Upload Standalone APK Artifact (Direct Download from GitHub)
+        uses: actions/upload-artifact@v4
+        with:
+          name: projectforge-ai-standalone-apk
+          path: client/android/app/build/outputs/apk/debug/projectforge-ai-standalone.apk
+          retention-days: 90
+
+  eas-expo-build:
+    name: Build APK via Expo EAS Cloud
+    runs-on: ubuntu-latest
+    # Runs whenever EXPO_TOKEN secret is configured in the GitHub repository
+    if: "${{ env.EXPO_TOKEN != '' }}"
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Expo EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install Expo App Dependencies
+        run: |
+          cd expo-app
+          npm install
+
+      - name: Trigger EAS Cloud APK Build (Installable APK with QR Code)
+        run: |
+          cd expo-app
+          eas build --platform android --profile preview --non-interactive

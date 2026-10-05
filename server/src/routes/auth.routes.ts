@@ -4,8 +4,10 @@ import { z } from 'zod';
 import { db } from '../db/storage';
 import { generateToken, authenticateToken, AuthRequest } from '../middleware/auth';
 import { logAdminAction } from '../middleware/auditLogger';
+import { authRateLimiter } from '../middleware/rateLimiter';
 
 export const authRouter = Router();
+authRouter.use(authRateLimiter);
 
 const RegisterSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),

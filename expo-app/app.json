@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "ProjectForge AI",
+    "slug": "projectforge-ai",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#020617"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "ai.projectforge.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#020617"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

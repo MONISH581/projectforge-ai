@@ -33,5 +33,53 @@
     "createdAt": "2026-09-29T15:18:25.149Z",
     "updatedAt": "2026-09-29T15:18:25.178Z",
     "_id": "cc20b3c5-eecf-49ac-89d1-51252df269e2"
+  },
+  {
+    "name": "Alex Chen",
+    "email": "student@projectforge.ai",
+    "passwordHash": "$2a$10$quJHV3e5vnsZdUNu3ElOJuPDcevFWY9PgbQ.7BtXGypscGXn.QgF6",
+    "role": "student",
+    "isOnboarded": true,
+    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    "status": "active",
+    "createdAt": "2026-10-05T16:36:17.980Z",
+    "updatedAt": "2026-10-05T16:36:17.981Z",
+    "_id": "f7f37f8d-8df3-42cc-abb8-d65ddc1faf3c"
+  },
+  {
+    "name": "Sarah Connor (Admin)",
+    "email": "admin@projectforge.ai",
+    "passwordHash": "$2a$10$quJHV3e5vnsZdUNu3ElOJu0U6LrrL/MDiNecbrWzNPJwZALPc5DXS",
+    "role": "admin",
+    "isOnboarded": true,
+    "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150",
+    "status": "active",
+    "createdAt": "2026-10-05T16:36:17.983Z",
+    "updatedAt": "2026-10-05T16:36:17.983Z",
+    "_id": "f8806728-673f-4118-ae7b-efcc9bef965e"
+  },
+  {
+    "name": "Alex Chen",
+    "email": "student@projectforge.ai",
+    "passwordHash": "$2a$10$ZLg1sCnpePYA/7Y2aeaiYu8NRjdQt6TdkjDgOGbw/WPsIpBgtmgBq",
+    "role": "student",
+    "isOnboarded": true,
+    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    "status": "active",
+    "createdAt": "2026-10-05T16:36:45.286Z",
+    "updatedAt": "2026-10-05T16:36:45.287Z",
+    "_id": "b8e1087c-8f3e-4d85-a8f6-d3b0c49a4969"
+  },
+  {
+    "name": "Sarah Connor (Admin)",
+    "email": "admin@projectforge.ai",
+    "passwordHash": "$2a$10$ZLg1sCnpePYA/7Y2aeaiYuxAukbJRZj6idLasKmDXB0Pz900lLcV6",
+    "role": "admin",
+    "isOnboarded": true,
+    "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150",
+    "status": "active",
+    "createdAt": "2026-10-05T16:36:45.288Z",
+    "updatedAt": "2026-10-05T16:36:45.288Z",
+    "_id": "a50defe6-f52b-42c7-b1ca-3047382a1242"
   }
 ]

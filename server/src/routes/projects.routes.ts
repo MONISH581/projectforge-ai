@@ -339,3 +339,116 @@ projectsRouter.delete('/:id', authenticateToken, async (req: AuthRequest, res: R
 
   return res.status(200).json({ success: true, data: { message: 'Project and all workspace data deleted successfully' } });
 });
+
+// POST /api/projects/:id/fork — Clone/fork public template or project into user workspace
+projectsRouter.post('/:id/fork', authenticateToken, async (req: AuthRequest, res: Response) => {
+  const userId = req.user!._id;
+  const sourceProject = await db.projects.findById(req.params.id);
+
+  if (!sourceProject) {
+    return res.status(404).json({ success: false, error: { code: 'NOT_FOUND', message: 'Project not found' } });
+  }
+
+  // Security check: only public projects or projects owned by user/admin can be forked
+  if (sourceProject.visibility === 'private' && sourceProject.userId !== userId && req.user!.role !== 'admin') {
+    return res.status(403).json({ success: false, error: { code: 'FORBIDDEN', message: 'Cannot fork private project.' } });
+  }
+
+  const slug = `${sourceProject.slug}-fork-${Date.now().toString().slice(-4)}`;
+  const forkedProject = await db.projects.insertOne({
+    userId,
+    name: `${sourceProject.name} (My Copy)`,
+    slug,
+    tagline: sourceProject.tagline,
+    oneLineDescription: sourceProject.oneLineDescription,
+    detailedDescription: sourceProject.detailedDescription,
+    problemStatement: sourceProject.problemStatement,
+    targetUsers: [...sourceProject.targetUsers],
+    existingPainPoints: [...sourceProject.existingPainPoints],
+    proposedSolution: sourceProject.proposedSolution,
+    keyDifferentiator: sourceProject.keyDifferentiator,
+    expectedImpact: sourceProject.expectedImpact,
+    features: JSON.parse(JSON.stringify(sourceProject.features)),
+    techStack: JSON.parse(JSON.stringify(sourceProject.techStack)),
+    complexity: JSON.parse(JSON.stringify(sourceProject.complexity)),
+    learningOpportunities: [...sourceProject.learningOpportunities],
+    category: sourceProject.category,
+    domain: sourceProject.domain,
+    visibility: 'private',
+    status: 'in_development',
+    version: 1,
+    completionScore: sourceProject.completionScore || 50,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  });
+
+  const newId = forkedProject._id;
+  const oldId = sourceProject._id;
+
+  // Duplicate workspace modules
+  const [reqs, arch, database, apis, ui, roadmap, tasks, testCases, doc] = await Promise.all([
+    db.project_requirements.findOne({ projectId: oldId }),
+    db.project_architecture.findOne({ projectId: oldId }),
+    db.project_databases.findOne({ projectId: oldId }),
+    db.project_apis.findOne({ projectId: oldId }),
+    db.project_ui.findOne({ projectId: oldId }),
+    db.roadmaps.findOne({ projectId: oldId }),
+    db.tasks.find({ projectId: oldId }),
+    db.test_cases.find({ projectId: oldId }),
+    db.documents.findOne({ projectId: oldId })
+  ]);
+
+  const insertPromises: Promise<any>[] = [];
+
+  if (reqs) {
+    const { _id, ...rest } = reqs;
+    insertPromises.push(db.project_requirements.insertOne({ ...rest, projectId: newId, updatedAt: new Date().toISOString() }));
+  }
+  if (arch) {
+    const { _id, ...rest } = arch;
+    insertPromises.push(db.project_architecture.insertOne({ ...rest, projectId: newId, updatedAt: new Date().toISOString() }));
+  }
+  if (database) {
+    const { _id, ...rest } = database;
+    insertPromises.push(db.project_databases.insertOne({ ...rest, projectId: newId, updatedAt: new Date().toISOString() }));
+  }
+  if (apis) {
+    const { _id, ...rest } = apis;
+    insertPromises.push(db.project_apis.insertOne({ ...rest, projectId: newId, updatedAt: new Date().toISOString() }));
+  }
+  if (ui) {
+    const { _id, ...rest } = ui;
+    insertPromises.push(db.project_ui.insertOne({ ...rest, projectId: newId, updatedAt: new Date().toISOString() }));
+  }
+  if (roadmap) {
+    const { _id, ...rest } = roadmap;
+    insertPromises.push(db.roadmaps.insertOne({ ...rest, projectId: newId, updatedAt: new Date().toISOString() }));
+  }
+  if (tasks.length > 0) {
+    for (const t of tasks) {
+      const { _id, ...rest } = t;
+      insertPromises.push(db.tasks.insertOne({ ...rest, projectId: newId, status: 'todo', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }));
+    }
+  }
+  if (testCases.length > 0) {
+    for (const tc of testCases) {
+      const { _id, ...rest } = tc;
+      insertPromises.push(db.test_cases.insertOne({ ...rest, projectId: newId, status: 'untested', updatedAt: new Date().toISOString() }));
+    }
+  }
+  if (doc) {
+    const { _id, ...rest } = doc;
+    insertPromises.push(db.documents.insertOne({ ...rest, projectId: newId, updatedAt: new Date().toISOString() }));
+  }
+
+  await Promise.all(insertPromises);
+
+  return res.status(201).json({
+    success: true,
+    data: {
+      projectId: newId,
+      project: forkedProject,
+      message: `Successfully cloned "${sourceProject.name}" into your workspace!`
+    }
+  });
+});

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import { MongoClient, Db, Collection as NativeMongoCollection } from 'mongodb';
 import { config } from '../config';
 import {
   User, Profile, Skill, Interest, Project, ProjectRequirements,
@@ -10,7 +11,7 @@ import {
   Technology, Category, AdminLog, UsageLog
 } from '../models/types';
 
-// Generic Collection Interface modeled after MongoDB
+// Generic Query Filter and Options modeled after MongoDB
 export interface QueryFilter {
   [key: string]: any;
 }
@@ -21,7 +22,26 @@ export interface QueryOptions {
   limit?: number;
 }
 
-export class JsonCollection<T extends { _id: string }> {
+// Unified Collection Interface implemented by both MongoDB Atlas and Embedded JSON
+export interface ICollection<T extends { _id: string }> {
+  readonly name: string;
+  find(filter?: QueryFilter, options?: QueryOptions): Promise<T[]>;
+  findOne(filter: QueryFilter): Promise<T | null>;
+  findById(id: string): Promise<T | null>;
+  insertOne(doc: Omit<T, '_id'> & { _id?: string }): Promise<T>;
+  insertMany(docs: Array<Omit<T, '_id'> & { _id?: string }>): Promise<T[]>;
+  updateOne(filter: QueryFilter, update: any, options?: { upsert?: boolean }): Promise<{ matchedCount: number; modifiedCount: number; upsertedId?: string }>;
+  updateMany(filter: QueryFilter, update: any): Promise<{ matchedCount: number; modifiedCount: number }>;
+  deleteOne(filter: QueryFilter): Promise<{ deletedCount: number }>;
+  deleteMany(filter: QueryFilter): Promise<{ deletedCount: number }>;
+  countDocuments(filter?: QueryFilter): Promise<number>;
+  clear(): Promise<void>;
+}
+
+// ----------------------------------------------------------------------
+// 1. EMBEDDED JSON COLLECTION ENGINE (Development / Offline Fallback)
+// ----------------------------------------------------------------------
+export class JsonCollection<T extends { _id: string }> implements ICollection<T> {
   public readonly name: string;
   private filePath: string;
   private data: Map<string, T> = new Map();
@@ -93,7 +113,6 @@ export class JsonCollection<T extends { _id: string }> {
       const itemVal = this.getNestedValue(item, key);
 
       if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
-        // Operators: $in, $nin, $ne, $regex, $gt, $gte, $lt, $lte, $exists
         if ('$in' in value && Array.isArray(value.$in)) {
           if (!value.$in.includes(itemVal)) return false;
         } else if ('$nin' in value && Array.isArray(value.$nin)) {
@@ -137,7 +156,6 @@ export class JsonCollection<T extends { _id: string }> {
     let results: T[] = [];
     for (const item of this.data.values()) {
       if (this.matchesFilter(item, filter)) {
-        // Return deep clone to prevent mutation
         results.push(JSON.parse(JSON.stringify(item)));
       }
     }
@@ -332,33 +350,145 @@ export class JsonCollection<T extends { _id: string }> {
   }
 }
 
-// Database Manager exposing all 22 collections
+// ----------------------------------------------------------------------
+// 2. MONGODB ATLAS PRODUCTION COLLECTION ENGINE
+// ----------------------------------------------------------------------
+export class MongoCollection<T extends { _id: string }> implements ICollection<T> {
+  public readonly name: string;
+  private collection: NativeMongoCollection<any>;
+
+  constructor(name: string, collection: NativeMongoCollection<any>) {
+    this.name = name;
+    this.collection = collection;
+  }
+
+  async find(filter: QueryFilter = {}, options: QueryOptions = {}): Promise<T[]> {
+    let cursor = this.collection.find(filter);
+    if (options.sort) {
+      cursor = cursor.sort(options.sort as any);
+    }
+    if (options.skip) {
+      cursor = cursor.skip(options.skip);
+    }
+    if (options.limit) {
+      cursor = cursor.limit(options.limit);
+    }
+    const docs = await cursor.toArray();
+    return docs as unknown as T[];
+  }
+
+  async findOne(filter: QueryFilter): Promise<T | null> {
+    const doc = await this.collection.findOne(filter);
+    return (doc as unknown as T) || null;
+  }
+
+  async findById(id: string): Promise<T | null> {
+    const doc = await this.collection.findOne({ _id: id });
+    return (doc as unknown as T) || null;
+  }
+
+  async insertOne(doc: Omit<T, '_id'> & { _id?: string }): Promise<T> {
+    const id = doc._id || uuidv4();
+    const toInsert = { ...doc, _id: id };
+    await this.collection.insertOne(toInsert);
+    return toInsert as unknown as T;
+  }
+
+  async insertMany(docs: Array<Omit<T, '_id'> & { _id?: string }>): Promise<T[]> {
+    if (docs.length === 0) return [];
+    const withIds = docs.map(d => ({ ...d, _id: d._id || uuidv4() }));
+    await this.collection.insertMany(withIds);
+    return withIds as unknown as T[];
+  }
+
+  async updateOne(filter: QueryFilter, update: any, options: { upsert?: boolean } = {}): Promise<{ matchedCount: number; modifiedCount: number; upsertedId?: string }> {
+    let mongoUpdate = update;
+    if (!update.$set && !update.$inc && !update.$push && !update.$pull && !update.$unset) {
+      mongoUpdate = { $set: update };
+    }
+    if (mongoUpdate.$set && !mongoUpdate.$set.updatedAt) {
+      mongoUpdate.$set.updatedAt = new Date().toISOString();
+    }
+    const res = await this.collection.updateOne(filter, mongoUpdate, { upsert: Boolean(options.upsert) });
+    return {
+      matchedCount: res.matchedCount,
+      modifiedCount: res.modifiedCount,
+      upsertedId: res.upsertedId ? String(res.upsertedId) : undefined
+    };
+  }
+
+  async updateMany(filter: QueryFilter, update: any): Promise<{ matchedCount: number; modifiedCount: number }> {
+    let mongoUpdate = update;
+    if (!update.$set && !update.$inc && !update.$push && !update.$pull && !update.$unset) {
+      mongoUpdate = { $set: update };
+    }
+    if (mongoUpdate.$set && !mongoUpdate.$set.updatedAt) {
+      mongoUpdate.$set.updatedAt = new Date().toISOString();
+    }
+    const res = await this.collection.updateMany(filter, mongoUpdate);
+    return {
+      matchedCount: res.matchedCount,
+      modifiedCount: res.modifiedCount
+    };
+  }
+
+  async deleteOne(filter: QueryFilter): Promise<{ deletedCount: number }> {
+    const res = await this.collection.deleteOne(filter);
+    return { deletedCount: res.deletedCount };
+  }
+
+  async deleteMany(filter: QueryFilter): Promise<{ deletedCount: number }> {
+    const res = await this.collection.deleteMany(filter);
+    return { deletedCount: res.deletedCount };
+  }
+
+  async countDocuments(filter: QueryFilter = {}): Promise<number> {
+    return this.collection.countDocuments(filter);
+  }
+
+  async clear(): Promise<void> {
+    await this.collection.deleteMany({});
+  }
+}
+
+// ----------------------------------------------------------------------
+// 3. DATABASE MANAGER (Supports MongoDB Atlas with Automatic Fallback)
+// ----------------------------------------------------------------------
 export class DatabaseManager {
   private static instance: DatabaseManager;
-  public readonly users: JsonCollection<User>;
-  public readonly profiles: JsonCollection<Profile>;
-  public readonly skills: JsonCollection<Skill>;
-  public readonly interests: JsonCollection<Interest>;
-  public readonly projects: JsonCollection<Project>;
-  public readonly project_requirements: JsonCollection<ProjectRequirements>;
-  public readonly project_architecture: JsonCollection<ProjectArchitecture>;
-  public readonly project_databases: JsonCollection<ProjectDatabase>;
-  public readonly project_apis: JsonCollection<ProjectApis>;
-  public readonly project_ui: JsonCollection<ProjectUI>;
-  public readonly roadmaps: JsonCollection<ProjectRoadmap>;
-  public readonly tasks: JsonCollection<Task>;
-  public readonly ai_conversations: JsonCollection<AiConversation>;
-  public readonly ai_generations: JsonCollection<AiGenerationLog>;
-  public readonly test_cases: JsonCollection<TestCase>;
-  public readonly documents: JsonCollection<ProjectDocument>;
-  public readonly notifications: JsonCollection<Notification>;
-  public readonly portfolio_pages: JsonCollection<PortfolioPage>;
-  public readonly technologies: JsonCollection<Technology>;
-  public readonly categories: JsonCollection<Category>;
-  public readonly admin_logs: JsonCollection<AdminLog>;
-  public readonly usage_logs: JsonCollection<UsageLog>;
+  private mongoClient: MongoClient | null = null;
+  private mongoDb: Db | null = null;
+  private activeEngine: 'mongodb' | 'embedded_json' = 'embedded_json';
+  private connectionStatus: 'connected' | 'fallback' = 'fallback';
+
+  public users!: ICollection<User>;
+  public profiles!: ICollection<Profile>;
+  public skills!: ICollection<Skill>;
+  public interests!: ICollection<Interest>;
+  public projects!: ICollection<Project>;
+  public project_requirements!: ICollection<ProjectRequirements>;
+  public project_architecture!: ICollection<ProjectArchitecture>;
+  public project_databases!: ICollection<ProjectDatabase>;
+  public project_apis!: ICollection<ProjectApis>;
+  public project_ui!: ICollection<ProjectUI>;
+  public roadmaps!: ICollection<ProjectRoadmap>;
+  public tasks!: ICollection<Task>;
+  public ai_conversations!: ICollection<AiConversation>;
+  public ai_generations!: ICollection<AiGenerationLog>;
+  public test_cases!: ICollection<TestCase>;
+  public documents!: ICollection<ProjectDocument>;
+  public notifications!: ICollection<Notification>;
+  public portfolio_pages!: ICollection<PortfolioPage>;
+  public technologies!: ICollection<Technology>;
+  public categories!: ICollection<Category>;
+  public admin_logs!: ICollection<AdminLog>;
+  public usage_logs!: ICollection<UsageLog>;
 
   private constructor() {
+    this.initJsonStorage();
+  }
+
+  private initJsonStorage() {
     const dir = config.dataDir;
     this.users = new JsonCollection<User>('users', dir);
     this.profiles = new JsonCollection<Profile>('profiles', dir);
@@ -382,6 +512,81 @@ export class DatabaseManager {
     this.categories = new JsonCollection<Category>('categories', dir);
     this.admin_logs = new JsonCollection<AdminLog>('admin_logs', dir);
     this.usage_logs = new JsonCollection<UsageLog>('usage_logs', dir);
+    this.activeEngine = 'embedded_json';
+    this.connectionStatus = 'fallback';
+  }
+
+  public async init(): Promise<{ engine: 'mongodb' | 'embedded_json'; status: string }> {
+    if (config.mongodbUri && config.mongodbUri.trim()) {
+      try {
+        console.log('[Database] Connecting to MongoDB Atlas cluster...');
+        this.mongoClient = new MongoClient(config.mongodbUri, {
+          serverSelectionTimeoutMS: 5000,
+          connectTimeoutMS: 10000,
+        });
+
+        await this.mongoClient.connect();
+        this.mongoDb = this.mongoClient.db();
+
+        // Verify ping
+        await this.mongoDb.command({ ping: 1 });
+
+        // Instantiate Mongo collections
+        const db = this.mongoDb;
+        this.users = new MongoCollection<User>('users', db.collection('users'));
+        this.profiles = new MongoCollection<Profile>('profiles', db.collection('profiles'));
+        this.skills = new MongoCollection<Skill>('skills', db.collection('skills'));
+        this.interests = new MongoCollection<Interest>('interests', db.collection('interests'));
+        this.projects = new MongoCollection<Project>('projects', db.collection('projects'));
+        this.project_requirements = new MongoCollection<ProjectRequirements>('project_requirements', db.collection('project_requirements'));
+        this.project_architecture = new MongoCollection<ProjectArchitecture>('project_architecture', db.collection('project_architecture'));
+        this.project_databases = new MongoCollection<ProjectDatabase>('project_databases', db.collection('project_databases'));
+        this.project_apis = new MongoCollection<ProjectApis>('project_apis', db.collection('project_apis'));
+        this.project_ui = new MongoCollection<ProjectUI>('project_ui', db.collection('project_ui'));
+        this.roadmaps = new MongoCollection<ProjectRoadmap>('roadmaps', db.collection('roadmaps'));
+        this.tasks = new MongoCollection<Task>('tasks', db.collection('tasks'));
+        this.ai_conversations = new MongoCollection<AiConversation>('ai_conversations', db.collection('ai_conversations'));
+        this.ai_generations = new MongoCollection<AiGenerationLog>('ai_generations', db.collection('ai_generations'));
+        this.test_cases = new MongoCollection<TestCase>('test_cases', db.collection('test_cases'));
+        this.documents = new MongoCollection<ProjectDocument>('documents', db.collection('documents'));
+        this.notifications = new MongoCollection<Notification>('notifications', db.collection('notifications'));
+        this.portfolio_pages = new MongoCollection<PortfolioPage>('portfolio_pages', db.collection('portfolio_pages'));
+        this.technologies = new MongoCollection<Technology>('technologies', db.collection('technologies'));
+        this.categories = new MongoCollection<Category>('categories', db.collection('categories'));
+        this.admin_logs = new MongoCollection<AdminLog>('admin_logs', db.collection('admin_logs'));
+        this.usage_logs = new MongoCollection<UsageLog>('usage_logs', db.collection('usage_logs'));
+
+        // Initialize production indexes safely
+        await Promise.allSettled([
+          db.collection('users').createIndex({ email: 1 }, { unique: true }),
+          db.collection('projects').createIndex({ slug: 1 }),
+          db.collection('projects').createIndex({ userId: 1 }),
+          db.collection('tasks').createIndex({ projectId: 1 }),
+          db.collection('skills').createIndex({ userId: 1 }),
+        ]);
+
+        this.activeEngine = 'mongodb';
+        this.connectionStatus = 'connected';
+        console.log('✅ [Database] Connected successfully to MongoDB Atlas (Production Storage Active)');
+        return { engine: 'mongodb', status: 'connected' };
+      } catch (err: any) {
+        console.warn(`⚠️ [Database] Failed to connect to MongoDB Atlas (${err.message}). Seamlessly engaging Embedded JSON Fallback Engine.`);
+        this.initJsonStorage();
+        return { engine: 'embedded_json', status: 'fallback' };
+      }
+    } else {
+      console.log('ℹ️ [Database] MONGODB_URI not provided. Operating in Development Mode using Embedded JSON Storage Engine.');
+      this.initJsonStorage();
+      return { engine: 'embedded_json', status: 'fallback' };
+    }
+  }
+
+  public getStatus() {
+    return {
+      engine: this.activeEngine,
+      status: this.connectionStatus,
+      isAtlas: this.activeEngine === 'mongodb'
+    };
   }
 
   public static getInstance(): DatabaseManager {

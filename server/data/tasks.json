@@ -555,5 +555,251 @@
     "createdAt": "2026-09-29T15:18:25.251Z",
     "updatedAt": "2026-09-29T15:18:25.251Z",
     "_id": "e74c9c39-0d59-4d54-9780-3c4539de7230"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "title": "Setup TypeScript Monorepo & Express Server",
+    "description": "Task execution for Setup TypeScript Monorepo & Express Server. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Backend",
+      "Setup"
+    ],
+    "order": 1,
+    "createdAt": "2026-10-05T16:36:17.999Z",
+    "updatedAt": "2026-10-05T16:36:17.999Z",
+    "_id": "75e4c7d6-c264-4166-9645-07611de364ab"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "title": "Create MongoDB schemas for Users and CarbonLogs",
+    "description": "Task execution for Create MongoDB schemas for Users and CarbonLogs. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 3,
+    "dependencies": [],
+    "tags": [
+      "Database"
+    ],
+    "order": 2,
+    "createdAt": "2026-10-05T16:36:18.000Z",
+    "updatedAt": "2026-10-05T16:36:18.000Z",
+    "_id": "205287d3-7405-4050-84d5-c8e1ab9ac643"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "title": "Implement JWT Auth & Password Hashing",
+    "description": "Task execution for Implement JWT Auth & Password Hashing. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 2,
+    "estimatedHours": 6,
+    "dependencies": [],
+    "tags": [
+      "Security",
+      "Auth"
+    ],
+    "order": 3,
+    "createdAt": "2026-10-05T16:36:18.001Z",
+    "updatedAt": "2026-10-05T16:36:18.001Z",
+    "_id": "a4bafd4a-fd9f-4e90-92e2-3852dd3938d5"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "title": "Build Mobile Dashboard Hero Progress Ring",
+    "description": "Task execution for Build Mobile Dashboard Hero Progress Ring. Ensure adherence to project requirements.",
+    "status": "in_progress",
+    "priority": "medium",
+    "phaseNumber": 5,
+    "estimatedHours": 5,
+    "dependencies": [],
+    "tags": [
+      "Frontend",
+      "UI"
+    ],
+    "order": 4,
+    "createdAt": "2026-10-05T16:36:18.003Z",
+    "updatedAt": "2026-10-05T16:36:18.003Z",
+    "_id": "7ffddb82-dd73-462d-b884-633ca3134a4b"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "title": "Integrate Gemini API with Structured Receipt Prompt",
+    "description": "Task execution for Integrate Gemini API with Structured Receipt Prompt. Ensure adherence to project requirements.",
+    "status": "todo",
+    "priority": "urgent",
+    "phaseNumber": 4,
+    "estimatedHours": 8,
+    "dependencies": [],
+    "tags": [
+      "AI",
+      "Backend"
+    ],
+    "order": 5,
+    "createdAt": "2026-10-05T16:36:18.004Z",
+    "updatedAt": "2026-10-05T16:36:18.004Z",
+    "_id": "2a2f4625-eea0-4536-b254-2465763d5819"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "title": "Implement Dorm Leaderboard Aggregation Query",
+    "description": "Task execution for Implement Dorm Leaderboard Aggregation Query. Ensure adherence to project requirements.",
+    "status": "backlog",
+    "priority": "low",
+    "phaseNumber": 5,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Backend"
+    ],
+    "order": 6,
+    "createdAt": "2026-10-05T16:36:18.005Z",
+    "updatedAt": "2026-10-05T16:36:18.005Z",
+    "_id": "d9ac9dde-0edd-470c-bd42-8f7115c5f24e"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "title": "Write Unit Tests for Carbon Factor Math",
+    "description": "Task execution for Write Unit Tests for Carbon Factor Math. Ensure adherence to project requirements.",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 6,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Testing"
+    ],
+    "order": 7,
+    "createdAt": "2026-10-05T16:36:18.005Z",
+    "updatedAt": "2026-10-05T16:36:18.005Z",
+    "_id": "2b25cc0b-162b-4d1e-a74c-044a547161e1"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "title": "Setup TypeScript Monorepo & Express Server",
+    "description": "Task execution for Setup TypeScript Monorepo & Express Server. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Backend",
+      "Setup"
+    ],
+    "order": 1,
+    "createdAt": "2026-10-05T16:36:45.303Z",
+    "updatedAt": "2026-10-05T16:36:45.303Z",
+    "_id": "c469eba6-1dba-45db-98d5-f23d58ac893a"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "title": "Create MongoDB schemas for Users and CarbonLogs",
+    "description": "Task execution for Create MongoDB schemas for Users and CarbonLogs. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 1,
+    "estimatedHours": 3,
+    "dependencies": [],
+    "tags": [
+      "Database"
+    ],
+    "order": 2,
+    "createdAt": "2026-10-05T16:36:45.304Z",
+    "updatedAt": "2026-10-05T16:36:45.304Z",
+    "_id": "46b1d189-5bad-4e2b-b51f-9016b3467dc7"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "title": "Implement JWT Auth & Password Hashing",
+    "description": "Task execution for Implement JWT Auth & Password Hashing. Ensure adherence to project requirements.",
+    "status": "completed",
+    "priority": "high",
+    "phaseNumber": 2,
+    "estimatedHours": 6,
+    "dependencies": [],
+    "tags": [
+      "Security",
+      "Auth"
+    ],
+    "order": 3,
+    "createdAt": "2026-10-05T16:36:45.305Z",
+    "updatedAt": "2026-10-05T16:36:45.305Z",
+    "_id": "9ca1deb0-7eb2-441b-a2d5-e314aca1ec4d"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "title": "Build Mobile Dashboard Hero Progress Ring",
+    "description": "Task execution for Build Mobile Dashboard Hero Progress Ring. Ensure adherence to project requirements.",
+    "status": "in_progress",
+    "priority": "medium",
+    "phaseNumber": 5,
+    "estimatedHours": 5,
+    "dependencies": [],
+    "tags": [
+      "Frontend",
+      "UI"
+    ],
+    "order": 4,
+    "createdAt": "2026-10-05T16:36:45.306Z",
+    "updatedAt": "2026-10-05T16:36:45.306Z",
+    "_id": "167f511d-a800-4aab-8eb0-663d229c0221"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "title": "Integrate Gemini API with Structured Receipt Prompt",
+    "description": "Task execution for Integrate Gemini API with Structured Receipt Prompt. Ensure adherence to project requirements.",
+    "status": "todo",
+    "priority": "urgent",
+    "phaseNumber": 4,
+    "estimatedHours": 8,
+    "dependencies": [],
+    "tags": [
+      "AI",
+      "Backend"
+    ],
+    "order": 5,
+    "createdAt": "2026-10-05T16:36:45.307Z",
+    "updatedAt": "2026-10-05T16:36:45.307Z",
+    "_id": "f44fa741-a97f-4908-bf10-2d564495c8ae"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "title": "Implement Dorm Leaderboard Aggregation Query",
+    "description": "Task execution for Implement Dorm Leaderboard Aggregation Query. Ensure adherence to project requirements.",
+    "status": "backlog",
+    "priority": "low",
+    "phaseNumber": 5,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Backend"
+    ],
+    "order": 6,
+    "createdAt": "2026-10-05T16:36:45.308Z",
+    "updatedAt": "2026-10-05T16:36:45.308Z",
+    "_id": "db4ebdcc-dc99-4cf9-a8da-914b7e0efd70"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "title": "Write Unit Tests for Carbon Factor Math",
+    "description": "Task execution for Write Unit Tests for Carbon Factor Math. Ensure adherence to project requirements.",
+    "status": "todo",
+    "priority": "medium",
+    "phaseNumber": 6,
+    "estimatedHours": 4,
+    "dependencies": [],
+    "tags": [
+      "Testing"
+    ],
+    "order": 7,
+    "createdAt": "2026-10-05T16:36:45.309Z",
+    "updatedAt": "2026-10-05T16:36:45.309Z",
+    "_id": "df9fc3c6-15f0-4fb5-886b-740dd42c29ff"
   }
 ]

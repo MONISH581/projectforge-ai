@@ -256,5 +256,243 @@
     "currentView": "beginner",
     "updatedAt": "2026-09-29T15:18:25.227Z",
     "_id": "74d3108a-6ded-444d-b9b7-aa5271f5cc7f"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "currentView": "beginner",
+    "beginnerArchitecture": {
+      "overview": "Clean 3-tier architecture with React SPA frontend, Node/Express REST backend, and MongoDB database with direct Gemini AI integration.",
+      "diagramMermaid": "graph TD\n  Client[React Mobile/Web App] -->|HTTPS REST| API[Express API Gateway]\n  API -->|Auth JWT| AuthMiddleware[Auth Handler]\n  API -->|Query/Mutate| DB[(MongoDB Atlas)]\n  API -->|Multimodal Image Prompt| AI[Gemini 1.5 Flash API]\n  API -->|File Stream| CloudStorage[Cloudinary Image Storage]",
+      "components": [
+        {
+          "name": "Web/Mobile Client",
+          "type": "client",
+          "tech": "React + Tailwind + Vite",
+          "description": "Responsive SPA with touch support and camera upload.",
+          "responsibilities": [
+            "UI rendering",
+            "State management",
+            "File capture"
+          ]
+        },
+        {
+          "name": "Core API Server",
+          "type": "gateway",
+          "tech": "Node.js + Express + TS",
+          "description": "Central REST controller for data and AI coordination.",
+          "responsibilities": [
+            "JWT verification",
+            "Validation",
+            "Rate limiting"
+          ]
+        },
+        {
+          "name": "Database",
+          "type": "database",
+          "tech": "MongoDB",
+          "description": "Primary document persistence.",
+          "responsibilities": [
+            "User profiles",
+            "Emissions logs",
+            "Swaps catalog"
+          ]
+        },
+        {
+          "name": "AI Vision Service",
+          "type": "service",
+          "tech": "Gemini API",
+          "description": "Multimodal receipt recognition and emissions estimation.",
+          "responsibilities": [
+            "OCR parsing",
+            "CO2 factor estimation"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "1. User captures receipt photo in Mobile Client",
+        "2. Client uploads multipart file to Express /api/receipts/analyze",
+        "3. Express verifies JWT token and calls Gemini API with strict structured prompt",
+        "4. Gemini returns parsed items + emissions breakdown in JSON",
+        "5. Express writes record to MongoDB and returns 201 Created to Client",
+        "6. Client updates daily progress meter and invalidates cache"
+      ]
+    },
+    "productionArchitecture": {
+      "overview": "High-availability microservice design with API Gateway, Redis caching, RabbitMQ asynchronous background queue for heavy OCR, and CDN edge distribution.",
+      "diagramMermaid": "flowchart TD\n  User((Student User)) --> Cloudflare[Cloudflare CDN / WAF]\n  Cloudflare --> Client[React SPA / PWA]\n  Client --> Kong[Kong API Gateway]\n  Kong --> AuthService[Auth Microservice]\n  Kong --> CarbonService[Carbon Emissions API]\n  CarbonService --> Redis[(Redis Cache)]\n  CarbonService --> RabbitMQ[RabbitMQ Message Broker]\n  RabbitMQ --> VisionWorker[AI Vision OCR Worker Pool]\n  VisionWorker --> GeminiAPI[Gemini 1.5 Flash]\n  CarbonService --> MongoDB[(MongoDB Primary + Replicas)]\n  VisionWorker --> S3[(AWS S3 Encrypted)]",
+      "components": [
+        {
+          "name": "Cloudflare Edge CDN",
+          "type": "gateway",
+          "tech": "Cloudflare",
+          "description": "DDoS mitigation and static asset caching.",
+          "responsibilities": [
+            "SSL termination",
+            "Bot detection",
+            "Edge caching"
+          ]
+        },
+        {
+          "name": "Async OCR Worker",
+          "type": "service",
+          "tech": "Python FastAPI Worker",
+          "description": "Consumes image processing queue jobs asynchronously.",
+          "responsibilities": [
+            "Tesseract preprocessing",
+            "Gemini fallback",
+            "Emissions calculation"
+          ]
+        },
+        {
+          "name": "Redis Cache",
+          "type": "database",
+          "tech": "Redis 7",
+          "description": "Leaderboard ranking and session cache.",
+          "responsibilities": [
+            "Sorted set leaderboards",
+            "Hot product query caching"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "Client requests presigned S3 URL",
+        "Client uploads directly to S3",
+        "Event triggers message onto RabbitMQ",
+        "Worker processes image and notifies Client via WebSocket"
+      ],
+      "authFlow": [
+        "OAuth2 PKCE flow with JWT access token (15m expiry) and refresh token in HttpOnly cookie",
+        "Gateway validates token signature locally via JWKS"
+      ],
+      "aiPipelineFlow": [
+        "Image preprocessing -> OCR confidence check -> LLM structured extraction -> Database lookup in OpenFoodFacts CO2 database"
+      ],
+      "deploymentTopology": [
+        "Frontend on Vercel Edge Network",
+        "Backend APIs deployed on AWS ECS Fargate containers",
+        "MongoDB Atlas M10 cluster with automated daily snapshots"
+      ]
+    },
+    "updatedAt": "2026-10-05T16:36:17.994Z",
+    "_id": "b51c9af5-6dab-4819-ad29-cb0de0b76fd3"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "currentView": "beginner",
+    "beginnerArchitecture": {
+      "overview": "Clean 3-tier architecture with React SPA frontend, Node/Express REST backend, and MongoDB database with direct Gemini AI integration.",
+      "diagramMermaid": "graph TD\n  Client[React Mobile/Web App] -->|HTTPS REST| API[Express API Gateway]\n  API -->|Auth JWT| AuthMiddleware[Auth Handler]\n  API -->|Query/Mutate| DB[(MongoDB Atlas)]\n  API -->|Multimodal Image Prompt| AI[Gemini 1.5 Flash API]\n  API -->|File Stream| CloudStorage[Cloudinary Image Storage]",
+      "components": [
+        {
+          "name": "Web/Mobile Client",
+          "type": "client",
+          "tech": "React + Tailwind + Vite",
+          "description": "Responsive SPA with touch support and camera upload.",
+          "responsibilities": [
+            "UI rendering",
+            "State management",
+            "File capture"
+          ]
+        },
+        {
+          "name": "Core API Server",
+          "type": "gateway",
+          "tech": "Node.js + Express + TS",
+          "description": "Central REST controller for data and AI coordination.",
+          "responsibilities": [
+            "JWT verification",
+            "Validation",
+            "Rate limiting"
+          ]
+        },
+        {
+          "name": "Database",
+          "type": "database",
+          "tech": "MongoDB",
+          "description": "Primary document persistence.",
+          "responsibilities": [
+            "User profiles",
+            "Emissions logs",
+            "Swaps catalog"
+          ]
+        },
+        {
+          "name": "AI Vision Service",
+          "type": "service",
+          "tech": "Gemini API",
+          "description": "Multimodal receipt recognition and emissions estimation.",
+          "responsibilities": [
+            "OCR parsing",
+            "CO2 factor estimation"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "1. User captures receipt photo in Mobile Client",
+        "2. Client uploads multipart file to Express /api/receipts/analyze",
+        "3. Express verifies JWT token and calls Gemini API with strict structured prompt",
+        "4. Gemini returns parsed items + emissions breakdown in JSON",
+        "5. Express writes record to MongoDB and returns 201 Created to Client",
+        "6. Client updates daily progress meter and invalidates cache"
+      ]
+    },
+    "productionArchitecture": {
+      "overview": "High-availability microservice design with API Gateway, Redis caching, RabbitMQ asynchronous background queue for heavy OCR, and CDN edge distribution.",
+      "diagramMermaid": "flowchart TD\n  User((Student User)) --> Cloudflare[Cloudflare CDN / WAF]\n  Cloudflare --> Client[React SPA / PWA]\n  Client --> Kong[Kong API Gateway]\n  Kong --> AuthService[Auth Microservice]\n  Kong --> CarbonService[Carbon Emissions API]\n  CarbonService --> Redis[(Redis Cache)]\n  CarbonService --> RabbitMQ[RabbitMQ Message Broker]\n  RabbitMQ --> VisionWorker[AI Vision OCR Worker Pool]\n  VisionWorker --> GeminiAPI[Gemini 1.5 Flash]\n  CarbonService --> MongoDB[(MongoDB Primary + Replicas)]\n  VisionWorker --> S3[(AWS S3 Encrypted)]",
+      "components": [
+        {
+          "name": "Cloudflare Edge CDN",
+          "type": "gateway",
+          "tech": "Cloudflare",
+          "description": "DDoS mitigation and static asset caching.",
+          "responsibilities": [
+            "SSL termination",
+            "Bot detection",
+            "Edge caching"
+          ]
+        },
+        {
+          "name": "Async OCR Worker",
+          "type": "service",
+          "tech": "Python FastAPI Worker",
+          "description": "Consumes image processing queue jobs asynchronously.",
+          "responsibilities": [
+            "Tesseract preprocessing",
+            "Gemini fallback",
+            "Emissions calculation"
+          ]
+        },
+        {
+          "name": "Redis Cache",
+          "type": "database",
+          "tech": "Redis 7",
+          "description": "Leaderboard ranking and session cache.",
+          "responsibilities": [
+            "Sorted set leaderboards",
+            "Hot product query caching"
+          ]
+        }
+      ],
+      "dataFlow": [
+        "Client requests presigned S3 URL",
+        "Client uploads directly to S3",
+        "Event triggers message onto RabbitMQ",
+        "Worker processes image and notifies Client via WebSocket"
+      ],
+      "authFlow": [
+        "OAuth2 PKCE flow with JWT access token (15m expiry) and refresh token in HttpOnly cookie",
+        "Gateway validates token signature locally via JWKS"
+      ],
+      "aiPipelineFlow": [
+        "Image preprocessing -> OCR confidence check -> LLM structured extraction -> Database lookup in OpenFoodFacts CO2 database"
+      ],
+      "deploymentTopology": [
+        "Frontend on Vercel Edge Network",
+        "Backend APIs deployed on AWS ECS Fargate containers",
+        "MongoDB Atlas M10 cluster with automated daily snapshots"
+      ]
+    },
+    "updatedAt": "2026-10-05T16:36:45.298Z",
+    "_id": "45d4399b-a15e-424f-8411-ac8c0c387fa8"
   }
 ]

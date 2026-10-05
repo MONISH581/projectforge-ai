@@ -6,22 +6,40 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const workspaceRouter = Router({ mergeParams: true });
 
-// Authorization middleware helper to ensure user owns project or is admin
-async function verifyProjectAccess(req: AuthRequest, res: Response): Promise<{ project: any; hasAccess: boolean }> {
+// Authorization middleware helper to ensure user has read or write permissions
+async function verifyProjectAccess(
+  req: AuthRequest,
+  res: Response,
+  requireWrite: boolean = false
+): Promise<{ project: any; hasAccess: boolean; isOwner: boolean }> {
   const projectId = req.params.projectId;
   const project = await db.projects.findById(projectId);
 
   if (!project) {
     res.status(404).json({ success: false, error: { code: 'PROJECT_NOT_FOUND', message: 'Project not found' } });
-    return { project: null, hasAccess: false };
+    return { project: null, hasAccess: false, isOwner: false };
   }
 
-  if (project.userId !== req.user!._id && req.user!.role !== 'admin') {
-    res.status(403).json({ success: false, error: { code: 'FORBIDDEN', message: 'Access denied to this project.' } });
-    return { project: null, hasAccess: false };
+  const isOwner = Boolean(req.user && project.userId === req.user._id);
+  const isAdmin = Boolean(req.user && req.user.role === 'admin');
+
+  // If mutation requires write permission
+  const isMutation = requireWrite || (['PUT', 'DELETE'].includes(req.method)) || (req.method === 'POST' && !req.path.endsWith('/chat') && !req.path.endsWith('/code/generate'));
+
+  if (isMutation) {
+    if (!isOwner && !isAdmin) {
+      res.status(403).json({ success: false, error: { code: 'FORBIDDEN', message: 'Not authorized to modify this project.' } });
+      return { project, hasAccess: false, isOwner };
+    }
+  } else {
+    // Read request: if private, must be owner or admin
+    if (project.visibility === 'private' && !isOwner && !isAdmin) {
+      res.status(403).json({ success: false, error: { code: 'FORBIDDEN', message: 'Access denied to private project.' } });
+      return { project, hasAccess: false, isOwner };
+    }
   }
 
-  return { project, hasAccess: true };
+  return { project, hasAccess: true, isOwner: isOwner || isAdmin };
 }
 
 // -------------------------------------------------------------
@@ -305,6 +323,11 @@ workspaceRouter.put('/tasks/:id', authenticateToken, async (req: AuthRequest, re
   if (!hasAccess) return;
 
   const taskId = req.params.id;
+  const existing = await db.tasks.findOne({ _id: taskId, projectId: req.params.projectId });
+  if (!existing) {
+    return res.status(404).json({ success: false, error: { code: 'TASK_NOT_FOUND', message: 'Task not found' } });
+  }
+
   await db.tasks.updateOne(
     { _id: taskId, projectId: req.params.projectId },
     { $set: { ...req.body, updatedAt: new Date().toISOString() } }
@@ -318,18 +341,27 @@ workspaceRouter.delete('/tasks/:id', authenticateToken, async (req: AuthRequest,
   const { hasAccess } = await verifyProjectAccess(req, res);
   if (!hasAccess) return;
 
-  await db.tasks.deleteOne({ _id: req.params.id, projectId: req.params.projectId });
+  const taskId = req.params.id;
+  const existing = await db.tasks.findOne({ _id: taskId, projectId: req.params.projectId });
+  if (!existing) {
+    return res.status(404).json({ success: false, error: { code: 'TASK_NOT_FOUND', message: 'Task not found' } });
+  }
+
+  await db.tasks.deleteOne({ _id: taskId, projectId: req.params.projectId });
   return res.status(200).json({ success: true, data: { message: 'Task deleted successfully' } });
 });
 
 // -------------------------------------------------------------
-// 8. AI DEVELOPMENT ASSISTANT (Context-Aware)
+// 8. AI DEVELOPMENT ASSISTANT (Context-Aware & User-Isolated)
 // -------------------------------------------------------------
 workspaceRouter.get('/chat', authenticateToken, async (req: AuthRequest, res: Response) => {
   const { hasAccess } = await verifyProjectAccess(req, res);
   if (!hasAccess) return;
 
-  const conv = await db.ai_conversations.findOne({ projectId: req.params.projectId });
+  const conv = await db.ai_conversations.findOne({
+    projectId: req.params.projectId,
+    userId: req.user!._id
+  });
   return res.status(200).json({ success: true, data: conv?.messages || [] });
 });
 
@@ -338,24 +370,31 @@ workspaceRouter.post('/chat', authenticateToken, async (req: AuthRequest, res: R
   if (!hasAccess) return;
 
   const message = req.body?.message;
-  if (!message) {
+  if (!message || typeof message !== 'string' || !message.trim()) {
     return res.status(400).json({ success: false, error: { code: 'EMPTY_MESSAGE', message: 'Message is required' } });
   }
 
-  let conv = await db.ai_conversations.findOne({ projectId: project._id });
+  if (message.length > 2000) {
+    return res.status(400).json({ success: false, error: { code: 'MESSAGE_TOO_LONG', message: 'Message exceeds maximum length of 2000 characters' } });
+  }
+
+  let conv = await db.ai_conversations.findOne({
+    projectId: project._id,
+    userId: req.user!._id
+  });
   const messages = conv?.messages || [];
 
   // Add user message
   const userMsg = {
     id: uuidv4(),
     sender: 'user' as const,
-    content: message,
+    content: message.trim(),
     timestamp: new Date().toISOString()
   };
   messages.push(userMsg);
 
   // Generate contextual AI response
-  const aiReply = await aiEngine.chatWithAssistant(project, messages, message);
+  const aiReply = await aiEngine.chatWithAssistant(project, messages, message.trim());
   const assistantMsg = {
     id: uuidv4(),
     sender: 'assistant' as const,
@@ -364,9 +403,9 @@ workspaceRouter.post('/chat', authenticateToken, async (req: AuthRequest, res: R
   };
   messages.push(assistantMsg);
 
-  // Save conversation
+  // Save conversation scoped strictly to current user & project
   await db.ai_conversations.updateOne(
-    { projectId: project._id },
+    { projectId: project._id, userId: req.user!._id },
     {
       $set: {
         userId: req.user!._id,
@@ -492,6 +531,11 @@ workspaceRouter.get('/tests', authenticateToken, async (req: AuthRequest, res: R
 workspaceRouter.put('/tests/:id', authenticateToken, async (req: AuthRequest, res: Response) => {
   const { hasAccess } = await verifyProjectAccess(req, res);
   if (!hasAccess) return;
+
+  const existing = await db.test_cases.findOne({ _id: req.params.id, projectId: req.params.projectId });
+  if (!existing) {
+    return res.status(404).json({ success: false, error: { code: 'TEST_NOT_FOUND', message: 'Test case not found' } });
+  }
 
   await db.test_cases.updateOne(
     { _id: req.params.id, projectId: req.params.projectId },

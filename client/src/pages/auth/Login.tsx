@@ -30,6 +30,9 @@ export const Login: React.FC = () => {
     }
   };
 
+  const [showServerConfig, setShowServerConfig] = useState(false);
+  const [serverUrl, setServerUrl] = useState(() => localStorage.getItem('projectforge_api_base') || '');
+
   const handleDemoStudent = () => {
     setEmail('student@projectforge.ai');
     setPassword('Password123!');
@@ -38,6 +41,16 @@ export const Login: React.FC = () => {
   const handleDemoAdmin = () => {
     setEmail('admin@projectforge.ai');
     setPassword('AdminSecure2026!');
+  };
+
+  const handleSaveServerUrl = () => {
+    if (serverUrl.trim()) {
+      localStorage.setItem('projectforge_api_base', serverUrl.trim().replace(/\/+$/, ''));
+    } else {
+      localStorage.removeItem('projectforge_api_base');
+    }
+    setShowServerConfig(false);
+    window.location.reload();
   };
 
   return (
@@ -52,27 +65,68 @@ export const Login: React.FC = () => {
           <p className="text-xs sm:text-sm text-slate-400 mt-1">Sign in to continue building your portfolio projects</p>
         </div>
 
-        {/* Quick Demo Fill Buttons */}
-        <div className="mb-6 p-3 rounded-2xl bg-slate-950/60 border border-slate-800/80">
-          <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2 text-center">
-            ⚡ Quick Demo Accounts
+        {/* Quick Demo Fill Credentials Cards (Standalone & Mobile Ready) */}
+        <div className="mb-6 p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800">
+          <div className="flex items-center justify-between mb-2.5">
+            <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+              ⚡ Preloaded Login Credentials
+            </span>
+            <button
+              type="button"
+              onClick={() => setShowServerConfig(!showServerConfig)}
+              className="text-[10px] text-slate-400 hover:text-indigo-300 underline"
+            >
+              {showServerConfig ? 'Close Server' : 'Backend URL'}
+            </button>
           </div>
+
+          {showServerConfig && (
+            <div className="mb-3 p-2.5 bg-slate-900 rounded-xl border border-slate-700/60 text-xs">
+              <label className="block text-[10px] text-slate-400 mb-1">API Backend URL (for APK / Remote):</label>
+              <div className="flex gap-1.5">
+                <input
+                  type="text"
+                  placeholder="http://192.168.1.4:5000/api"
+                  value={serverUrl}
+                  onChange={e => setServerUrl(e.target.value)}
+                  className="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white"
+                />
+                <button
+                  type="button"
+                  onClick={handleSaveServerUrl}
+                  className="bg-indigo-600 hover:bg-indigo-500 text-white px-2.5 py-1 rounded-lg text-xs font-semibold"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
               onClick={handleDemoStudent}
-              className="flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl bg-indigo-950/40 hover:bg-indigo-900/50 border border-indigo-500/30 text-xs font-medium text-indigo-200 transition-colors"
+              className="text-left p-2.5 rounded-xl bg-indigo-950/40 hover:bg-indigo-900/60 border border-indigo-500/30 transition-all hover:scale-[1.02]"
             >
-              <User className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Demo Student</span>
+              <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-300 mb-1">
+                <User className="w-3.5 h-3.5 text-indigo-400" />
+                <span>Student</span>
+              </div>
+              <div className="text-[10px] text-slate-300 font-mono truncate">student@projectforge.ai</div>
+              <div className="text-[10px] text-slate-400 font-mono">Password123!</div>
             </button>
+
             <button
               type="button"
               onClick={handleDemoAdmin}
-              className="flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl bg-amber-950/40 hover:bg-amber-900/50 border border-amber-500/30 text-xs font-medium text-amber-200 transition-colors"
+              className="text-left p-2.5 rounded-xl bg-amber-950/40 hover:bg-amber-900/60 border border-amber-500/30 transition-all hover:scale-[1.02]"
             >
-              <Shield className="w-3.5 h-3.5 text-amber-400" />
-              <span>Admin Account</span>
+              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300 mb-1">
+                <Shield className="w-3.5 h-3.5 text-amber-400" />
+                <span>Admin</span>
+              </div>
+              <div className="text-[10px] text-slate-300 font-mono truncate">admin@projectforge.ai</div>
+              <div className="text-[10px] text-slate-400 font-mono">AdminSecure2026!</div>
             </button>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
+import { config } from '../config';
 
 export function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
   // If response has already started sending, delegate to default express handler
@@ -25,7 +26,12 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
   // Handle standard HTTP status errors
   const status = typeof err.status === 'number' ? err.status : 500;
   const code = err.code || (status === 404 ? 'NOT_FOUND' : 'INTERNAL_SERVER_ERROR');
-  const message = err.message || 'An unexpected internal error occurred.';
+  
+  // Sanitize internal errors in production to prevent stack/path leakage
+  let message = err.message || 'An unexpected internal error occurred.';
+  if (status === 500 && config.nodeEnv === 'production') {
+    message = 'An unexpected server error occurred. Please try again later.';
+  }
 
   res.status(status).json({
     success: false,

@@ -8,6 +8,7 @@ import {
 } from '../models/types';
 
 export async function runSeed(force = false) {
+  await db.init();
   const existingUsers = await db.users.countDocuments();
   if (existingUsers > 0 && !force) {
     console.log('[Seed] Database already seeded. Skipping.');

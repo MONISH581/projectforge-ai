@@ -94,5 +94,197 @@
     "iconName": "Users",
     "projectCount": 12,
     "_id": "83e1ae93-a0d8-4f42-9b71-5b763125002b"
+  },
+  {
+    "name": "AI & Machine Learning",
+    "slug": "ai-ml",
+    "description": "Intelligent systems, LLM agents, vision, and predictive modeling.",
+    "iconName": "Sparkles",
+    "projectCount": 14,
+    "_id": "deff707c-6bc1-4920-85c3-92e3d674c4d2"
+  },
+  {
+    "name": "Web Development",
+    "slug": "web-development",
+    "description": "Full-stack web apps, portals, SaaS platforms, and APIs.",
+    "iconName": "Globe",
+    "projectCount": 22,
+    "_id": "b5a071f9-7224-49f6-8843-1f7f4c15eae3"
+  },
+  {
+    "name": "Mobile Development",
+    "slug": "mobile-development",
+    "description": "Cross-platform iOS and Android apps built with modern toolkits.",
+    "iconName": "Smartphone",
+    "projectCount": 18,
+    "_id": "0162fd8f-9bfd-4c25-b44d-a061325c03c6"
+  },
+  {
+    "name": "Cybersecurity",
+    "slug": "cybersecurity",
+    "description": "Vulnerability scanners, auth auditing, and encryption utilities.",
+    "iconName": "Shield",
+    "projectCount": 8,
+    "_id": "dc85d6c4-c481-492d-b6c2-29774f146ce1"
+  },
+  {
+    "name": "IoT & Embedded",
+    "slug": "iot",
+    "description": "Hardware sensor monitoring, telemetry dashboards, and microcontrollers.",
+    "iconName": "Cpu",
+    "projectCount": 6,
+    "_id": "5e191f94-2828-4e78-a36d-6268fd337f19"
+  },
+  {
+    "name": "Cloud & DevOps",
+    "slug": "cloud-devops",
+    "description": "Serverless architectures, container orchestration, and CI/CD tools.",
+    "iconName": "Cloud",
+    "projectCount": 9,
+    "_id": "cf426acc-27e8-47d9-a26d-9390fc7d85d9"
+  },
+  {
+    "name": "Data Science",
+    "slug": "data-science",
+    "description": "Exploratory data analysis, interactive visualization, and pipelines.",
+    "iconName": "BarChart2",
+    "projectCount": 11,
+    "_id": "1f0b4e88-d1a6-4969-ab76-f4c1c84473a1"
+  },
+  {
+    "name": "Education Tech",
+    "slug": "edtech",
+    "description": "AI tutoring, interactive code playgrounds, and campus learning tools.",
+    "iconName": "GraduationCap",
+    "projectCount": 15,
+    "_id": "0c826c82-7d17-4644-905b-38f884569fa0"
+  },
+  {
+    "name": "Healthcare Tech",
+    "slug": "healthtech",
+    "description": "Patient monitoring, clinical decision support, and wellness trackers.",
+    "iconName": "HeartPulse",
+    "projectCount": 7,
+    "_id": "93d2ca2b-5392-43c3-9a76-cbf511ad220c"
+  },
+  {
+    "name": "FinTech",
+    "slug": "fintech",
+    "description": "Expense tracking, micro-investing, algorithmic crypto, and accounting.",
+    "iconName": "DollarSign",
+    "projectCount": 10,
+    "_id": "a1258ca6-eaa7-4e9f-81b6-0a24f56fc6b2"
+  },
+  {
+    "name": "Sustainability & Green",
+    "slug": "sustainability",
+    "description": "Eco-footprint calculators, renewable energy analytics, and recycling.",
+    "iconName": "Leaf",
+    "projectCount": 8,
+    "_id": "da483961-3453-4e79-a00a-a0a33c401228"
+  },
+  {
+    "name": "Social Impact",
+    "slug": "social-impact",
+    "description": "Community aid platforms, disaster response coordination, and NGOs.",
+    "iconName": "Users",
+    "projectCount": 12,
+    "_id": "87c8c579-01fa-440a-ba26-f7e725cafa40"
+  },
+  {
+    "name": "AI & Machine Learning",
+    "slug": "ai-ml",
+    "description": "Intelligent systems, LLM agents, vision, and predictive modeling.",
+    "iconName": "Sparkles",
+    "projectCount": 14,
+    "_id": "de7be9b9-cad2-4961-bece-4c8b7930bc36"
+  },
+  {
+    "name": "Web Development",
+    "slug": "web-development",
+    "description": "Full-stack web apps, portals, SaaS platforms, and APIs.",
+    "iconName": "Globe",
+    "projectCount": 22,
+    "_id": "0b649439-38f3-4e3b-9561-c7ddcae6ee42"
+  },
+  {
+    "name": "Mobile Development",
+    "slug": "mobile-development",
+    "description": "Cross-platform iOS and Android apps built with modern toolkits.",
+    "iconName": "Smartphone",
+    "projectCount": 18,
+    "_id": "7ca7bfc8-ee69-46ca-b1b1-39a2180b6a3a"
+  },
+  {
+    "name": "Cybersecurity",
+    "slug": "cybersecurity",
+    "description": "Vulnerability scanners, auth auditing, and encryption utilities.",
+    "iconName": "Shield",
+    "projectCount": 8,
+    "_id": "62db4733-11cb-45da-b3dd-98c1f7f31dca"
+  },
+  {
+    "name": "IoT & Embedded",
+    "slug": "iot",
+    "description": "Hardware sensor monitoring, telemetry dashboards, and microcontrollers.",
+    "iconName": "Cpu",
+    "projectCount": 6,
+    "_id": "f6554864-ccbd-4bef-96c0-9c8b5cbfde13"
+  },
+  {
+    "name": "Cloud & DevOps",
+    "slug": "cloud-devops",
+    "description": "Serverless architectures, container orchestration, and CI/CD tools.",
+    "iconName": "Cloud",
+    "projectCount": 9,
+    "_id": "137b591e-24a3-4426-ad05-9a6b28dacb67"
+  },
+  {
+    "name": "Data Science",
+    "slug": "data-science",
+    "description": "Exploratory data analysis, interactive visualization, and pipelines.",
+    "iconName": "BarChart2",
+    "projectCount": 11,
+    "_id": "d49d90a9-477c-49f0-a906-b86b33476246"
+  },
+  {
+    "name": "Education Tech",
+    "slug": "edtech",
+    "description": "AI tutoring, interactive code playgrounds, and campus learning tools.",
+    "iconName": "GraduationCap",
+    "projectCount": 15,
+    "_id": "b847c8fd-768d-4fdc-842c-561124d35be7"
+  },
+  {
+    "name": "Healthcare Tech",
+    "slug": "healthtech",
+    "description": "Patient monitoring, clinical decision support, and wellness trackers.",
+    "iconName": "HeartPulse",
+    "projectCount": 7,
+    "_id": "019d808d-471c-4e34-abcd-16686b49becd"
+  },
+  {
+    "name": "FinTech",
+    "slug": "fintech",
+    "description": "Expense tracking, micro-investing, algorithmic crypto, and accounting.",
+    "iconName": "DollarSign",
+    "projectCount": 10,
+    "_id": "188bdda6-9f88-40da-bcb1-2330eaa00c45"
+  },
+  {
+    "name": "Sustainability & Green",
+    "slug": "sustainability",
+    "description": "Eco-footprint calculators, renewable energy analytics, and recycling.",
+    "iconName": "Leaf",
+    "projectCount": 8,
+    "_id": "51d5dfc2-deb1-4e9b-b0a4-1d25bf0f704e"
+  },
+  {
+    "name": "Social Impact",
+    "slug": "social-impact",
+    "description": "Community aid platforms, disaster response coordination, and NGOs.",
+    "iconName": "Users",
+    "projectCount": 12,
+    "_id": "0e349ac5-03c8-4918-9ef6-9eddeb194ff4"
   }
 ]

@@ -28,5 +28,25 @@
     "link": "/workspace/0d4e0261-e287-476e-97e2-aed315354236",
     "createdAt": "2026-09-29T15:18:25.256Z",
     "_id": "dbf2cea6-24af-4f00-8711-40ca3467f06b"
+  },
+  {
+    "userId": "f7f37f8d-8df3-42cc-abb8-d65ddc1faf3c",
+    "title": "Welcome to ProjectForge AI! 🚀",
+    "message": "Your profile has been set up with your skills in Python, React, and FastAPI. Explore recommended projects or generate a custom one.",
+    "type": "system",
+    "read": false,
+    "link": "/dashboard",
+    "createdAt": "2026-10-05T16:36:18.013Z",
+    "_id": "e64352b6-4d44-4a15-a0a8-f2469fb83fa1"
+  },
+  {
+    "userId": "b8e1087c-8f3e-4d85-a8f6-d3b0c49a4969",
+    "title": "Welcome to ProjectForge AI! 🚀",
+    "message": "Your profile has been set up with your skills in Python, React, and FastAPI. Explore recommended projects or generate a custom one.",
+    "type": "system",
+    "read": false,
+    "link": "/dashboard",
+    "createdAt": "2026-10-05T16:36:45.315Z",
+    "_id": "d4f1fcd8-98af-4870-a6c7-bf23e589efb9"
   }
 ]

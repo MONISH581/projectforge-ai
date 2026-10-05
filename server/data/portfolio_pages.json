@@ -39,5 +39,49 @@
     "createdAt": "2026-09-29T15:18:25.345Z",
     "updatedAt": "2026-09-29T15:18:25.345Z",
     "_id": "77e45f45-42b2-4e00-982f-8deb3fc0dbea"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "userId": "f7f37f8d-8df3-42cc-abb8-d65ddc1faf3c",
+    "slug": "ecotrack-ai",
+    "isPublic": true,
+    "customHeadline": "EcoTrack AI: Helping 1,200+ students reduce carbon emissions with Computer Vision",
+    "featuredScreenshots": [
+      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800"
+    ],
+    "highlights": [
+      "Engineered multimodal AI receipt parser achieving 92% extraction accuracy",
+      "Designed responsive mobile-first UI with 100% WCAG accessibility compliance",
+      "Optimized MongoDB aggregation pipelines for instant leaderboard updates"
+    ],
+    "metrics": {
+      "views": 245,
+      "likes": 38
+    },
+    "createdAt": "2026-10-05T16:36:18.012Z",
+    "updatedAt": "2026-10-05T16:36:18.012Z",
+    "_id": "fcf3d5dc-f83b-45aa-9d8a-f15269cdc563"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "userId": "b8e1087c-8f3e-4d85-a8f6-d3b0c49a4969",
+    "slug": "ecotrack-ai",
+    "isPublic": true,
+    "customHeadline": "EcoTrack AI: Helping 1,200+ students reduce carbon emissions with Computer Vision",
+    "featuredScreenshots": [
+      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800"
+    ],
+    "highlights": [
+      "Engineered multimodal AI receipt parser achieving 92% extraction accuracy",
+      "Designed responsive mobile-first UI with 100% WCAG accessibility compliance",
+      "Optimized MongoDB aggregation pipelines for instant leaderboard updates"
+    ],
+    "metrics": {
+      "views": 245,
+      "likes": 38
+    },
+    "createdAt": "2026-10-05T16:36:45.314Z",
+    "updatedAt": "2026-10-05T16:36:45.314Z",
+    "_id": "a2c50a15-bec5-4dfb-980e-f60544cbcdb1"
   }
 ]

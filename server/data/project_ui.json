@@ -224,5 +224,201 @@
     "navigationFlow": "Home -> Create Modal -> Detail View -> Home Feed",
     "updatedAt": "2026-09-29T15:18:25.229Z",
     "_id": "055b2710-724a-4b2f-a212-a9941910557e"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "screens": [
+      {
+        "id": "scr-01",
+        "name": "Home Eco Dashboard",
+        "purpose": "Displays daily CO2 gauge, quick scan CTA, and recent emissions activity.",
+        "layoutType": "mobile",
+        "components": [
+          "Daily Progress Ring",
+          "Camera Quick Button",
+          "Category Breakdown Cards",
+          "Recommended Swap of the Day"
+        ],
+        "userActions": [
+          "Tap scan button to launch camera",
+          "Click category to filter",
+          "View weekly trend"
+        ],
+        "apiDependencies": [
+          "GET /api/analytics/weekly",
+          "GET /api/logs/recent"
+        ],
+        "wireframeLayout": {
+          "header": "Top Bar: Greeting, Streak Counter (🔥 7 days), Profile Avatar",
+          "sections": [
+            {
+              "title": "Hero Carbon Meter",
+              "element": "Circular Gauge Widget",
+              "details": "Displays 2.4 / 4.0 kg daily budget with green/amber indicator."
+            },
+            {
+              "title": "Quick Action",
+              "element": "Floating Action Button",
+              "details": "Prominent Scan Receipt button with Camera icon."
+            },
+            {
+              "title": "Recent Logs",
+              "element": "Scrollable List",
+              "details": "Card list showing cafeteria lunch, subway trip, dorm electricity."
+            }
+          ],
+          "bottomNav": [
+            "Home",
+            "Scan",
+            "Leaderboard",
+            "Profile"
+          ]
+        }
+      },
+      {
+        "id": "scr-02",
+        "name": "AI Scanner & Confirmation",
+        "purpose": "Camera viewfinder for scanning receipts with instant AI preview and edit capabilities.",
+        "layoutType": "mobile",
+        "components": [
+          "Camera Preview",
+          "Bounding Box Overlay",
+          "Parsed Item Table",
+          "Confirm & Save Button"
+        ],
+        "userActions": [
+          "Take photo",
+          "Pick from gallery",
+          "Adjust detected item weights",
+          "Confirm log"
+        ],
+        "apiDependencies": [
+          "POST /api/receipts/analyze",
+          "POST /api/logs"
+        ],
+        "wireframeLayout": {
+          "header": "Back button, Title: \"Scan Receipt\", Flash toggle",
+          "sections": [
+            {
+              "title": "Viewfinder",
+              "element": "Live Camera Box",
+              "details": "Guides student to align receipt within frame."
+            },
+            {
+              "title": "Detected Items Drawer",
+              "element": "Bottom Sheet Modal",
+              "details": "Shows parsed list with edit buttons and CO2 tag."
+            }
+          ]
+        }
+      }
+    ],
+    "designSystem": {
+      "primaryColor": "#16a34a",
+      "secondaryColor": "#059669",
+      "fontFamily": "Inter",
+      "borderRadius": "16px"
+    },
+    "navigationFlow": "Home -> Scanner Modal -> Confirmation Sheet -> Updated Home -> Leaderboard",
+    "updatedAt": "2026-10-05T16:36:17.997Z",
+    "_id": "4e8fc44a-3805-4b5d-8071-3d8988771f8d"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "screens": [
+      {
+        "id": "scr-01",
+        "name": "Home Eco Dashboard",
+        "purpose": "Displays daily CO2 gauge, quick scan CTA, and recent emissions activity.",
+        "layoutType": "mobile",
+        "components": [
+          "Daily Progress Ring",
+          "Camera Quick Button",
+          "Category Breakdown Cards",
+          "Recommended Swap of the Day"
+        ],
+        "userActions": [
+          "Tap scan button to launch camera",
+          "Click category to filter",
+          "View weekly trend"
+        ],
+        "apiDependencies": [
+          "GET /api/analytics/weekly",
+          "GET /api/logs/recent"
+        ],
+        "wireframeLayout": {
+          "header": "Top Bar: Greeting, Streak Counter (🔥 7 days), Profile Avatar",
+          "sections": [
+            {
+              "title": "Hero Carbon Meter",
+              "element": "Circular Gauge Widget",
+              "details": "Displays 2.4 / 4.0 kg daily budget with green/amber indicator."
+            },
+            {
+              "title": "Quick Action",
+              "element": "Floating Action Button",
+              "details": "Prominent Scan Receipt button with Camera icon."
+            },
+            {
+              "title": "Recent Logs",
+              "element": "Scrollable List",
+              "details": "Card list showing cafeteria lunch, subway trip, dorm electricity."
+            }
+          ],
+          "bottomNav": [
+            "Home",
+            "Scan",
+            "Leaderboard",
+            "Profile"
+          ]
+        }
+      },
+      {
+        "id": "scr-02",
+        "name": "AI Scanner & Confirmation",
+        "purpose": "Camera viewfinder for scanning receipts with instant AI preview and edit capabilities.",
+        "layoutType": "mobile",
+        "components": [
+          "Camera Preview",
+          "Bounding Box Overlay",
+          "Parsed Item Table",
+          "Confirm & Save Button"
+        ],
+        "userActions": [
+          "Take photo",
+          "Pick from gallery",
+          "Adjust detected item weights",
+          "Confirm log"
+        ],
+        "apiDependencies": [
+          "POST /api/receipts/analyze",
+          "POST /api/logs"
+        ],
+        "wireframeLayout": {
+          "header": "Back button, Title: \"Scan Receipt\", Flash toggle",
+          "sections": [
+            {
+              "title": "Viewfinder",
+              "element": "Live Camera Box",
+              "details": "Guides student to align receipt within frame."
+            },
+            {
+              "title": "Detected Items Drawer",
+              "element": "Bottom Sheet Modal",
+              "details": "Shows parsed list with edit buttons and CO2 tag."
+            }
+          ]
+        }
+      }
+    ],
+    "designSystem": {
+      "primaryColor": "#16a34a",
+      "secondaryColor": "#059669",
+      "fontFamily": "Inter",
+      "borderRadius": "16px"
+    },
+    "navigationFlow": "Home -> Scanner Modal -> Confirmation Sheet -> Updated Home -> Leaderboard",
+    "updatedAt": "2026-10-05T16:36:45.301Z",
+    "_id": "f4bccc8f-5ec0-4313-8921-86dc7971f211"
   }
 ]

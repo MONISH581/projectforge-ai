@@ -297,5 +297,293 @@
     ],
     "updatedAt": "2026-09-29T15:18:25.230Z",
     "_id": "ef58124f-2ded-466b-9a2e-ef8ef04544c6"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Project Setup & Design Tokens",
+        "objective": "Initialize Vite React project, configure Tailwind CSS, and set up Express backend server.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Git",
+          "TypeScript",
+          "Node.js",
+          "Vite"
+        ],
+        "tasks": [
+          "Initialize repo with workspaces",
+          "Setup ESLint & Prettier",
+          "Configure MongoDB connection"
+        ],
+        "deliverables": [
+          "Working mono-repo",
+          "Health check API responding 200 OK"
+        ]
+      },
+      {
+        "phaseNumber": 2,
+        "title": "Authentication & Profile Management",
+        "objective": "Implement JWT authentication with secure password hashing and profile onboarding.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "JWT",
+          "bcrypt",
+          "React Context"
+        ],
+        "tasks": [
+          "User registration API",
+          "Login API with JWT",
+          "Student profile form UI"
+        ],
+        "deliverables": [
+          "Working login/signup flow",
+          "Protected route guards"
+        ]
+      },
+      {
+        "phaseNumber": 3,
+        "title": "Emissions Logging & Database Storage",
+        "objective": "Create carbon log endpoints and database persistence with category tagging.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "MongoDB",
+          "Express Controllers"
+        ],
+        "tasks": [
+          "POST /api/logs endpoint",
+          "GET /api/logs with pagination",
+          "Daily dashboard calculation logic"
+        ],
+        "deliverables": [
+          "Working CRUD for emissions logs"
+        ]
+      },
+      {
+        "phaseNumber": 4,
+        "title": "AI Multimodal Vision Integration",
+        "objective": "Connect Gemini 1.5 Flash API for receipt OCR and CO2 calculation.",
+        "estimatedDays": 6,
+        "skillsRequired": [
+          "Gemini API",
+          "Prompt Engineering",
+          "Multipart Uploads"
+        ],
+        "tasks": [
+          "Image upload handler",
+          "Gemini prompt with Zod schema validation",
+          "Fallback error handling"
+        ],
+        "deliverables": [
+          "Working receipt scan returning parsed food items in <3.5s"
+        ]
+      },
+      {
+        "phaseNumber": 5,
+        "title": "Dashboard & Data Visualization",
+        "objective": "Build interactive mobile-first charts and circular progress meter.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "React",
+          "SVG / Canvas",
+          "Tailwind CSS"
+        ],
+        "tasks": [
+          "Build Circular Progress Gauge",
+          "Weekly bar chart for categories",
+          "Streak tracking logic"
+        ],
+        "deliverables": [
+          "Responsive, animated student dashboard"
+        ]
+      },
+      {
+        "phaseNumber": 6,
+        "title": "End-to-End Testing & Polish",
+        "objective": "Write unit tests, responsive testing on mobile viewports, and audit edge cases.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "Vitest",
+          "Supertest",
+          "Manual QA"
+        ],
+        "tasks": [
+          "Test AI response failure handling",
+          "Verify 320px mobile viewport rendering",
+          "Sanitize image inputs"
+        ],
+        "deliverables": [
+          "All test suites passing",
+          "Zero console warnings"
+        ]
+      },
+      {
+        "phaseNumber": 7,
+        "title": "Deployment & Portfolio Presentation",
+        "objective": "Deploy frontend to Vercel and backend to Render, write README, and publish portfolio page.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Vercel",
+          "Render",
+          "CI/CD"
+        ],
+        "tasks": [
+          "Deploy API to Render",
+          "Deploy SPA to Vercel",
+          "Generate public portfolio showcase link"
+        ],
+        "deliverables": [
+          "Live URL accessible to recruiters",
+          "Comprehensive GitHub README"
+        ]
+      }
+    ],
+    "updatedAt": "2026-10-05T16:36:17.998Z",
+    "_id": "31e52237-8415-45ec-977c-40bd6fc5ab23"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Project Setup & Design Tokens",
+        "objective": "Initialize Vite React project, configure Tailwind CSS, and set up Express backend server.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Git",
+          "TypeScript",
+          "Node.js",
+          "Vite"
+        ],
+        "tasks": [
+          "Initialize repo with workspaces",
+          "Setup ESLint & Prettier",
+          "Configure MongoDB connection"
+        ],
+        "deliverables": [
+          "Working mono-repo",
+          "Health check API responding 200 OK"
+        ]
+      },
+      {
+        "phaseNumber": 2,
+        "title": "Authentication & Profile Management",
+        "objective": "Implement JWT authentication with secure password hashing and profile onboarding.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "JWT",
+          "bcrypt",
+          "React Context"
+        ],
+        "tasks": [
+          "User registration API",
+          "Login API with JWT",
+          "Student profile form UI"
+        ],
+        "deliverables": [
+          "Working login/signup flow",
+          "Protected route guards"
+        ]
+      },
+      {
+        "phaseNumber": 3,
+        "title": "Emissions Logging & Database Storage",
+        "objective": "Create carbon log endpoints and database persistence with category tagging.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "MongoDB",
+          "Express Controllers"
+        ],
+        "tasks": [
+          "POST /api/logs endpoint",
+          "GET /api/logs with pagination",
+          "Daily dashboard calculation logic"
+        ],
+        "deliverables": [
+          "Working CRUD for emissions logs"
+        ]
+      },
+      {
+        "phaseNumber": 4,
+        "title": "AI Multimodal Vision Integration",
+        "objective": "Connect Gemini 1.5 Flash API for receipt OCR and CO2 calculation.",
+        "estimatedDays": 6,
+        "skillsRequired": [
+          "Gemini API",
+          "Prompt Engineering",
+          "Multipart Uploads"
+        ],
+        "tasks": [
+          "Image upload handler",
+          "Gemini prompt with Zod schema validation",
+          "Fallback error handling"
+        ],
+        "deliverables": [
+          "Working receipt scan returning parsed food items in <3.5s"
+        ]
+      },
+      {
+        "phaseNumber": 5,
+        "title": "Dashboard & Data Visualization",
+        "objective": "Build interactive mobile-first charts and circular progress meter.",
+        "estimatedDays": 5,
+        "skillsRequired": [
+          "React",
+          "SVG / Canvas",
+          "Tailwind CSS"
+        ],
+        "tasks": [
+          "Build Circular Progress Gauge",
+          "Weekly bar chart for categories",
+          "Streak tracking logic"
+        ],
+        "deliverables": [
+          "Responsive, animated student dashboard"
+        ]
+      },
+      {
+        "phaseNumber": 6,
+        "title": "End-to-End Testing & Polish",
+        "objective": "Write unit tests, responsive testing on mobile viewports, and audit edge cases.",
+        "estimatedDays": 4,
+        "skillsRequired": [
+          "Vitest",
+          "Supertest",
+          "Manual QA"
+        ],
+        "tasks": [
+          "Test AI response failure handling",
+          "Verify 320px mobile viewport rendering",
+          "Sanitize image inputs"
+        ],
+        "deliverables": [
+          "All test suites passing",
+          "Zero console warnings"
+        ]
+      },
+      {
+        "phaseNumber": 7,
+        "title": "Deployment & Portfolio Presentation",
+        "objective": "Deploy frontend to Vercel and backend to Render, write README, and publish portfolio page.",
+        "estimatedDays": 3,
+        "skillsRequired": [
+          "Vercel",
+          "Render",
+          "CI/CD"
+        ],
+        "tasks": [
+          "Deploy API to Render",
+          "Deploy SPA to Vercel",
+          "Generate public portfolio showcase link"
+        ],
+        "deliverables": [
+          "Live URL accessible to recruiters",
+          "Comprehensive GitHub README"
+        ]
+      }
+    ],
+    "updatedAt": "2026-10-05T16:36:45.302Z",
+    "_id": "458c7166-874d-4244-bd85-108d2144fc14"
   }
 ]

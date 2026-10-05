@@ -191,5 +191,197 @@
     ],
     "updatedAt": "2026-09-29T15:18:25.226Z",
     "_id": "6c797d53-8afd-4d2c-9bbb-7dc3e7e5f2c8"
+  },
+  {
+    "projectId": "cacf6050-d240-48f4-a549-115e2d1aeea3",
+    "functional": [
+      {
+        "id": "FR-01",
+        "code": "FR-01",
+        "title": "User Registration & Onboarding",
+        "description": "Allow students to sign up with campus email and specify dietary/transit defaults.",
+        "priority": "must_have",
+        "module": "Auth"
+      },
+      {
+        "id": "FR-02",
+        "code": "FR-02",
+        "title": "Receipt & Meal Image Upload",
+        "description": "Enable photo capture and upload for automated CO2e parsing via AI.",
+        "priority": "must_have",
+        "module": "AI Engine"
+      },
+      {
+        "id": "FR-03",
+        "code": "FR-03",
+        "title": "Carbon Emissions Analytics",
+        "description": "Display daily breakdown by category (Food, Commute, Energy, Goods).",
+        "priority": "must_have",
+        "module": "Dashboard"
+      },
+      {
+        "id": "FR-04",
+        "code": "FR-04",
+        "title": "Sustainable Swaps Engine",
+        "description": "Suggest lower-impact alternatives with cost parity comparison.",
+        "priority": "should_have",
+        "module": "Recommendations"
+      },
+      {
+        "id": "FR-05",
+        "code": "FR-05",
+        "title": "Campus Dorm Leaderboard",
+        "description": "Aggregate anonymous floor and dorm rankings for weekly eco-challenges.",
+        "priority": "could_have",
+        "module": "Gamification"
+      }
+    ],
+    "nonFunctional": [
+      {
+        "id": "NFR-01",
+        "category": "performance",
+        "description": "AI receipt analysis response time under 3.5 seconds.",
+        "metric": "< 3.5s p95"
+      },
+      {
+        "id": "NFR-02",
+        "category": "security",
+        "description": "Receipt images must be sanitized and stripped of EXIF coordinates.",
+        "metric": "Zero EXIF leakage"
+      },
+      {
+        "id": "NFR-03",
+        "category": "accessibility",
+        "description": "WCAG 2.1 AA compliant color contrast on all charts.",
+        "metric": "Contrast >= 4.5:1"
+      },
+      {
+        "id": "NFR-04",
+        "category": "scalability",
+        "description": "Backend can ingest up to 200 concurrent receipt scans without queue stall.",
+        "metric": "200 req/sec"
+      }
+    ],
+    "userStories": [
+      {
+        "id": "US-01",
+        "asA": "university student on a tight budget",
+        "iWant": "to snap a photo of my cafeteria receipt",
+        "soThat": "I can see the environmental impact of my lunch without typing 15 ingredients.",
+        "acceptanceCriteria": [
+          "System identifies major food items with >85% accuracy",
+          "Calculates estimated kg CO2e within 4 seconds",
+          "Displays one immediate swap for next time"
+        ]
+      },
+      {
+        "id": "US-02",
+        "asA": "campus environmental club leader",
+        "iWant": "to view our hall leaderboards",
+        "soThat": "our members stay motivated to reduce single-use plastic and food waste.",
+        "acceptanceCriteria": [
+          "Weekly rankings refresh every Sunday at midnight",
+          "Opt-in privacy toggle to stay anonymous"
+        ]
+      }
+    ],
+    "updatedAt": "2026-10-05T16:36:17.993Z",
+    "_id": "ad6fba2c-b58f-4896-8e12-dbb2b0d0e19e"
+  },
+  {
+    "projectId": "a47877eb-a27d-49af-8ff4-42e4bd76ea87",
+    "functional": [
+      {
+        "id": "FR-01",
+        "code": "FR-01",
+        "title": "User Registration & Onboarding",
+        "description": "Allow students to sign up with campus email and specify dietary/transit defaults.",
+        "priority": "must_have",
+        "module": "Auth"
+      },
+      {
+        "id": "FR-02",
+        "code": "FR-02",
+        "title": "Receipt & Meal Image Upload",
+        "description": "Enable photo capture and upload for automated CO2e parsing via AI.",
+        "priority": "must_have",
+        "module": "AI Engine"
+      },
+      {
+        "id": "FR-03",
+        "code": "FR-03",
+        "title": "Carbon Emissions Analytics",
+        "description": "Display daily breakdown by category (Food, Commute, Energy, Goods).",
+        "priority": "must_have",
+        "module": "Dashboard"
+      },
+      {
+        "id": "FR-04",
+        "code": "FR-04",
+        "title": "Sustainable Swaps Engine",
+        "description": "Suggest lower-impact alternatives with cost parity comparison.",
+        "priority": "should_have",
+        "module": "Recommendations"
+      },
+      {
+        "id": "FR-05",
+        "code": "FR-05",
+        "title": "Campus Dorm Leaderboard",
+        "description": "Aggregate anonymous floor and dorm rankings for weekly eco-challenges.",
+        "priority": "could_have",
+        "module": "Gamification"
+      }
+    ],
+    "nonFunctional": [
+      {
+        "id": "NFR-01",
+        "category": "performance",
+        "description": "AI receipt analysis response time under 3.5 seconds.",
+        "metric": "< 3.5s p95"
+      },
+      {
+        "id": "NFR-02",
+        "category": "security",
+        "description": "Receipt images must be sanitized and stripped of EXIF coordinates.",
+        "metric": "Zero EXIF leakage"
+      },
+      {
+        "id": "NFR-03",
+        "category": "accessibility",
+        "description": "WCAG 2.1 AA compliant color contrast on all charts.",
+        "metric": "Contrast >= 4.5:1"
+      },
+      {
+        "id": "NFR-04",
+        "category": "scalability",
+        "description": "Backend can ingest up to 200 concurrent receipt scans without queue stall.",
+        "metric": "200 req/sec"
+      }
+    ],
+    "userStories": [
+      {
+        "id": "US-01",
+        "asA": "university student on a tight budget",
+        "iWant": "to snap a photo of my cafeteria receipt",
+        "soThat": "I can see the environmental impact of my lunch without typing 15 ingredients.",
+        "acceptanceCriteria": [
+          "System identifies major food items with >85% accuracy",
+          "Calculates estimated kg CO2e within 4 seconds",
+          "Displays one immediate swap for next time"
+        ]
+      },
+      {
+        "id": "US-02",
+        "asA": "campus environmental club leader",
+        "iWant": "to view our hall leaderboards",
+        "soThat": "our members stay motivated to reduce single-use plastic and food waste.",
+        "acceptanceCriteria": [
+          "Weekly rankings refresh every Sunday at midnight",
+          "Opt-in privacy toggle to stay anonymous"
+        ]
+      }
+    ],
+    "updatedAt": "2026-10-05T16:36:45.297Z",
+    "_id": "afe768c4-8274-441f-b28d-fe85a45dd422"
   }
 ]

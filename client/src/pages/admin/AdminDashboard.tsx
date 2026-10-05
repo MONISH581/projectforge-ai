@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Shield, Users, FolderKanban, Cpu, CheckCircle2,
-  AlertTriangle, Search, Plus, Trash2, Star, Check
+  AlertTriangle, Search, Plus, Trash2, Star, Check, Edit2
 } from 'lucide-react';
 import { api } from '../../api/client';
 import { useAuth } from '../../context/AuthContext';
@@ -26,6 +26,7 @@ export const AdminDashboard: React.FC = () => {
   // Add Tech Modal
   const [newTech, setNewTech] = useState({ name: '', category: 'programming', description: '', iconName: 'Code', popular: true });
   const [isTechModalOpen, setIsTechModalOpen] = useState(false);
+  const [editingTech, setEditingTech] = useState<any | null>(null);
 
   const fetchOverview = async () => {
     setLoading(true);
@@ -85,6 +86,27 @@ export const AdminDashboard: React.FC = () => {
       setIsTechModalOpen(false);
       setNewTech({ name: '', category: 'programming', description: '', iconName: 'Code', popular: true });
       success('Technology catalog entry created');
+    }
+  };
+
+  const handleUpdateTech = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingTech || !editingTech.name.trim()) return;
+
+    const res = await api.updateAdminTechnology(editingTech._id, {
+      name: editingTech.name,
+      category: editingTech.category,
+      description: editingTech.description,
+      iconName: editingTech.iconName,
+      popular: editingTech.popular
+    });
+
+    if (res.success && res.data) {
+      setTechnologies(prev => prev.map(t => t._id === editingTech._id ? res.data : t));
+      setEditingTech(null);
+      success('Technology updated successfully');
+    } else {
+      error(res.error?.message || 'Failed to update technology');
     }
   };
 
@@ -325,12 +347,22 @@ export const AdminDashboard: React.FC = () => {
                   <span className="text-xs font-bold text-white">{t.name}</span>
                   <span className="text-[10px] text-slate-500 block uppercase capitalize">{t.category}</span>
                 </div>
-                <button
-                  onClick={() => handleDeleteTech(t._id)}
-                  className="p-1.5 text-slate-500 hover:text-rose-400"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setEditingTech(t)}
+                    className="p-1.5 text-slate-500 hover:text-amber-400 transition-colors"
+                    title="Edit Technology"
+                  >
+                    <Edit2 className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => handleDeleteTech(t._id)}
+                    className="p-1.5 text-slate-500 hover:text-rose-400 transition-colors"
+                    title="Delete Technology"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -423,6 +455,60 @@ export const AdminDashboard: React.FC = () => {
                   className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 font-bold text-slate-950 text-xs"
                 >
                   Save Technology
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {/* Edit Technology Modal */}
+      {editingTech && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl">
+            <h3 className="text-base font-bold text-white mb-4">Edit Technology in Catalog</h3>
+            <form onSubmit={handleUpdateTech} className="space-y-4">
+              <div>
+                <label className="block text-xs font-medium text-slate-300 mb-1">Name</label>
+                <input
+                  type="text"
+                  required
+                  value={editingTech.name}
+                  onChange={e => setEditingTech({ ...editingTech, name: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-300 mb-1">Category</label>
+                <select
+                  value={editingTech.category}
+                  onChange={e => setEditingTech({ ...editingTech, category: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none"
+                >
+                  <option value="programming">Programming</option>
+                  <option value="frontend">Frontend</option>
+                  <option value="backend">Backend</option>
+                  <option value="database">Database</option>
+                  <option value="ai">AI</option>
+                  <option value="mobile">Mobile</option>
+                  <option value="cloud_devops">Cloud & DevOps</option>
+                  <option value="cybersecurity">Cybersecurity</option>
+                </select>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setEditingTech(null)}
+                  className="px-4 py-2 rounded-xl bg-slate-800 text-xs font-semibold text-slate-300"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 font-bold text-slate-950 text-xs"
+                >
+                  Update Technology
                 </button>
               </div>
             </form>
